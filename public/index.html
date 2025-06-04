@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C4 App - Gestão Inteligente</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" href="../assets/img/favicon.png" type="image/png"> </head>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+</head>
 <body>
     <div id="app-container">
         <header class="app-header">
@@ -40,7 +41,8 @@
                 <span class="nav-text">Lucro C.</span>
             </button>
             <button class="nav-item" data-page="calculadoras" aria-label="Calculadoras">
-                <span class="nav-icon" style="font-size: 1.4rem;">💡</span> <span class="nav-text">Calculadoras</span>
+                <span class="nav-icon" style="font-size: 1.4rem;">💡</span>
+                <span class="nav-text">Calculadoras</span>
             </button>
             <button class="nav-item" data-page="metas" aria-label="Metas">
                 <span class="nav-icon">🎯</span>
@@ -61,19 +63,16 @@
         </nav>
     </div>
 
-    <div id="modal-placeholder">
-        </div>
+    <div id="modal-placeholder"></div>
+    <div id="toast-placeholder-container" style="position: fixed; bottom: calc(var(--footer-nav-height) + var(--espaco-m)); left: 50%; transform: translateX(-50%); z-index: var(--z-index-toast); width: auto; max-width: calc(100% - var(--espaco-m)*2);"></div>
 
-    <div id="toast-placeholder-container" style="position: fixed; bottom: calc(var(--footer-nav-height) + var(--espaco-m)); left: 50%; transform: translateX(-50%); z-index: var(--z-index-toast); width: auto; max-width: calc(100% - var(--espaco-m)*2);">
-        </div>
-
-    <script src="../js/supabase-config.js"></script>
-    <script src="../js/utils/useLocalStorage.js"></script>
-    <script src="../js/utils/formatarMoeda.js"></script>
-    <script src="../js/utils/validarCampos.js"></script>
-    <script src="../js/utils/calcularLucro.js"></script>
-    <script src="../js/utils/calcularFrete.js"></script>
-    <script src="../js/utils/crm.js"></script>
-    <script src="../js/main.js"></script>
-    </body>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/utils/useLocalStorage.js"></script>
+    <script src="js/utils/formatarMoeda.js"></script>
+    <script src="js/utils/validarCampos.js"></script>
+    <script src="js/utils/calcularLucro.js"></script>
+    <script src="js/utils/calcularFrete.js"></script>
+    <script src="js/utils/crm.js"></script>
+    <script src="js/main.js"></script>
+</body>
 </html>

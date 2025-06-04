@@ -1,0 +1,67 @@
+/* 📁 css/components/badges.css */
+.badge {
+    display: inline-block;
+    padding: var(--espaco-xxs) var(--espaco-xs);
+    font-size: 0.75rem; /* Pequeno */
+    font-weight: 500; /* Montserrat Medium */
+    line-height: 1;
+    color: var(--branco); /* Cor de texto padrão para badges */
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: var(--borda-raio-s); /* Bordas levemente arredondadas */
+}
+
+/* Cores de Badges */
+.badge-primary {
+    background-color: var(--rosa-pink);
+}
+.badge-secondary {
+    background-color: var(--amarelo-ouro);
+    color: var(--preto-texto); /* Amarelo precisa de texto escuro */
+}
+.badge-success {
+    background-color: var(--verde-sucesso);
+}
+.badge-danger {
+    background-color: var(--vermelho-erro);
+}
+.badge-info {
+    background-color: var(--azul-info);
+}
+.badge-light {
+    background-color: var(--cinza-neutro);
+    color: var(--preto-texto);
+}
+
+/* Badge em formato de pílula (mais arredondado) */
+.badge-pill {
+    border-radius: 50rem; /* Valor grande para garantir forma de pílula */
+    padding-left: var(--espaco-s);
+    padding-right: var(--espaco-s);
+}
+
+/* Badge de Ponto (apenas um círculo colorido, sem texto) */
+.badge-dot {
+    padding: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    vertical-align: middle; /* Alinhar melhor com texto adjacente */
+}
+
+/* Badge de Alerta (usado em ícones de notificação) */
+.badge-notification {
+    position: absolute;
+    top: -5px; /* Ajustar posição conforme o elemento pai */
+    right: -5px; /* Ajustar posição conforme o elemento pai */
+    min-width: 18px; /* Para números pequenos ficarem redondos */
+    height: 18px;
+    font-size: 0.7rem;
+    line-height: 18px; /* Centralizar texto verticalmente */
+    border-radius: 50%;
+    background-color: var(--vermelho-erro);
+    color: var(--branco);
+    padding: 0 3px; /* Padding horizontal para números com mais de 1 dígito */
+    box-shadow: 0 0 0 2px var(--branco); /* Borda branca em volta */
+}

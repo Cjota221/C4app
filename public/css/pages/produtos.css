@@ -1,0 +1,60 @@
+/* 📁 css/pages/produtos.css */
+
+.produtos-page .page-title {
+    margin-bottom: 0; /* O margin-bottom já está no container do título/botão */
+}
+
+.produtos-page .card-produto .card-image {
+    height: 140px; /* Ajustar conforme a proporção desejada */
+    object-fit: cover;
+    border-bottom: 1px solid var(--cinza-neutro); /* Linha sutil abaixo da imagem */
+}
+
+.produtos-page .card-produto .produto-nome {
+    font-family: var(--fonte-principal); /* Mantendo Montserrat para consistência nos cards */
+    font-weight: 700; /* Bold */
+    font-size: 1.05rem; /* Levemente maior */
+    color: var(--preto-texto);
+    margin-top: var(--espaco-xs);
+    margin-bottom: var(--espaco-xxs);
+    line-height: 1.3;
+    min-height: 2.6em; /* Para duas linhas de texto, evitando pulos de layout */
+}
+
+.produtos-page .card-produto .produto-preco {
+    font-size: 1rem;
+    color: var(--rosa-pink);
+    font-weight: 500; /* Medium */
+    margin-bottom: var(--espaco-xs);
+}
+
+.produtos-page .card-produto .text-sm { /* Para o texto do estoque */
+    font-size: 0.8rem;
+    color: var(--cinza-texto-secundario);
+    margin-bottom: var(--espaco-s);
+}
+
+.produtos-page .card-produto .card-actions .btn {
+    padding: var(--espaco-xs) var(--espaco-s); /* Botões um pouco maiores */
+    font-size: 0.85rem;
+}
+.produtos-page .card-produto .card-actions .btn-edit-produto {
+    margin-right: var(--espaco-xs);
+}
+
+/* Estilo para o container do formulário de produto */
+.produtos-page #form-produto-container {
+    background-color: var(--rosa-clarinho);
+    padding: var(--espaco-l);
+    border-radius: var(--borda-raio-l);
+    border: 1px solid var(--rosa-pink); /* Borda sutil para destacar */
+    margin-bottom: var(--espaco-l); /* Espaço antes da lista de produtos */
+}
+
+.produtos-page #form-produto-container .form-label {
+    font-weight: 700; /* Labels do formulário em bold */
+}
+
+.produtos-page .col-span-2 { /* Para mensagens na lista de produtos */
+    grid-column: 1 / -1; /* Ocupa todas as colunas do grid */
+}

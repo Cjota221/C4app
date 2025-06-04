@@ -1,0 +1,45 @@
+/* 📁 css/pages/c4-ai.css */
+
+.c4-ai-page .page-title {
+    margin-bottom: var(--espaco-xs);
+}
+.c4-ai-page .text-center.mb-m { /* Parágrafo abaixo do título */
+    font-size: 0.95rem;
+}
+
+.c4-ai-page .card-content #c4-ai-greeting {
+    font-family: var(--fonte-destaque); /* Saudação com fonte de destaque */
+    color: var(--rosa-pink);
+    font-size: 1.3rem !important; /* Garantir tamanho */
+}
+
+.c4-ai-page .quick-actions {
+    display: flex;
+    flex-wrap: wrap; /* Quebra os botões se não couberem */
+    gap: var(--espaco-xs);
+    margin-bottom: var(--espaco-l);
+}
+.c4-ai-page .quick-actions .btn-sm {
+    font-size: 0.85rem;
+    padding: var(--espaco-xs) var(--espaco-s);
+    border-radius: var(--borda-raio-l); /* Botões mais arredondados */
+}
+
+.c4-ai-page #c4-ai-resposta-container {
+    border: 1px solid var(--rosa-pink);
+}
+.c4-ai-page #c4-ai-resposta-container .card-header .card-title {
+    font-family: var(--fonte-destaque);
+    color: var(--rosa-pink);
+    font-size: 1.3rem;
+}
+.c4-ai-page #c4-ai-resposta-container #c4-ai-resposta-texto {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--preto-texto);
+    white-space: pre-wrap; /* Mantém quebras de linha e espaços da IA */
+}
+
+.c4-ai-page #c4-ai-resposta-container #c4-ai-resposta-texto strong {
+    color: var(--rosa-pink); /* Destaques na resposta da IA */
+}

@@ -1,0 +1,56 @@
+/* 📁 css/pages/dashboard.css */
+
+.dashboard-page .metric-card {
+    text-align: center;
+    background: linear-gradient(135deg, var(--rosa-clarinho), var(--branco));
+    padding: var(--espaco-l) var(--espaco-m); /* Mais padding vertical para destaque */
+}
+
+.dashboard-page .metric-card .metric-value {
+    font-size: 2.2rem; /* Um pouco maior */
+    font-weight: 700; /* Montserrat Bold */
+    color: var(--rosa-pink);
+    margin-bottom: var(--espaco-xxs); /* Menor margem para o label ficar mais próximo */
+    font-family: var(--fonte-destaque); /* Destaque para o valor */
+    line-height: 1.1;
+}
+
+.dashboard-page .metric-card .metric-label {
+    font-size: 0.9rem;
+    color: var(--cinza-texto-secundario);
+}
+
+/* Estilizando a lista de CRM */
+.dashboard-page .crm-list .card-list-item {
+    display: flex; /* Mantém flex para alinhar botão à direita */
+    justify-content: space-between;
+    align-items: center; /* Alinha verticalmente */
+    padding: var(--espaco-s) 0; /* Padding vertical, sem horizontal pois o card já tem */
+}
+
+.dashboard-page .crm-list .crm-client-info {
+    display: flex;
+    flex-direction: column; /* Nome e data um abaixo do outro */
+}
+
+.dashboard-page .crm-list .crm-client-name {
+    font-weight: 500; /* Montserrat Medium */
+    color: var(--preto-texto);
+    font-size: 1rem;
+}
+
+.dashboard-page .crm-list .crm-last-purchase {
+    font-size: 0.8rem;
+    color: var(--cinza-texto-secundario);
+}
+
+.dashboard-page .crm-list .crm-action .btn {
+    font-size: 0.8rem;
+    padding: var(--espaco-xxs) var(--espaco-s); /* Botão um pouco menor */
+}
+
+.dashboard-page .card-title { /* Para outros cards na dashboard */
+    font-family: var(--fonte-destaque);
+    color: var(--rosa-pink);
+    font-size: 1.4rem;
+}

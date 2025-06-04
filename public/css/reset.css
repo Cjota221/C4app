@@ -1,0 +1,126 @@
+/* 📁 css/reset.css */
+
+/* Importação da fonte Montserrat do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+/*
+  ATENÇÃO: Importar a fonte 'Bright Regular' aqui ou em layout.css
+  Certifique-se de ter os arquivos da fonte na pasta `assets/fonts/`
+  e que o caminho no src: url() esteja correto em relação à pasta `css`.
+*/
+@font-face {
+    font-family: 'Bright'; /* Nome que será usado no CSS, ex: font-family: 'Bright'; */
+    src: url('../assets/fonts/Bright-Regular.woff2') format('woff2'), /* Adapte o nome do arquivo se necessário */
+         url('../assets/fonts/Bright-Regular.woff') format('woff');   /* Adapte o nome do arquivo se necessário */
+    font-weight: normal; /* Ou o peso correto da fonte, ex: 400 */
+    font-style: normal;
+    font-display: swap; /* Garante que o texto seja exibido com uma fonte fallback enquanto a customizada carrega */
+}
+
+
+/* Box sizing defaults */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove default margin and padding */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit; /* Resets font properties to be inherited */
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1.5; /* Melhor legibilidade */
+    -webkit-font-smoothing: antialiased; /* Melhora renderização de fontes no WebKit */
+    -moz-osx-font-smoothing: grayscale;  /* Melhora renderização de fontes no Firefox */
+    font-family: var(--fonte-principal);
+    color: var(--preto-texto);
+    background-color: var(--branco); /* Fundo branco por padrão para o app */
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit; /* Links herdam a cor do texto pai por padrão */
+}
+
+img, video, svg {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove espaço extra abaixo de imagens */
+}
+
+button, input, select, textarea {
+    font-family: inherit; /* Garante que elementos de formulário herdem a fonte */
+    font-size: inherit;
+    line-height: inherit;
+    border: none; /* Remove bordas padrão */
+    background-color: transparent; /* Remove fundos padrão */
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Remove setas de input number no Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove setas de input number no Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Basic focus outline for accessibility - pode ser sobrescrito por componentes */
+:focus-visible {
+    outline: 2px solid var(--amarelo-ouro);
+    outline-offset: 2px;
+}

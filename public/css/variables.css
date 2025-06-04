@@ -1,0 +1,62 @@
+/* 📁 css/variables.css */
+:root {
+    /* Cores da Identidade Visual C4 App */
+    --rosa-pink: #E91E63;         /* Cor principal e destaque */
+    --amarelo-ouro: #FFD700;      /* Detalhes, ícones e CTAs */
+    --rosa-clarinho: #FCE4EC;     /* Fundos suaves, elementos secundários */
+    --cinza-neutro: #F5F5F5;      /* Separadores, fundos de cards/seções */
+    --branco: #FFFFFF;            /* Fundo principal da tela, textos sobre fundos escuros */
+    --preto-texto: #212121;       /* Textos de leitura principal */
+    --cinza-texto-secundario: #757575; /* Textos secundários, placeholders */
+    --verde-sucesso: #4CAF50;
+    --vermelho-erro: #F44336;
+    --azul-info: #2196F3;
+
+    /* Tipografia */
+    --fonte-principal: 'Montserrat', sans-serif;
+    /* ATENÇÃO: A fonte 'Bright Regular' deve ser importada via @font-face em reset.css ou layout.css */
+    /* Exemplo:
+       @font-face {
+           font-family: 'Bright';
+           src: url('../assets/fonts/Bright-Regular.woff2') format('woff2'),
+                url('../assets/fonts/Bright-Regular.woff') format('woff');
+           font-weight: normal; // ou o peso específico da fonte, ex: 400
+           font-style: normal;
+           font-display: swap;
+       }
+    */
+    --fonte-destaque: 'Bright', serif; /* Usar 'Bright Regular' ou o nome definido no @font-face */
+
+    /* Espaçamentos (base 8px grid) */
+    --espaco-xxs: 4px;
+    --espaco-xs: 8px;
+    --espaco-s: 12px;
+    --espaco-m: 16px;
+    --espaco-l: 24px;
+    --espaco-xl: 32px;
+    --espaco-xxl: 48px;
+
+    /* Bordas */
+    --borda-raio-s: 4px;
+    --borda-raio-m: 8px;
+    --borda-raio-l: 12px; /* Para cards mais arredondados */
+    --borda-padrao: 1px solid var(--cinza-neutro); /* Alterado para cinza-neutro, pode ser #E0E0E0 se precisar de mais contraste */
+
+    /* Sombras */
+    --sombra-suave: 0 2px 8px rgba(0, 0, 0, 0.07);
+    --sombra-media: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    /* Transições */
+    --transicao-padrao: all 0.2s ease-in-out;
+
+    /* Z-Index */
+    --z-index-navbar: 1000;
+    --z-index-modal-backdrop: 1010;
+    --z-index-modal-content: 1020;
+    --z-index-toast: 1030; /* Para notificações flutuantes */
+
+    /* Layout Dimensions */
+    --header-height: 55px;
+    --footer-nav-height: 65px;
+    --max-width-mobile: 500px; /* Largura máxima do container do app em telas maiores */
+}

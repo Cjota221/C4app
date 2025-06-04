@@ -1,0 +1,61 @@
+<div class="perfil-page animate-fadeIn">
+    <h2 class="page-title">Meu Perfil 🌸</h2>
+
+    <div class="card mb-l" id="perfil-info-display">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="card-title" style="font-family:var(--fonte-principal); font-weight:700;">Minhas Informações</span>
+            <button class="btn btn-secondary btn-sm" id="btn-abrir-edicao-perfil" aria-label="Editar Perfil">
+                <span class="icon" aria-hidden="true">✏️</span> Editar
+            </button>
+        </div>
+        <div class="card-content">
+            <div class="info-item"><strong class="info-label">Nome:</strong> <span id="perfil-display-nome">Carregando...</span></div>
+            <div class="info-item"><strong class="info-label">E-mail:</strong> <span id="perfil-display-email">Carregando...</span></div>
+            <div class="info-item"><strong class="info-label">Telefone:</strong> <span id="perfil-display-telefone">Não informado</span></div>
+            <div class="info-item"><strong class="info-label">Plano Ativo:</strong> <span id="perfil-display-plano">Básico</span></div>
+        </div>
+    </div>
+
+    <div id="form-perfil-edicao-container" class="card mb-l hidden" style="background-color: var(--rosa-clarinho);">
+        <div class="card-header" style="border-bottom: 1px solid var(--rosa-pink);"><span class="card-title" style="font-family: var(--fonte-principal); color: var(--preto-texto); font-weight: 700;">Editar Informações</span></div>
+        <form id="form-perfil-edicao" class="card-content">
+            <div class="form-group">
+                <label for="perfil-edit-nome" class="form-label">Nome Completo:</label>
+                <input type="text" id="perfil-edit-nome" name="nome" class="form-input" placeholder="Seu nome como aparece para clientes">
+                <p class="form-field-message error"></p>
+            </div>
+            <div class="form-group">
+                <label for="perfil-edit-telefone" class="form-label">Telefone (com DDD):</label>
+                <input type="tel" id="perfil-edit-telefone" name="telefone" class="form-input" placeholder="(XX) XXXXX-XXXX">
+                <p class="form-field-message error"></p>
+            </div>
+            
+            <h4 class="form-section-title" style="font-size:1.1rem; color: var(--preto-texto);">Alterar Senha (opcional)</h4>
+            <div class="form-group">
+                <label for="perfil-edit-senha-atual" class="form-label">Senha Atual:</label>
+                <input type="password" id="perfil-edit-senha-atual" name="senha_atual" class="form-input" autocomplete="current-password" placeholder="Senha atual (se for alterar)">
+                <small>Deixe os campos de senha em branco se não quiser alterá-la.</small>
+                <p class="form-field-message error"></p>
+            </div>
+            <div class="form-group">
+                <label for="perfil-edit-nova-senha" class="form-label">Nova Senha (mín. 6 caracteres):</label>
+                <input type="password" id="perfil-edit-nova-senha" name="nova_senha" class="form-input" autocomplete="new-password">
+                <p class="form-field-message error"></p>
+            </div>
+             <div class="form-group">
+                <label for="perfil-edit-confirma-nova-senha" class="form-label">Confirmar Nova Senha:</label>
+                <input type="password" id="perfil-edit-confirma-nova-senha" name="confirma_nova_senha" class="form-input" autocomplete="new-password">
+                <p class="form-field-message error"></p>
+            </div>
+
+            <div class="form-actions" style="border-top: 1px solid var(--cinza-neutro); padding-top: var(--espaco-m); margin-top:var(--espaco-m)">
+                <button type="button" class="btn btn-outline-primary" id="btn-cancelar-edicao-perfil">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+            </div>
+        </form>
+    </div>
+
+    <button class="btn btn-primary btn-full-width" id="btn-logout" style="background-color: #757575;">
+        <span class="icon" aria-hidden="true">🚪</span> Encerrar Sessão
+    </button>
+</div>

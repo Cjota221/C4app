@@ -1,0 +1,159 @@
+/* 📁 css/components/forms.css */
+
+.form-group {
+    margin-bottom: var(--espaco-m); /* Espaço entre grupos de label/input */
+}
+
+.form-label {
+    display: block;
+    font-size: 0.9rem; /* 14.4px */
+    font-weight: 500; /* Montserrat Medium */
+    color: var(--preto-texto);
+    margin-bottom: var(--espaco-xs);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    width: 100%;
+    padding: var(--espaco-s) var(--espaco-m);
+    font-family: var(--fonte-principal);
+    font-size: 1rem; /* 16px */
+    color: var(--preto-texto);
+    background-color: var(--branco);
+    border: 1px solid #BDBDBD; /* Cinza um pouco mais escuro para borda do input */
+    border-radius: var(--borda-raio-m);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    appearance: none; /* Remove estilos padrão do SO, especialmente para select */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--rosa-pink);
+    box-shadow: 0 0 0 2px rgba(233, 30, 99, 0.2); /* Sombra sutil rosa no foco */
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: var(--cinza-texto-secundario);
+    opacity: 1; /* Firefox precisa disso */
+}
+
+.form-textarea {
+    min-height: 100px; /* Altura mínima para textareas */
+    resize: vertical; /* Permite redimensionamento vertical */
+}
+
+/* Estilização para o select (seta customizada) */
+.form-select-wrapper {
+    position: relative;
+}
+.form-select {
+    padding-right: calc(var(--espaco-m) + var(--espaco-l)); /* Espaço para a seta */
+}
+.form-select-wrapper::after { /* Seta do select */
+    content: '▼'; /* Ou um SVG como background-image no select */
+    font-size: 0.8rem;
+    color: var(--cinza-texto-secundario);
+    position: absolute;
+    right: var(--espaco-m);
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Não interfere no clique do select */
+}
+
+/* Checkbox e Radio (estilização customizada básica) */
+.form-check-input {
+    /* Esconde o input original */
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+}
+
+.form-check-label {
+    position: relative;
+    padding-left: calc(var(--espaco-m) + var(--espaco-xs)); /* Espaço para o custom check/radio */
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--preto-texto);
+    display: inline-flex;
+    align-items: center;
+    min-height: 20px; /* Altura do custom check/radio */
+}
+
+.form-check-label::before { /* Caixa do checkbox/radio */
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid #BDBDBD;
+    background-color: var(--branco);
+    border-radius: var(--borda-raio-s);
+    transition: var(--transicao-padrao);
+}
+
+.form-check-input[type="radio"] + .form-check-label::before {
+    border-radius: 50%; /* Radio é circular */
+}
+
+.form-check-input:checked + .form-check-label::before {
+    background-color: var(--rosa-pink);
+    border-color: var(--rosa-pink);
+}
+
+.form-check-label::after { /* Marca de 'check' ou 'ponto' do radio */
+    content: '';
+    position: absolute;
+    left: 6px; /* Ajustar para centralizar */
+    top: 50%;
+    transform: translateY(-50%) scale(0); /* Começa invisível */
+    width: 8px;
+    height: 8px;
+    background-color: var(--branco); /* Cor da marca */
+    border-radius: 1px;
+    transition: var(--transicao-padrao);
+}
+.form-check-input[type="checkbox"]:checked + .form-check-label::after { /* Checkmark (CSS puro) */
+    width: 5px;
+    height: 10px;
+    border: solid var(--branco);
+    border-width: 0 2px 2px 0;
+    transform: translateY(-60%) translateX(-1px) rotate(45deg) scale(1); /* Ajustar posição */
+    background-color: transparent; /* Checkmark não tem fundo */
+    left: 7px;
+}
+
+.form-check-input[type="radio"]:checked + .form-check-label::after {
+    border-radius: 50%;
+    transform: translateY(-50%) scale(1); /* Mostrar ponto */
+}
+
+.form-check-input:focus-visible + .form-check-label::before {
+    outline: 2px solid var(--amarelo-ouro);
+    outline-offset: 1px;
+}
+
+/* Mensagens de erro ou ajuda para campos */
+.form-field-message {
+    display: block;
+    font-size: 0.8rem; /* 12.8px */
+    color: var(--cinza-texto-secundario);
+    margin-top: var(--espaco-xxs);
+}
+.form-field-message.error {
+    color: var(--vermelho-erro);
+}
+.form-input.error, .form-select.error, .form-textarea.error {
+    border-color: var(--vermelho-erro);
+}
+.form-input.error:focus, .form-select.error:focus, .form-textarea.error:focus {
+    box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.2);
+}

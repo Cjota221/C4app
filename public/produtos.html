@@ -1,0 +1,53 @@
+<div class="produtos-page animate-fadeIn">
+    <div class="page-header-flex">
+        <h2 class="page-title">Meus Produtos 🛍️</h2>
+        <button class="btn btn-primary" id="btn-abrir-form-produto">
+            <span class="icon" aria-hidden="true">➕</span> Novo Produto
+        </button>
+    </div>
+
+    <div id="form-produto-container" class="card hidden" style="background-color: var(--rosa-clarinho);">
+        <h3 id="form-produto-title" class="card-header" style="font-family: var(--fonte-principal); font-size: 1.3rem; color: var(--preto-texto); border-bottom: 1px solid var(--rosa-pink);">Cadastrar Novo Produto</h3>
+        <form id="form-produto" class="card-content">
+            <input type="hidden" id="produto-id" name="id">
+            <div class="form-group">
+                <label for="produto-nome" class="form-label">Nome do Produto:</label>
+                <input type="text" id="produto-nome" name="nome" class="form-input" required placeholder="Ex: Batom Vermelho Intenso">
+                <p class="form-field-message error"></p>
+            </div>
+            <div class="form-group">
+                <label for="produto-categoria" class="form-label">Categoria (opcional):</label>
+                <input type="text" id="produto-categoria" name="categoria" class="form-input" placeholder="Ex: Maquiagem, Skincare">
+            </div>
+            <div class="grid-2-cols">
+                <div class="form-group">
+                    <label for="produto-valor-compra" class="form-label">Valor de Compra (R$):</label>
+                    <input type="number" id="produto-valor-compra" name="valor_compra" class="form-input" step="0.01" min="0" required placeholder="0,00">
+                    <p class="form-field-message error"></p>
+                </div>
+                <div class="form-group">
+                    <label for="produto-valor-venda" class="form-label">Valor de Venda (R$):</label>
+                    <input type="number" id="produto-valor-venda" name="valor_venda" class="form-input" step="0.01" min="0" placeholder="0,00 (opcional)">
+                    <p class="form-field-message error"></p>
+                </div>
+            </div>
+             <div class="form-group">
+                <label for="produto-estoque" class="form-label">Quantidade em Estoque:</label>
+                <input type="number" id="produto-estoque" name="estoque_atual" class="form-input" step="1" min="0" required placeholder="0">
+                <p class="form-field-message error"></p>
+            </div>
+            <div class="form-group">
+                <label for="produto-imagem-url" class="form-label">URL da Imagem (opcional):</label>
+                <input type="url" id="produto-imagem-url" name="imagem_url" class="form-input" placeholder="https://exemplo.com/imagem.jpg">
+            </div>
+            <div class="form-actions" style="display: flex; gap: var(--espaco-s); justify-content: flex-end; border-top: 1px solid var(--cinza-neutro); padding-top: var(--espaco-m); margin-top: var(--espaco-m);">
+                <button type="button" class="btn btn-outline-primary" id="btn-cancelar-form-produto">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Salvar Produto</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="lista-produtos" class="grid-2-cols mt-l">
+        <p class="loading-message col-span-full">Carregando produtos...</p>
+        </div>
+</div>

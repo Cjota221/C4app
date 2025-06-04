@@ -1,0 +1,71 @@
+/* 📁 css/pages/metas.css */
+
+.metas-page .page-title {
+    margin-bottom: 0;
+}
+
+.metas-page #form-meta-container {
+    /* background-color: var(--rosa-clarinho); Já no HTML, pode remover de lá */
+    padding: var(--espaco-l);
+    border-radius: var(--borda-raio-l);
+    margin-bottom: var(--espaco-l);
+}
+
+.metas-page .meta-card {
+    /* Estilo base do card já é bom */
+    border-left: 4px solid var(--amarelo-ouro); /* Destaque lateral para o card de meta */
+}
+
+.metas-page .meta-card .meta-title {
+    font-family: var(--fonte-destaque);
+    color: var(--rosa-pink);
+    font-size: 1.3rem; /* Ajustar tamanho */
+    margin-bottom: var(--espaco-s);
+    line-height: 1.2;
+}
+
+.metas-page .meta-card .meta-info p {
+    margin-bottom: var(--espaco-xxs);
+    font-size: 0.9rem;
+    color: var(--preto-texto);
+}
+.metas-page .meta-card .meta-info p strong {
+    color: var(--cinza-texto-secundario); /* Label do strong mais suave */
+    font-weight: 400; /* Regular */
+}
+.metas-page .meta-card .meta-info p small { /* Para o texto de prazo e status */
+    font-size: 0.8rem;
+    color: var(--cinza-texto-secundario);
+    display: block;
+    margin-top: var(--espaco-xs);
+}
+
+.metas-page .meta-card .progress-bar-container {
+    background-color: var(--cinza-neutro); /* Fundo da barra de progresso */
+    border-radius: 10px; /* Mais arredondado */
+    height: 14px; /* Um pouco mais alta */
+    margin: var(--espaco-s) 0; /* Espaçamento vertical */
+    overflow: hidden;
+    border: 1px solid var(--cinza-neutro); /* Borda sutil */
+}
+
+.metas-page .meta-card .progress-bar {
+    background-color: var(--amarelo-ouro);
+    height: 100%;
+    border-radius: 10px; /* Acompanha o container */
+    transition: width 0.5s ease-in-out;
+    text-align: center; /* Centraliza o texto da porcentagem */
+    color: var(--preto-texto);
+    font-size: 0.7rem;
+    font-weight: 700; /* Porcentagem em bold */
+    line-height: 14px; /* Alinhar com a altura da barra */
+    white-space: nowrap;
+}
+.metas-page .meta-card .progress-bar.completed {
+    background-color: var(--verde-sucesso); /* Verde quando completa */
+    color: var(--branco);
+}
+
+.metas-page .meta-card .card-actions .btn {
+    font-size: 0.8rem;
+}

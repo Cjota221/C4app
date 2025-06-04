@@ -1,0 +1,61 @@
+/* 📁 css/pages/perfil.css */
+
+.perfil-page .page-title {
+    margin-bottom: var(--espaco-l);
+}
+
+.perfil-page .card .card-title {
+    font-family: var(--fonte-destaque);
+    font-size: 1.4rem; /* Títulos dos cards */
+}
+
+.perfil-page #perfil-info-display .info-item {
+    padding: var(--espaco-s) 0; /* Mais espaçamento vertical */
+    border-bottom: 1px dashed var(--rosa-clarinho);
+    font-size: 1rem;
+    display: flex; /* Para alinhar label e valor */
+    justify-content: space-between;
+    align-items: center;
+}
+.perfil-page #perfil-info-display .info-item:last-child {
+    border-bottom: none;
+}
+
+.perfil-page #perfil-info-display .info-label {
+    color: var(--cinza-texto-secundario);
+    font-weight: 400; /* Regular */
+    margin-right: var(--espaco-s);
+}
+.perfil-page #perfil-info-display span[id^="perfil-display-"] { /* Para os valores */
+    font-weight: 500; /* Medium */
+    color: var(--preto-texto);
+    text-align: right;
+}
+
+.perfil-page #form-perfil-edicao-container {
+    /* background-color: var(--rosa-clarinho); Já no HTML, pode remover de lá */
+    padding: var(--espaco-l);
+    border-radius: var(--borda-raio-l);
+}
+.perfil-page #form-perfil-edicao-container .form-label {
+    font-weight: 500; /* Labels do formulário de edição */
+}
+.perfil-page #form-perfil-edicao-container h4 { /* Para o título "Alterar Senha" */
+    font-family: var(--fonte-principal);
+    font-weight: 700; /* Bold */
+    font-size: 1.1rem;
+    color: var(--rosa-pink);
+}
+
+.perfil-page #btn-logout {
+    background-color: var(--cinza-texto-secundario); /* Botão de logout mais neutro */
+    border-color: var(--cinza-texto-secundario);
+    color: var(--branco);
+}
+.perfil-page #btn-logout:hover {
+    background-color: #616161; /* Cinza um pouco mais escuro */
+    border-color: #616161;
+}
+.perfil-page #btn-logout .icon {
+    margin-right: var(--espaco-s);
+}

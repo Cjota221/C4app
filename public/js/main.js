@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Caminho corrigido para buscar HTML da raiz de 'public/'
-            const response = await fetch(`../${pageName}.html`); // Ex: ../dashboard.html
+            const response = await fetch(`${pageName}.html`); // Ex: dashboard.html
             if (!response.ok) throw new Error(`Página ${pageName}.html não encontrada (status ${response.status})`);
             
             mainContent.innerHTML = await response.text();

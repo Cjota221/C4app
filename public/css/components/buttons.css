@@ -1,0 +1,130 @@
+/* 📁 css/components/buttons.css */
+.btn {
+    display: inline-flex; /* Para alinhar ícones e texto corretamente */
+    align-items: center;
+    justify-content: center;
+    padding: var(--espaco-s) var(--espaco-l);
+    font-family: var(--fonte-principal);
+    font-size: 1rem; /* 16px */
+    font-weight: 500; /* Montserrat Medium */
+    border-radius: var(--borda-raio-m);
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid transparent; /* Base para botões outline */
+    transition: var(--transicao-padrao);
+    line-height: 1.2; /* Para evitar que o texto "pule" com ícones */
+    white-space: nowrap; /* Evita quebra de linha em botões com muito texto */
+}
+
+.btn:disabled,
+.btn.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none; /* Evita eventos de clique */
+}
+
+/* Botão Primário (Rosa Pink) */
+.btn-primary {
+    background-color: var(--rosa-pink);
+    color: var(--branco);
+    border-color: var(--rosa-pink);
+}
+.btn-primary:hover:not(:disabled) {
+    background-color: #d81b60; /* Tom mais escuro de rosa-pink */
+    border-color: #d81b60;
+    transform: translateY(-1px);
+    box-shadow: var(--sombra-suave);
+}
+.btn-primary:active:not(:disabled) {
+    background-color: #c2185b; /* Tom ainda mais escuro */
+    transform: translateY(0px);
+    box-shadow: none;
+}
+
+/* Botão Secundário (Amarelo Ouro) */
+.btn-secondary {
+    background-color: var(--amarelo-ouro);
+    color: var(--preto-texto);
+    border-color: var(--amarelo-ouro);
+}
+.btn-secondary:hover:not(:disabled) {
+    background-color: #fbc02d; /* Tom mais escuro de amarelo-ouro */
+    border-color: #fbc02d;
+    transform: translateY(-1px);
+    box-shadow: var(--sombra-suave);
+}
+.btn-secondary:active:not(:disabled) {
+    background-color: #f9a825; /* Tom ainda mais escuro */
+    transform: translateY(0px);
+    box-shadow: none;
+}
+
+/* Botão Outline (Rosa Pink) */
+.btn-outline-primary {
+    background-color: transparent;
+    color: var(--rosa-pink);
+    border: 1.5px solid var(--rosa-pink);
+}
+.btn-outline-primary:hover:not(:disabled) {
+    background-color: var(--rosa-clarinho);
+    color: var(--rosa-pink);
+}
+.btn-outline-primary:active:not(:disabled) {
+    background-color: #f8bbd0; /* Rosa clarinho um pouco mais escuro */
+}
+
+/* Botão de Texto (sem borda ou fundo, para ações discretas) */
+.btn-text {
+    background-color: transparent;
+    color: var(--rosa-pink);
+    border: none;
+    padding: var(--espaco-xs) var(--espaco-s); /* Menor padding */
+}
+.btn-text:hover:not(:disabled) {
+    background-color: var(--rosa-clarinho);
+    text-decoration: underline;
+}
+
+/* Botão com Ícone */
+.btn .icon {
+    margin-right: var(--espaco-xs); /* Espaço entre ícone e texto */
+    font-size: 1.2em; /* Ícone um pouco maior que o texto */
+    line-height: 1; /* Para centralizar melhor o ícone */
+}
+.btn .icon-only { /* Para botões que só têm ícone */
+    margin-right: 0;
+    padding: var(--espaco-s); /* Padding igual em todos os lados */
+}
+.btn .icon-only .icon {
+    margin-right: 0;
+}
+
+/* Botão Full Width */
+.btn-full-width {
+    display: block; /* Para ocupar a largura total */
+    width: 100%;
+}
+
+/* Botão de Ação Flutuante (FAB - Exemplo) */
+.btn-fab {
+    position: fixed;
+    bottom: calc(var(--footer-nav-height) + var(--espaco-l)); /* Acima da navbar */
+    right: var(--espaco-l);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--rosa-pink);
+    color: var(--branco);
+    font-size: 1.8rem; /* Para o ícone '+' por exemplo */
+    box-shadow: var(--sombra-media);
+    z-index: calc(var(--z-index-navbar) - 5); /* Acima do conteúdo, abaixo de modais */
+    padding: 0; /* Resetar padding para centralizar ícone */
+}
+.btn-fab:hover:not(:disabled) {
+    background-color: #d81b60;
+    transform: scale(1.05);
+}
+.btn-fab .icon {
+    margin: 0; /* Ícone centralizado */
+}

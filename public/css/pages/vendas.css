@@ -1,0 +1,44 @@
+/* 📁 css/pages/vendas.css */
+
+.vendas-page .page-title {
+    margin-bottom: 0; /* O margin-bottom já está no container do título/botão */
+}
+
+.vendas-page #form-venda-container .card-header { /* Se o form for um card com header */
+    font-family: var(--fonte-destaque);
+    color: var(--rosa-pink);
+}
+
+.vendas-page #venda-valor-total {
+    font-size: 1.8rem; /* Destaque para o valor total */
+    font-weight: 700; /* Montserrat Bold */
+    color: var(--verde-sucesso); /* Cor de sucesso para o total */
+    padding: var(--espaco-s) 0;
+    text-align: right;
+    border-top: 1px dashed var(--rosa-clarinho);
+    margin-top: var(--espaco-s);
+}
+
+.vendas-page #venda-valor-unitario {
+    background-color: var(--cinza-neutro); /* Estilo para campos readonly */
+    font-weight: 500;
+}
+
+.vendas-page .form-label {
+    font-weight: 500; /* Labels um pouco mais destacados */
+}
+
+/* Histórico de Vendas */
+.vendas-page #vendas-historico-list .card-list-item .item-name {
+    font-weight: 500;
+}
+.vendas-page #vendas-historico-list .item-details small {
+    display: block;
+    color: var(--cinza-texto-secundario);
+    font-size: 0.8rem;
+}
+.vendas-page #vendas-historico-list .item-value {
+    font-weight: 500;
+    color: var(--verde-sucesso); /* Valor da venda em verde */
+    font-size: 1rem;
+}

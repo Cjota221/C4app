@@ -1,0 +1,43 @@
+/* 📁 css/pages/calculadoras.css */
+
+.calculadoras-page .page-title {
+    margin-bottom: var(--espaco-xs);
+}
+.calculadoras-page .text-center.mb-l { /* Para o parágrafo abaixo do título */
+    font-size: 0.95rem;
+}
+
+.calculadoras-page .card .card-header .card-title {
+    font-family: var(--fonte-destaque); /* Usar fonte de destaque para títulos das calculadoras */
+    font-size: 1.3rem; /* Tamanho do título de cada calculadora */
+    color: var(--rosa-pink);
+}
+
+.calculadoras-page .card .form-label {
+    font-size: 0.85rem; /* Labels menores dentro das calculadoras */
+    font-weight: 400; /* Regular */
+}
+
+.calculadoras-page .card .form-input {
+    padding: var(--espaco-xs) var(--espaco-s); /* Inputs um pouco menores */
+    font-size: 0.9rem;
+}
+
+.calculadoras-page .card button.btn-sm {
+    font-size: 0.9rem;
+    padding: var(--espaco-xs) var(--espaco-l); /* Botão um pouco menor mas legível */
+    margin-top: var(--espaco-xs); /* Espaço antes do resultado */
+}
+
+.calculadoras-page .card .mt-s strong { /* Para o "Resultado:" */
+    font-weight: 500; /* Medium */
+    font-size: 0.9rem;
+}
+.calculadoras-page .card .mt-s span[id$="-resultado"] { /* Para o valor do resultado */
+    font-weight: 700; /* Bold */
+    color: var(--verde-sucesso); /* Resultado em verde */
+    font-size: 1rem;
+}
+.calculadoras-page #calc-despesas-totais .card-content p {
+    font-size: 0.9rem;
+}

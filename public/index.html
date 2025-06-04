@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C4 App - Gestão Inteligente</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../assets/img/favicon.png" type="image/png"> </head>
+<body>
+    <div id="app-container">
+        <header class="app-header">
+            <h1 class="app-header-title" id="header-title">Carregando...</h1>
+        </header>
+
+        <main id="main-content">
+            <div class="spinner-container" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                <div class="spinner"></div>
+            </div>
+        </main>
+
+        <nav class="footer-nav">
+            <button class="nav-item active" data-page="dashboard" aria-label="Dashboard">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Dashboard</span>
+            </button>
+            <button class="nav-item" data-page="produtos" aria-label="Produtos">
+                <span class="nav-icon">📦</span>
+                <span class="nav-text">Produtos</span>
+            </button>
+            <button class="nav-item" data-page="vendas" aria-label="Vendas">
+                <span class="nav-icon">💰</span>
+                <span class="nav-text">Vendas</span>
+            </button>
+            <button class="nav-item" data-page="despesas" aria-label="Despesas">
+                <span class="nav-icon">📉</span>
+                <span class="nav-text">Despesas</span>
+            </button>
+            <button class="nav-item" data-page="lucro-certo" aria-label="Lucro Certo">
+                <span class="nav-icon">🧮</span>
+                <span class="nav-text">Lucro C.</span>
+            </button>
+            <button class="nav-item" data-page="calculadoras" aria-label="Calculadoras">
+                <span class="nav-icon" style="font-size: 1.4rem;">💡</span> <span class="nav-text">Calculadoras</span>
+            </button>
+            <button class="nav-item" data-page="metas" aria-label="Metas">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-text">Metas</span>
+            </button>
+            <button class="nav-item" data-page="relatorios" aria-label="Relatórios">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Relatórios</span>
+            </button>
+            <button class="nav-item" data-page="c4-ai" aria-label="C4 IA">
+                <span class="nav-icon">💬</span>
+                <span class="nav-text">C4 IA</span>
+            </button>
+            <button class="nav-item" data-page="perfil" aria-label="Perfil">
+                <span class="nav-icon">👤</span>
+                <span class="nav-text">Perfil</span>
+            </button>
+        </nav>
+    </div>
+
+    <div id="modal-placeholder">
+        </div>
+
+    <div id="toast-placeholder-container" style="position: fixed; bottom: calc(var(--footer-nav-height) + var(--espaco-m)); left: 50%; transform: translateX(-50%); z-index: var(--z-index-toast); width: auto; max-width: calc(100% - var(--espaco-m)*2);">
+        </div>
+
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/utils/useLocalStorage.js"></script>
+    <script src="../js/utils/formatarMoeda.js"></script>
+    <script src="../js/utils/validarCampos.js"></script>
+    <script src="../js/utils/calcularLucro.js"></script>
+    <script src="../js/utils/calcularFrete.js"></script>
+    <script src="../js/utils/crm.js"></script>
+    <script src="../js/main.js"></script>
+    </body>
+</html>

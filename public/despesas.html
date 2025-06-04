@@ -1,0 +1,58 @@
+<div class="despesas-page animate-fadeIn">
+    <div class="page-header-flex">
+        <h2 class="page-title">Minhas Despesas 🧾</h2>
+    </div>
+
+    <div id="form-despesa-container" class="card mb-l hidden" style="background-color: var(--rosa-clarinho);">
+        <h3 id="form-despesa-title" class="card-header" style="font-family: var(--fonte-principal); font-size: 1.3rem; color: var(--preto-texto); border-bottom: 1px solid var(--rosa-pink);">Adicionar Nova Despesa</h3>
+        <form id="form-despesa" class="card-content">
+            <input type="hidden" id="despesa-id" name="id">
+            <input type="hidden" id="despesa-tipo" name="tipo_despesa">
+
+            <div class="form-group">
+                <label for="despesa-descricao" class="form-label">Descrição:</label>
+                <input type="text" id="despesa-descricao" name="descricao" class="form-input" required placeholder="Ex: Aluguel da Loja, Compra de Sacolas">
+                <p class="form-field-message error"></p>
+            </div>
+            <div class="form-group">
+                <label for="despesa-valor" class="form-label">Valor (R$):</label>
+                <input type="number" id="despesa-valor" name="valor" class="form-input" step="0.01" min="0" required placeholder="0,00">
+                 <p class="form-field-message error"></p>
+            </div>
+            <div class="form-group hidden" id="despesa-vencimento-group">
+                <label for="despesa-data-vencimento" class="form-label">Data de Vencimento (para custos fixos):</label>
+                <input type="date" id="despesa-data-vencimento" name="data_vencimento" class="form-input">
+                 <p class="form-field-message error"></p>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline-primary" id="btn-cancelar-form-despesa">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Salvar Despesa</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="card mb-l">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="card-title">Custos Fixos</span>
+            <button class="btn btn-secondary btn-sm" id="btn-add-despesa-fixa" data-tipo="fixa" aria-label="Adicionar Custo Fixo">
+                <span class="icon" aria-hidden="true">➕</span> Fixo
+            </button>
+        </div>
+        <div id="lista-despesas-fixas" class="card-list">
+            <p class="text-center empty-message p-m">Nenhum custo fixo cadastrado.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="card-title">Custos Variáveis</span>
+            <button class="btn btn-secondary btn-sm" id="btn-add-despesa-variavel" data-tipo="variavel" aria-label="Adicionar Custo Variável">
+                <span class="icon" aria-hidden="true">➕</span> Variável
+            </button>
+        </div>
+        <div id="lista-despesas-variaveis" class="card-list">
+            <p class="text-center empty-message p-m">Nenhum custo variável cadastrado.</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+/* 📁 css/components/tables.css */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Permite scroll horizontal em tabelas largas */
+    -webkit-overflow-scrolling: touch; /* Scroll suave em iOS */
+    border: 1px solid var(--cinza-neutro);
+    border-radius: var(--borda-raio-m);
+    margin-bottom: var(--espaco-m);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse; /* Remove espaços entre células */
+    font-size: 0.9rem;
+    color: var(--preto-texto);
+}
+
+.table th,
+.table td {
+    padding: var(--espaco-s) var(--espaco-m);
+    text-align: left;
+    vertical-align: middle; /* Alinha conteúdo no meio da célula */
+    border-bottom: 1px solid var(--cinza-neutro);
+}
+
+.table thead th {
+    font-weight: 700; /* Montserrat Bold */
+    background-color: var(--rosa-clarinho); /* Fundo suave para o cabeçalho */
+    color: var(--rosa-pink); /* Texto do cabeçalho em rosa */
+    border-bottom-width: 2px; /* Linha mais grossa abaixo do cabeçalho */
+    border-bottom-color: var(--rosa-pink);
+    white-space: nowrap; /* Evita quebra de linha no cabeçalho */
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none; /* Remove borda da última linha */
+}
+
+.table tbody tr:hover {
+    background-color: var(--cinza-neutro); /* Leve destaque na linha ao passar o mouse */
+}
+
+/* Tabela listrada (linhas alternadas) */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(252, 228, 236, 0.3); /* Rosa clarinho bem sutil */
+}
+.table-striped tbody tr:nth-of-type(odd):hover {
+    background-color: rgba(252, 228, 236, 0.6);
+}
+
+
+/* Tabela com bordas em todas as células */
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid var(--cinza-neutro);
+}
+.table-bordered thead th {
+    border-bottom-width: 2px; /* Mantém a borda do cabeçalho mais grossa */
+}
+
+/* Alinhamento de texto em colunas específicas */
+.table .text-right { text-align: right; }
+.table .text-center { text-align: center; }
+.table .text-nowrap { white-space: nowrap; }
+
+/* Estilo para ações na tabela (ex: botões de editar/excluir) */
+.table .table-actions {
+    display: flex;
+    gap: var(--espaco-xs);
+}
+.table .table-actions .btn {
+    padding: var(--espaco-xxs) var(--espaco-xs); /* Botões menores para tabela */
+    font-size: 0.8rem;
+}

@@ -1,0 +1,38 @@
+/* 📁 css/pages/relatorios.css */
+
+.relatorios-page .page-title {
+    margin-bottom: var(--espaco-l);
+}
+
+.relatorios-page #form-filtros-relatorios .form-label {
+    font-weight: 500;
+}
+
+/* Estilo para os resultados do relatório */
+.relatorios-page #container-relatorio-resultado .card-header .card-title {
+    font-family: var(--fonte-principal); /* Título do resultado em Montserrat */
+    font-size: 1.3rem;
+    color: var(--preto-texto);
+    font-weight: 700; /* Bold */
+}
+
+.relatorios-page #relatorio-resultado-conteudo .simple-list .card-list-item {
+    padding: var(--espaco-s); /* Mais padding nos itens da lista de relatório */
+    border-bottom: 1px solid var(--rosa-clarinho);
+}
+.relatorios-page #relatorio-resultado-conteudo .simple-list .item-name {
+    font-size: 0.95rem;
+}
+.relatorios-page #relatorio-resultado-conteudo .simple-list small {
+    font-size: 0.75rem;
+}
+
+.relatorios-page #relatorio-resultado-conteudo .resumo-geral-item h4 {
+    font-family: var(--fonte-destaque); /* Destaque para os totais */
+    font-size: 1.4rem !important; /* Garantir tamanho para os resumos */
+    margin-bottom: var(--espaco-xxs);
+}
+.relatorios-page #relatorio-resultado-conteudo .resumo-geral-item small {
+    font-size: 0.85rem;
+    color: var(--cinza-texto-secundario);
+}

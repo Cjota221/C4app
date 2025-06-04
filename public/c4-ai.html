@@ -1,0 +1,36 @@
+<div class="c4-ai-page animate-fadeIn">
+    <h2 class="page-title">💬 Assistente C4 IA</h2>
+    <p class="text-center mb-m" style="color: var(--cinza-texto-secundario);">Sua parceira para ideias e estratégias de vendas!</p>
+
+    <div class="card">
+        <div class="card-content">
+            <p id="c4-ai-greeting" style="font-size: 1.1rem; margin-bottom: var(--espaco-l); text-align: center;"><strong>Olá!</strong> 👋 Como posso te inspirar hoje?</p>
+            
+            <div class="quick-actions mb-l">
+                <button class="btn btn-outline-primary btn-sm" data-sugestao="ideia-conteudo" aria-label="Pedir ideia de conteúdo">💡 Ideia de Conteúdo</button>
+                <button class="btn btn-outline-primary btn-sm" data-sugestao="vender-mais" aria-label="Pedir dicas para vender mais">🚀 Como Vender Mais?</button>
+                <button class="btn btn-outline-primary btn-sm" data-sugestao="post-produto" aria-label="Pedir texto para post de produto">✍️ Texto para Post</button>
+            </div>
+            
+            <div class="form-group">
+                <label for="c4-ai-nicho" class="form-label">Para qual nicho/produto você gostaria de uma sugestão mais específica?</label>
+                <input type="text" id="c4-ai-nicho" class="form-input" placeholder="Ex: Batons Matte, Roupas Fitness, Velas Aromáticas">
+            </div>
+            <div class="form-group">
+                <label for="c4-ai-pergunta" class="form-label">Ou faça uma pergunta direta:</label>
+                <textarea id="c4-ai-pergunta" class="form-textarea" rows="3" placeholder="Ex: Me dê 3 dicas para divulgar meus bolos caseiros no Instagram."></textarea>
+            </div>
+            <button class="btn btn-primary btn-full-width mt-s" id="btn-c4-ai-pedir-sugestao">
+                <span class="icon" aria-hidden="true">🤖</span> Obter Sugestão da IA
+            </button>
+        </div>
+    </div>
+
+    <div id="c4-ai-resposta-container" class="card mt-l hidden" style="background-color: var(--rosa-clarinho);">
+        <div class="card-header" style="border-bottom: 1px solid var(--rosa-pink);">
+            <span class="card-title" style="font-family: var(--fonte-principal); color: var(--preto-texto); font-weight: 700;">✨ Sugestão da C4 IA:</span>
+        </div>
+        <div class="card-content" id="c4-ai-resposta-texto" style="white-space: pre-wrap; line-height: 1.7;">
+            </div>
+    </div>
+</div>

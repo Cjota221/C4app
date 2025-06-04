@@ -1,0 +1,62 @@
+<div class="metas-page animate-fadeIn">
+    <div class="page-header-flex">
+        <h2 class="page-title">Minhas Metas 🏆</h2>
+        <button class="btn btn-primary" id="btn-abrir-form-meta" aria-label="Definir Nova Meta">
+            <span class="icon" aria-hidden="true">🎯</span> Nova Meta
+        </button>
+    </div>
+
+    <div id="form-meta-container" class="card hidden" style="background-color: var(--rosa-clarinho);">
+         <h3 id="form-meta-title" class="card-header" style="font-family: var(--fonte-principal); font-size: 1.3rem; color: var(--preto-texto); border-bottom: 1px solid var(--rosa-pink);">Definir Nova Meta</h3>
+        <form id="form-meta" class="card-content">
+            <input type="hidden" id="meta-id" name="id">
+            <div class="form-group">
+                <label for="meta-descricao" class="form-label">Descrição da Meta:</label>
+                <input type="text" id="meta-descricao" name="descricao" class="form-input" placeholder="Ex: Vender 50 batons em Julho" required>
+                <p class="form-field-message error"></p>
+            </div>
+            <div class="grid-2-cols">
+                <div class="form-group">
+                    <label for="meta-tipo" class="form-label">Tipo de Meta:</label>
+                    <select id="meta-tipo" name="tipo" class="form-select" required>
+                        <option value="faturamento">Faturamento (R$)</option>
+                        <option value="lucro">Lucro (R$)</option>
+                        <option value="unidades_vendidas">Unidades Vendidas</option>
+                    </select>
+                    <p class="form-field-message error"></p>
+                </div>
+                <div class="form-group">
+                    <label for="meta-valor-objetivo" class="form-label">Valor Objetivo:</label>
+                    <input type="number" id="meta-valor-objetivo" name="valor_objetivo" class="form-input" step="0.01" min="1" required placeholder="Ex: 1000 ou 50">
+                    <p class="form-field-message error"></p>
+                </div>
+            </div>
+            <div class="grid-2-cols">
+                <div class="form-group">
+                    <label for="meta-data-inicio" class="form-label">Data de Início:</label>
+                    <input type="date" id="meta-data-inicio" name="data_inicio" class="form-input" required>
+                    <p class="form-field-message error"></p>
+                </div>
+                <div class="form-group">
+                    <label for="meta-data-fim" class="form-label">Prazo Final:</label>
+                    <input type="date" id="meta-data-fim" name="data_fim" class="form-input" required>
+                    <p class="form-field-message error"></p>
+                </div>
+            </div>
+             <div class="form-group">
+                <label for="meta-valor-atual" class="form-label">Valor Atual Atingido (opcional):</label>
+                <input type="number" id="meta-valor-atual" name="valor_atual" class="form-input" step="0.01" value="0" placeholder="0">
+                 <small>Informe quanto já foi atingido para esta meta.</small>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline-primary" id="btn-cancelar-form-meta">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Salvar Meta</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="lista-metas" class="grid-2-cols mt-l">
+        <p class="loading-message col-span-full">Carregando metas...</p>
+        </div>
+</div>

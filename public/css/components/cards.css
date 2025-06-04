@@ -1,0 +1,128 @@
+/* 📁 css/components/cards.css */
+.card {
+    background-color: var(--branco); /* Fundo branco para o card */
+    border-radius: var(--borda-raio-l); /* Bordas mais suaves e modernas */
+    box-shadow: var(--sombra-suave);
+    padding: var(--espaco-m);
+    margin-bottom: var(--espaco-m); /* Espaçamento padrão entre cards */
+    overflow: hidden; /* Para conter elementos filhos, como imagens */
+    transition: var(--transicao-padrao);
+    border: 1px solid var(--cinza-neutro); /* Borda sutil */
+}
+
+.card:hover {
+    /* box-shadow: var(--sombra-media); */ /* Opcional: realçar card no hover */
+    /* transform: translateY(-2px); */   /* Opcional: leve elevação no hover */
+}
+
+.card-header {
+    font-family: var(--fonte-destaque);
+    color: var(--rosa-pink);
+    font-size: 1.4rem; /* Ajustar conforme necessário */
+    margin-bottom: var(--espaco-s);
+    padding-bottom: var(--espaco-xs);
+    border-bottom: 1px solid var(--rosa-clarinho); /* Linha sutil para separar header */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-title { /* Se o título não for o único elemento do header */
+    font-family: var(--fonte-destaque);
+    color: var(--rosa-pink);
+    font-size: 1.4rem;
+}
+
+.card-content {
+    font-size: 0.95rem; /* Texto do conteúdo um pouco menor */
+    color: var(--preto-texto);
+    line-height: 1.6;
+}
+
+.card-content p {
+    margin-bottom: var(--espaco-xs);
+}
+.card-content p:last-child {
+    margin-bottom: 0;
+}
+
+.card-content strong {
+    font-weight: 500; /* Montserrat Medium */
+    color: var(--preto-texto); /* Destaque para o strong */
+}
+
+.card-image {
+    width: 100%;
+    height: auto;
+    max-height: 180px; /* Altura máxima para imagens de card */
+    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+    border-radius: var(--borda-raio-m) var(--borda-raio-m) 0 0; /* Arredonda cantos superiores se imagem for no topo */
+    margin-bottom: var(--espaco-s); /* Se imagem estiver acima do conteúdo */
+}
+
+.card-actions {
+    margin-top: var(--espaco-m);
+    padding-top: var(--espaco-s);
+    border-top: 1px solid var(--rosa-clarinho); /* Linha sutil para separar ações */
+    display: flex;
+    justify-content: flex-end; /* Alinha botões à direita por padrão */
+    gap: var(--espaco-s); /* Espaço entre botões de ação */
+}
+
+/* Card com fundo rosa clarinho para destaque sutil */
+.card-highlight {
+    background-color: var(--rosa-clarinho);
+    border-color: var(--rosa-pink); /* Borda rosa para destacar mais */
+}
+
+/* Card para produtos (exemplo específico) */
+.card-produto {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.card-produto .card-image {
+    margin-bottom: var(--espaco-xs);
+    border-radius: var(--borda-raio-m); /* Imagem totalmente dentro do padding do card */
+}
+.card-produto .produto-nome {
+    font-family: var(--fonte-principal); /* Ou fonte-destaque se preferir */
+    font-weight: 700; /* Montserrat Bold */
+    font-size: 1.1rem;
+    color: var(--preto-texto);
+    margin-bottom: var(--espaco-xxs);
+}
+.card-produto .produto-preco {
+    font-size: 1rem;
+    color: var(--rosa-pink);
+    font-weight: 500;
+    margin-bottom: var(--espaco-s);
+}
+.card-produto .card-actions {
+    border-top: none; /* Sem linha de separação para ações em card de produto */
+    justify-content: center; /* Centralizar botão em card de produto */
+}
+
+/* Listas simples dentro de cards */
+.card-list {
+    list-style: none;
+    padding: 0;
+}
+.card-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--espaco-s) 0;
+    border-bottom: 1px solid var(--cinza-neutro);
+    font-size: 0.9rem;
+}
+.card-list-item:last-child {
+    border-bottom: none;
+}
+.card-list-item .item-label {
+    color: var(--cinza-texto-secundario);
+}
+.card-list-item .item-value {
+    font-weight: 500;
+    color: var(--preto-texto);
+}

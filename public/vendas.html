@@ -1,0 +1,63 @@
+<div class="vendas-page animate-fadeIn">
+    <div class="page-header-flex">
+        <h2 class="page-title">Registrar Venda 💸</h2>
+        </div>
+
+    <div class="card" id="form-venda-container">
+        <form id="form-venda" class="card-content">
+            <div class="form-group">
+                <label for="venda-cliente-nome" class="form-label">Nome da Cliente:</label>
+                <input type="text" id="venda-cliente-nome" name="cliente_nome" class="form-input" required placeholder="Nome completo da cliente">
+                <p class="form-field-message error"></p>
+            </div>
+            <div class="form-group">
+                <label for="venda-cliente-telefone" class="form-label">Telefone (opcional):</label>
+                <input type="tel" id="venda-cliente-telefone" name="cliente_telefone" class="form-input" placeholder="(XX) XXXXX-XXXX">
+            </div>
+            <div class="form-group">
+                <label for="venda-produto" class="form-label">Produto Vendido:</label>
+                <select id="venda-produto" name="produto_id" class="form-select" required>
+                    <option value="">Carregando produtos...</option>
+                    </select>
+                <p class="form-field-message error"></p>
+            </div>
+            <div class="grid-2-cols">
+                <div class="form-group">
+                    <label for="venda-quantidade" class="form-label">Quantidade:</label>
+                    <input type="number" id="venda-quantidade" name="quantidade" class="form-input" min="1" value="1" required>
+                    <p class="form-field-message error"></p>
+                </div>
+                <div class="form-group">
+                    <label for="venda-valor-unitario" class="form-label">Valor Unit. (R$):</label>
+                    <input type="text" id="venda-valor-unitario" name="valor_unitario" class="form-input" readonly placeholder="Automático">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="venda-forma-pagamento" class="form-label">Forma de Pagamento:</label>
+                <select id="venda-forma-pagamento" name="forma_pagamento" class="form-select" required>
+                    <option value="dinheiro">Dinheiro</option>
+                    <option value="pix">PIX</option>
+                    <option value="cartao_debito">Cartão de Débito</option>
+                    <option value="cartao_credito">Cartão de Crédito</option>
+                    <option value="boleto">Boleto</option>
+                    <option value="outro">Outro</option>
+                </select>
+                <p class="form-field-message error"></p>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Valor Total da Venda:</label>
+                <p id="venda-valor-total" class="form-input-static" style="font-size: 1.5rem; font-weight: bold; color: var(--rosa-pink); text-align:right;">R$ 0,00</p>
+            </div>
+             <div class="form-group">
+                <label for="venda-num" class="form-label">Numeração da Venda (opcional):</label>
+                <input type="text" id="venda-num" name="numero_venda" class="form-input" placeholder="Ex: PED001">
+            </div>
+            <button type="submit" class="btn btn-primary btn-full-width mt-m">Concluir Venda</button>
+        </form>
+    </div>
+
+    <h3 class="page-title mt-l" style="font-size: 1.5rem; text-align: left;">Histórico Recente</h3>
+    <div id="vendas-historico-list" class="card-list">
+        <p class="loading-message">Carregando histórico...</p>
+    </div>
+</div>

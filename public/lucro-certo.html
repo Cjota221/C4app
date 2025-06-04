@@ -1,0 +1,92 @@
+<div class="lucro-certo-page animate-fadeIn">
+    <h2 class="page-title">Lucro Certo 🎯</h2>
+    <p class="text-center mb-l" style="color: var(--cinza-texto-secundario);">Calcule o preço de venda ideal para seus produtos com precisão.</p>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-title" style="font-family: var(--fonte-principal); font-weight: 700;">Definir Preço de Venda</span>
+        </div>
+        <form id="form-lucro-certo" class="card-content">
+            <div class="form-group">
+                <label for="lc-produto-select" class="form-label">1. Selecione o Produto:</label>
+                <select id="lc-produto-select" name="produto_id" class="form-select" required>
+                    <option value="">Carregando produtos...</option>
+                </select>
+                <p class="form-field-message error"></p>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Custo de Compra do Produto:</label>
+                <p id="lc-custo-compra-display" class="form-input-static">Selecione um produto</p>
+            </div>
+            
+            <h4 class="form-section-title">2. Informe os Custos Adicionais por Unidade:</h4>
+            <div class="grid-2-cols">
+                <div class="form-group">
+                    <label for="lc-custo-fixo-unitario" class="form-label">Custo Fixo (R$):</label>
+                    <input type="number" id="lc-custo-fixo-unitario" name="custo_fixo_unitario" class="form-input" step="0.01" placeholder="0,00" value="0">
+                    <small>Rateio de aluguel, luz, etc.</small>
+                    <p class="form-field-message error"></p>
+                </div>
+                <div class="form-group">
+                    <label for="lc-custo-variavel-unitario" class="form-label">Custo Variável (R$):</label>
+                    <input type="number" id="lc-custo-variavel-unitario" name="custo_variavel_unitario" class="form-input" step="0.01" placeholder="0,00" value="0">
+                    <small>Embalagem, taxas, brindes.</small>
+                    <p class="form-field-message error"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="lc-custo-frete-unitario" class="form-label">Custo Frete Recebimento (R$):</label>
+                <input type="number" id="lc-custo-frete-unitario" name="custo_frete_unitario" class="form-input" step="0.01" placeholder="0,00" value="0">
+                <small>Frete para receber o produto.</small>
+                <p class="form-field-message error"></p>
+            </div>
+
+            <h4 class="form-section-title">3. Defina sua Margem de Lucro:</h4>
+            <div class="form-group">
+                <label for="lc-margem-lucro" class="form-label">Margem de Lucro Desejada (%):</label>
+                <input type="number" id="lc-margem-lucro" name="margem_lucro" class="form-input" step="1" placeholder="Ex: 50" value="50" required min="0" max="99">
+                <small>Percentual sobre o preço de venda final (0-99%).</small>
+                <p class="form-field-message error"></p>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full-width mt-m">Calcular Preço Ideal</button>
+        </form>
+
+        <div id="resultado-lucro-certo-container" class="card-content mt-l hidden" style="border-top: 2px solid var(--rosa-pink); padding-top: var(--espaco-l);">
+            <h3 style="font-family: var(--fonte-destaque); color: var(--rosa-pink); font-size: 1.5rem; margin-bottom: var(--espaco-m); text-align: center;">Resultado do Cálculo:</h3>
+            <p class="resultado-item"><strong>Custo Total Unitário:</strong> <span id="lc-resultado-custo-total" class="text-bold">R$ 0,00</span></p>
+            <p class="resultado-item" style="font-size: 1.3rem; margin-top: var(--espaco-s);"><strong>Preço de Venda Ideal: <span id="lc-resultado-preco-ideal" class="text-bold" style="color: var(--verde-sucesso); font-size: 1.6rem;">R$ 0,00</span></strong></p>
+            <p class="resultado-item"><strong>Lucro Bruto por Unidade:</strong> <span id="lc-resultado-lucro-bruto" class="text-bold">R$ 0,00</span></p>
+
+            <div id="lc-simulacao-margens" class="mt-l">
+                <h4 style="font-weight: 700; margin-bottom: var(--espaco-s); font-size: 1.1rem;">Simulações com Outras Margens:</h4>
+                <ul class="simple-list"></ul>
+            </div>
+            <button id="btn-salvar-preco-produto" class="btn btn-secondary btn-full-width mt-l hidden">
+                <span class="icon" aria-hidden="true">💾</span> Salvar Preço de Venda no Produto
+            </button>
+        </div>
+    </div>
+</div>
+<style> /* Adicionando estilos específicos aqui, podem ir para lucro-certo.css */
+    .lucro-certo-page .form-section-title {
+        font-weight: 700; /* Montserrat Bold */
+        color: var(--preto-texto);
+        margin-top: var(--espaco-l);
+        margin-bottom: var(--espaco-s);
+        font-size: 1.1rem;
+        border-top: 1px dashed var(--rosa-clarinho);
+        padding-top: var(--espaco-m);
+    }
+    .lucro-certo-page .resultado-item {
+        display: flex;
+        justify-content: space-between;
+        padding: var(--espaco-xs) 0;
+        border-bottom: 1px solid var(--rosa-clarinho);
+    }
+     .lucro-certo-page .resultado-item:last-of-type {
+        border-bottom: none;
+    }
+</style>

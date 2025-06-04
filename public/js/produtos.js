@@ -115,7 +115,7 @@ function initProdutos() {
                     const displayValorVenda = p.valor_venda ? formatarMoeda(p.valor_venda) : `<em>(${formatarMoeda(p.valor_compra * 1.7)})</em>`;
 
                     card.innerHTML = `
-                        <img src="${p.imagem_url || '../assets/img/placeholder_produto.png'}" alt="${p.nome}" class="card-image">
+                        <img src="${p.imagem_url || 'https://via.placeholder.com/150x150/f0f0f0/999999?text=Produto'}" alt="${p.nome}" class="card-image">
                         <div class="card-content" style="padding: var(--espaco-s) var(--espaco-m) var(--espaco-m);">
                             <h3 class="produto-nome">${p.nome}</h3>
                             <p class="produto-preco">Venda: ${displayValorVenda}</p>

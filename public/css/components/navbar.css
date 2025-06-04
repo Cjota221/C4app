@@ -1,0 +1,70 @@
+/* 📁 css/components/navbar.css */
+.footer-nav {
+    display: flex;
+    justify-content: space-around; /* Distribui itens igualmente */
+    align-items: stretch; /* Faz os itens esticarem na altura */
+    height: var(--footer-nav-height);
+    background-color: var(--branco);
+    border-top: 1px solid var(--cinza-neutro);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.06);
+    position: sticky; /* Mantém o footer fixo na base */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-index-navbar);
+    padding: var(--espaco-xxs) 0; /* Pequeno padding vertical interno */
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    color: var(--cinza-texto-secundario); /* Cor padrão para ícones inativos */
+    font-family: var(--fonte-principal);
+    font-size: 0.7rem; /* Texto bem pequeno abaixo do ícone */
+    font-weight: 500; /* Montserrat Medium */
+    flex-grow: 1; /* Para distribuir espaço igualmente */
+    flex-basis: 0; /* Para garantir que flex-grow funcione bem */
+    cursor: pointer;
+    padding: var(--espaco-xs) var(--espaco-xxs); /* Padding interno do item */
+    transition: color 0.2s ease-in-out, transform 0.1s ease;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.nav-item .nav-icon {
+    font-size: 1.6rem; /* Tamanho do ícone/emoji. Ajustar se usar SVGs/Font Icons */
+    margin-bottom: 2px; /* Pequeno espaço entre ícone e texto */
+    display: block; /* Para garantir que o margin-bottom funcione */
+    line-height: 1; /* Remove excesso de altura no ícone */
+}
+
+.nav-item:hover {
+    color: var(--rosa-pink); /* Cor no hover */
+}
+
+.nav-item.active {
+    color: var(--rosa-pink); /* Cor do item ativo */
+    /* background-color: var(--rosa-clarinho); Opcional: leve fundo no item ativo */
+}
+
+.nav-item.active .nav-icon {
+    /* Pode ter um estilo diferente para o ícone ativo, ex: transform scale */
+    /* transform: scale(1.1); */
+}
+
+.nav-item:active { /* Ao clicar */
+    transform: scale(0.95);
+}
+
+/* Para o caso de usar SVGs ou Font Icons como span/i */
+/*
+.nav-item .nav-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor; // Para herdar a cor do .nav-item
+}
+*/

@@ -1,0 +1,89 @@
+/* 📁 css/pages/lucro-certo.css */
+
+.lucro-certo-page .page-title {
+    margin-bottom: var(--espaco-xs); /* Reduzir margem se houver subtítulo */
+}
+.lucro-certo-page .text-center.mb-l { /* Para o parágrafo abaixo do título */
+    font-size: 0.95rem;
+}
+
+.lucro-certo-page .form-label {
+    font-weight: 500; /* Labels um pouco mais destacados */
+}
+.lucro-certo-page .form-label + small { /* Dica abaixo do label */
+    display: block;
+    font-size: 0.8rem;
+    color: var(--cinza-texto-secundario);
+    margin-top: -var(--espaco-xs); /* Puxa um pouco para perto do input */
+    margin-bottom: var(--espaco-xs);
+}
+
+.lucro-certo-page .form-input-static {
+    background-color: var(--cinza-neutro);
+    padding: var(--espaco-s) var(--espaco-m);
+    border-radius: var(--borda-raio-m);
+    font-size: 1rem;
+    color: var(--preto-texto);
+    font-weight: 500; /* Montserrat Medium */
+    border: 1px solid #BDBDBD;
+    display: block;
+    width: 100%;
+    margin-bottom: var(--espaco-m); /* Espaço abaixo do display de custo */
+}
+
+.lucro-certo-page .text-bold {
+    font-weight: 700; /* Montserrat Bold */
+}
+
+.lucro-certo-page #resultado-lucro-certo-container {
+    background-color: var(--rosa-clarinho); /* Fundo suave para a área de resultado */
+    border-radius: var(--borda-raio-m);
+    padding: var(--espaco-m);
+}
+
+.lucro-certo-page #resultado-lucro-certo-container h3 {
+    font-family: var(--fonte-destaque);
+    color: var(--rosa-pink);
+    font-size: 1.4rem;
+    margin-bottom: var(--espaco-m);
+}
+.lucro-certo-page #resultado-lucro-certo-container p {
+    margin-bottom: var(--espaco-xs);
+    font-size: 1rem;
+}
+.lucro-certo-page #resultado-lucro-certo-container #lc-resultado-preco-ideal {
+    font-size: 1.5rem; /* Preço ideal bem destacado */
+    color: var(--verde-sucesso); /* Verde para o preço final positivo */
+}
+
+
+.lucro-certo-page #lc-simulacao-margens h4 {
+    font-family: var(--fonte-principal);
+    font-weight: 700; /* Bold */
+    color: var(--preto-texto);
+    margin-bottom: var(--espaco-s);
+    font-size: 1.1rem;
+}
+.lucro-certo-page #lc-simulacao-margens .simple-list li {
+    padding: var(--espaco-xs) 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed var(--rosa-pink);
+}
+.lucro-certo-page #lc-simulacao-margens .simple-list li:last-child {
+    border-bottom: none;
+}
+.lucro-certo-page #lc-simulacao-margens .simple-list li span:first-child {
+    color: var(--cinza-texto-secundario);
+    font-size: 0.9rem;
+}
+.lucro-certo-page #lc-simulacao-margens .simple-list li span:last-child {
+    font-weight: 500; /* Medium */
+    color: var(--preto-texto);
+    font-size: 0.95rem;
+}
+
+.lucro-certo-page #btn-salvar-preco-produto {
+    background-color: var(--amarelo-ouro); /* Botão de salvar com cor de CTA secundário */
+    color: var(--preto-texto);
+}

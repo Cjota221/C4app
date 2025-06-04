@@ -1,0 +1,49 @@
+/* 📁 css/pages/despesas.css */
+
+.despesas-page .page-title {
+    margin-bottom: var(--espaco-l);
+}
+
+.despesas-page #form-despesa-container {
+    padding: var(--espaco-l);
+    border-radius: var(--borda-raio-l);
+    margin-bottom: var(--espaco-l);
+    /* background-color: var(--rosa-clarinho); Já definido no HTML, pode ser removido de lá e centralizado aqui */
+}
+.despesas-page #form-despesa-container .form-label {
+    font-weight: 500;
+}
+
+.despesas-page .card .card-title {
+    font-family: var(--fonte-destaque);
+    font-size: 1.5rem; /* Título dos cards de Fixas/Variáveis */
+}
+
+.despesas-page .card-list-item .item-name {
+    font-size: 1rem;
+    font-weight: 500; /* Montserrat Medium */
+}
+
+.despesas-page .card-list-item .item-date {
+    font-size: 0.8rem;
+    color: var(--cinza-texto-secundario);
+}
+
+.despesas-page .card-list-item .item-value {
+    font-size: 1rem;
+    font-weight: 700; /* Montserrat Bold */
+    color: var(--vermelho-erro); /* Despesas em vermelho */
+}
+
+.despesas-page .card-list-item .item-actions .btn {
+    padding: var(--espaco-xxs); /* Botões de ação bem pequenos */
+    line-height: 1; /* Para o ícone não pular */
+}
+.despesas-page .card-list-item .item-actions .btn .icon {
+    font-size: 1.1rem; /* Ícones nos botões de ação */
+    margin-right: 0;
+}
+
+.despesas-page .empty-message.p-m { /* Classe p-m adicionada no HTML */
+    padding: var(--espaco-m);
+}

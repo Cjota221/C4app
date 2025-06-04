@@ -1,0 +1,29 @@
+# 📁 netlify.toml (Coloque este arquivo na raiz do seu projeto C4app-main/)
+
+[build]
+  # Diretório a ser publicado. Deve ser 'public' baseado na estrutura do seu projeto.
+  publish = "public"
+  # Comando de build (se houver). Para um site estático sem build, pode ser omitido
+  # ou ser um comando simples como 'echo "No build step required"'.
+  # command = "your-build-command" 
+
+[build.environment]
+  # Define a versão do Node.js se seu build depender de alguma (opcional para sites estáticos puros).
+  # NODE_VERSION = "18" # Descomente e ajuste se necessário
+
+# Exemplo de configuração de cabeçalhos de segurança (recomendado)
+[[headers]]
+  for = "/*" # Aplica a todos os arquivos
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    # Content-Security-Policy = "default-src 'self'; img-src 'self' https://via.placeholder.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;" # Exemplo, ajuste conforme suas necessidades
+    # Referrer-Policy = "strict-origin-when-cross-origin"
+    # Feature-Policy = "geolocation 'none'; microphone 'none'; camera 'none'" # Exemplo
+
+# Redirecionamentos e reescritas (útil para SPAs, mas seu sistema já carrega por JS)
+# [[redirects]]
+#   from = "/*"
+#   to = "/index.html"
+#   status = 200

@@ -1,0 +1,44 @@
+/* 📁 public/css/style.css */
+
+/* 1. Reset de Estilos (Primeiro para normalizar) */
+@import url('./reset.css');
+
+/* 2. Variáveis Globais (Cores, Fontes, Espaçamentos) */
+@import url('./variables.css');
+
+/* 3. Estilos de Layout Base (Estrutura principal do app) */
+@import url('./layout.css');
+
+/* 4. Componentes Reutilizáveis */
+@import url('./components/animations.css');
+@import url('./components/badges.css');
+@import url('./components/buttons.css');
+@import url('./components/cards.css');
+@import url('./components/forms.css');
+@import url('./components/modal.css');
+@import url('./components/navbar.css');
+@import url('./components/tables.css');
+/* Adicione outros componentes se houver */
+
+/* 5. Estilos Específicos de Páginas */
+@import url('./pages/dashboard.css');
+@import url('./pages/produtos.css');
+@import url('./pages/vendas.css');
+@import url('./pages/despesas.css');
+@import url('./pages/lucro-certo.css');
+@import url('./pages/calculadoras.css');
+@import url('./pages/metas.css');
+@import url('./pages/relatorios.css');
+@import url('./pages/c4-ai.css');
+@import url('./pages/perfil.css');
+/* Adicione outros estilos de página se houver */
+
+/* Estilos Globais Adicionais (se necessário, após todos os imports) */
+body {
+    font-family: var(--fonte-principal); /* Garante aplicação em todo o corpo */
+    color: var(--preto-texto);
+    background-color: var(--cinza-neutro); /* Fundo geral da viewport */
+    line-height: 1.6; /* Melhor legibilidade */
+}
+
+/* Ajustes finais ou overrides globais podem vir aqui */

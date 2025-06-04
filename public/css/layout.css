@@ -1,0 +1,295 @@
+/* 📁 css/layout.css */
+
+body {
+    background-color: var(--cinza-neutro); /* Fundo externo ao app container */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha o app-container no topo se a viewport for maior */
+    min-height: 100vh;
+    padding: 0; /* Garante que não haja padding no body que afete o app-container */
+    /* Em telas maiores, um padding pode ser adicionado para não colar nas bordas */
+    /* padding: var(--espaco-m); */
+}
+
+#app-container {
+    width: 100%;
+    max-width: var(--max-width-mobile); /* Limita a largura em telas maiores */
+    min-height: 100vh; /* Ocupa toda a altura da viewport */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--branco); /* Fundo interno do app */
+    box-shadow: var(--sombra-media); /* Sombra sutil para destacar o container */
+    overflow: hidden; /* Evita barras de rolagem indesejadas no container principal */
+    position: relative; /* Para elementos posicionados absolutamente dentro dele */
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o título por padrão */
+    padding: 0 var(--espaco-m);
+    height: var(--header-height);
+    background-color: var(--rosa-pink);
+    color: var(--branco);
+    box-shadow: var(--sombra-suave);
+    position: sticky; /* Mantém o header fixo no topo ao rolar */
+    top: 0;
+    left: 0; /* Necessário para sticky funcionar corretamente com alguns containers pai */
+    right: 0;/* Necessário para sticky funcionar corretamente com alguns containers pai */
+    z-index: calc(var(--z-index-navbar) - 10); /* Abaixo da navbar se navbar for sobreposta */
+}
+
+.app-header .logo-img { /* Se houver um logo no header */
+    height: calc(var(--header-height) * 0.65); /* Um pouco maior */
+    width: auto;
+    position: absolute;
+    left: var(--espaco-m);
+    /* Para centralizar verticalmente se o logo for menor que o header */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.app-header-title {
+    font-family: var(--fonte-destaque);
+    font-size: 1.7rem;
+    font-weight: normal; /* A fonte Bright já pode ter seu peso específico */
+    text-align: center;
+    /* Garante que o título não seja empurrado pelo logo absoluto */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--espaco-xl); /* Espaço para não sobrepor o logo se ele existir */
+    padding-right: var(--espaco-xl); /* Espaço para um possível ícone à direita */
+}
+
+#main-content {
+    flex-grow: 1; /* Faz o conteúdo principal ocupar o espaço restante */
+    padding: var(--espaco-m);
+    overflow-y: auto; /* Permite scroll apenas no conteúdo principal */
+    background-color: var(--branco); /* Fundo da área de conteúdo */
+    /* Adiciona padding na parte inferior para não colar na navbar ao rolar até o fim */
+    /* padding-bottom: calc(var(--footer-nav-height) + var(--espaco-m)); */
+    /* Melhor controlar isso com a altura da navbar se ela for `sticky` e o `main-content` não tiver padding-bottom.
+       Se a navbar for `sticky`, o próprio main-content precisa de um padding-bottom da altura da navbar
+       para o último conteúdo não ficar escondido atrás dela.
+       Mas como a navbar está dentro do #app-container e o #main-content tem overflow-y: auto,
+       o padding no #main-content é mais apropriado.
+    */
+    padding-bottom: var(--espaco-xl); /* Um bom padding geral no final */
+}
+
+/* Classes de utilidade para layout */
+.container { /* Para seções dentro do #main-content que precisam de padding lateral */
+    padding-left: var(--espaco-m);
+    padding-right: var(--espaco-m);
+    width: 100%;
+}
+
+.page-title {
+    font-family: var(--fonte-destaque);
+    color: var(--rosa-pink);
+    font-size: 1.8rem; /* Ajustado para mobile */
+    margin-bottom: var(--espaco-l);
+    text-align: center;
+    line-height: 1.2;
+}
+/* Para títulos de página que ficam no topo, alinhados com um botão */
+.page-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--espaco-l);
+}
+.page-header-flex .page-title {
+    margin-bottom: 0; /* Remove margem se estiver no flex container */
+    text-align: left; /* Alinha à esquerda por padrão no flex */
+}
+
+
+/* Utilitários de Texto */
+.text-center { text-align: center !important; }
+.text-left   { text-align: left !important; }
+.text-right  { text-align: right !important; }
+
+.text-rosa-pink { color: var(--rosa-pink) !important; }
+.text-amarelo-ouro { color: var(--amarelo-ouro) !important; }
+.text-verde-sucesso { color: var(--verde-sucesso) !important; }
+.text-vermelho-erro { color: var(--vermelho-erro) !important; }
+.text-cinza-secundario { color: var(--cinza-texto-secundario) !important; }
+.text-bold { font-weight: 700 !important; }
+.text-normal { font-weight: 400 !important; }
+.text-sm { font-size: 0.85rem !important; }
+.text-xs { font-size: 0.75rem !important; }
+
+
+/* Visibilidade */
+.hidden { display: none !important; }
+.visually-hidden { /* Acessível para leitores de tela, mas invisível */
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Espaçamentos (margens) */
+.m-0   { margin: 0 !important; }
+.mt-0  { margin-top: 0 !important; }
+.mr-0  { margin-right: 0 !important; }
+.mb-0  { margin-bottom: 0 !important; }
+.ml-0  { margin-left: 0 !important; }
+
+.m-xs  { margin: var(--espaco-xs) !important; }
+.mt-xs { margin-top: var(--espaco-xs) !important; }
+.mr-xs { margin-right: var(--espaco-xs) !important; }
+.mb-xs { margin-bottom: var(--espaco-xs) !important; }
+.ml-xs { margin-left: var(--espaco-xs) !important; }
+
+.m-s   { margin: var(--espaco-s) !important; }
+.mt-s  { margin-top: var(--espaco-s) !important; }
+.mr-s  { margin-right: var(--espaco-s) !important; }
+.mb-s  { margin-bottom: var(--espaco-s) !important; }
+.ml-s  { margin-left: var(--espaco-s) !important; }
+
+.m-m   { margin: var(--espaco-m) !important; }
+.mt-m  { margin-top: var(--espaco-m) !important; }
+.mr-m  { margin-right: var(--espaco-m) !important; }
+.mb-m  { margin-bottom: var(--espaco-m) !important; }
+.ml-m  { margin-left: var(--espaco-m) !important; }
+
+.m-l   { margin: var(--espaco-l) !important; }
+.mt-l  { margin-top: var(--espaco-l) !important; }
+.mr-l  { margin-right: var(--espaco-l) !important; }
+.mb-l  { margin-bottom: var(--espaco-l) !important; }
+.ml-l  { margin-left: var(--espaco-l) !important; }
+
+.m-xl  { margin: var(--espaco-xl) !important; }
+.mt-xl { margin-top: var(--espaco-xl) !important; }
+.mr-xl { margin-right: var(--espaco-xl) !important; }
+.mb-xl { margin-bottom: var(--espaco-xl) !important; }
+.ml-xl { margin-left: var(--espaco-xl) !important; }
+
+/* Espaçamentos (paddings) */
+.p-0   { padding: 0 !important; }
+.pt-0  { padding-top: 0 !important; }
+.pr-0  { padding-right: 0 !important; }
+.pb-0  { padding-bottom: 0 !important; }
+.pl-0  { padding-left: 0 !important; }
+
+.p-xs  { padding: var(--espaco-xs) !important; }
+.pt-xs { padding-top: var(--espaco-xs) !important; }
+.pr-xs { padding-right: var(--espaco-xs) !important; }
+.pb-xs { padding-bottom: var(--espaco-xs) !important; }
+.pl-xs { padding-left: var(--espaco-xs) !important; }
+
+.p-s   { padding: var(--espaco-s) !important; }
+.pt-s  { padding-top: var(--espaco-s) !important; }
+.pr-s  { padding-right: var(--espaco-s) !important; }
+.pb-s  { padding-bottom: var(--espaco-s) !important; }
+.pl-s  { padding-left: var(--espaco-s) !important; }
+
+.p-m   { padding: var(--espaco-m) !important; }
+.pt-m  { padding-top: var(--espaco-m) !important; }
+.pr-m  { padding-right: var(--espaco-m) !important; }
+.pb-m  { padding-bottom: var(--espaco-m) !important; }
+.pl-m  { padding-left: var(--espaco-m) !important; }
+
+.p-l   { padding: var(--espaco-l) !important; }
+.pt-l  { padding-top: var(--espaco-l) !important; }
+.pr-l  { padding-right: var(--espaco-l) !important; }
+.pb-l  { padding-bottom: var(--espaco-l) !important; }
+.pl-l  { padding-left: var(--espaco-l) !important; }
+
+.p-xl  { padding: var(--espaco-xl) !important; }
+.pt-xl { padding-top: var(--espaco-xl) !important; }
+.pr-xl { padding-right: var(--espaco-xl) !important; }
+.pb-xl { padding-bottom: var(--espaco-xl) !important; }
+.pl-xl { padding-left: var(--espaco-xl) !important; }
+
+
+/* Grid para cards de duas colunas */
+.grid-2-cols {
+    display: grid;
+    /* auto-fit tentará encaixar o máximo de colunas com minmax(150px, 1fr).
+       Em telas pequenas, se não couberem duas de 150px + gap, ficará uma coluna só.
+       Em telas maiores, ele pode criar 3 ou mais colunas se o container for largo,
+       o que pode não ser o desejado se a intenção é sempre DUAS colunas quando possível.
+       Se o objetivo é estritamente 2 colunas em mobile e não mais que isso,
+       uma abordagem com @media query pode ser mais controlada.
+    */
+    grid-template-columns: 1fr; /* Padrão mobile: 1 coluna */
+    gap: var(--espaco-m);
+}
+
+/* Breakpoint para quando houver espaço para duas colunas.
+   Considerando 2 cards de ~150px cada + gap de 16px = ~316px.
+   Um valor um pouco maior como 360px ou 375px (larguras comuns de mobile) é um bom ponto.
+   A lógica anterior `repeat(auto-fit, minmax(150px, 1fr))` é mais flexível para mais colunas em telas largas.
+   Se o objetivo é sempre NO MÁXIMO 2 colunas, esta é melhor:
+*/
+@media (min-width: 375px) { /* Ajustar este breakpoint conforme o design dos cards */
+    .grid-2-cols {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Classe para fazer um item de grid ocupar todas as colunas */
+.grid-2-cols .col-span-full {
+    grid-column: 1 / -1; /* Ocupa do início ao fim da linha do grid */
+}
+/* Para o antigo .col-span-2, se o grid for sempre 2 colunas, .col-span-full é mais genérico */
+/* Se precisar especificamente de "span 2" em um grid que pode ter mais colunas:
+.grid-N-cols .col-span-2 {
+    grid-column: span 2;
+}
+*/
+
+
+/* Mensagens de Feedback (carregamento, erro) */
+.loading-message, .empty-message, .error-message {
+    text-align: center;
+    padding: var(--espaco-xl) var(--espaco-m);
+    color: var(--cinza-texto-secundario);
+    font-size: 1rem; /* Ajustado para 1rem */
+    border-radius: var(--borda-raio-m);
+}
+.empty-message {
+    background-color: var(--cinza-neutro);
+    /* border: 1px dashed var(--cinza-texto-secundario); */
+}
+.error-message {
+    color: var(--vermelho-erro);
+    background-color: var(--rosa-clarinho);
+    border: 1px solid var(--vermelho-erro);
+}
+.loading-message .spinner + p { /* Se houver texto abaixo do spinner */
+    margin-top: var(--espaco-s);
+    font-size: 0.9rem;
+}
+
+/* Utilitários Flexbox (básicos) */
+.d-flex { display: flex !important; }
+.flex-column { flex-direction: column !important; }
+.flex-row { flex-direction: row !important; }
+.justify-content-start { justify-content: flex-start !important; }
+.justify-content-end { justify-content: flex-end !important; }
+.justify-content-center { justify-content: center !important; }
+.justify-content-between { justify-content: space-between !important; }
+.justify-content-around { justify-content: space-around !important; }
+.align-items-start { align-items: flex-start !important; }
+.align-items-end { align-items: flex-end !important; }
+.align-items-center { align-items: center !important; }
+.align-items-stretch { align-items: stretch !important; }
+.flex-grow-1 { flex-grow: 1 !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+.gap-xs { gap: var(--espaco-xs) !important; }
+.gap-s  { gap: var(--espaco-s) !important; }
+.gap-m  { gap: var(--espaco-m) !important; }
+.gap-l  { gap: var(--espaco-l) !important; }
+
+/* Classes de largura (exemplo) */
+.w-100 { width: 100% !important; }
+.w-50 { width: 50% !important; }

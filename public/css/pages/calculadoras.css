@@ -1,43 +1,822 @@
-/* 📁 css/pages/calculadoras.css */
+/* C4 App - Estilos para Calculadoras e Funcionalidades Específicas */
+/* Calculadora de margem, calculadoras especializadas e melhorias visuais */
 
-.calculadoras-page .page-title {
-    margin-bottom: var(--espaco-xs);
-}
-.calculadoras-page .text-center.mb-l { /* Para o parágrafo abaixo do título */
-    font-size: 0.95rem;
-}
+/* ========================================
+   CALCULADORA DE MARGEM AUTOMÁTICA
+======================================== */
 
-.calculadoras-page .card .card-header .card-title {
-    font-family: var(--fonte-destaque); /* Usar fonte de destaque para títulos das calculadoras */
-    font-size: 1.3rem; /* Tamanho do título de cada calculadora */
-    color: var(--rosa-pink);
-}
-
-.calculadoras-page .card .form-label {
-    font-size: 0.85rem; /* Labels menores dentro das calculadoras */
-    font-weight: 400; /* Regular */
-}
-
-.calculadoras-page .card .form-input {
-    padding: var(--espaco-xs) var(--espaco-s); /* Inputs um pouco menores */
-    font-size: 0.9rem;
+.c4-margin-calculator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--c4-z-modal);
+    display: none;
+    opacity: 0;
+    transition: opacity var(--c4-transition-normal);
 }
 
-.calculadoras-page .card button.btn-sm {
-    font-size: 0.9rem;
-    padding: var(--espaco-xs) var(--espaco-l); /* Botão um pouco menor mas legível */
-    margin-top: var(--espaco-xs); /* Espaço antes do resultado */
+.c4-margin-calculator.show {
+    opacity: 1;
 }
 
-.calculadoras-page .card .mt-s strong { /* Para o "Resultado:" */
-    font-weight: 500; /* Medium */
-    font-size: 0.9rem;
+.c4-calculator-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--c4-bg-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--c4-space-4);
 }
-.calculadoras-page .card .mt-s span[id$="-resultado"] { /* Para o valor do resultado */
-    font-weight: 700; /* Bold */
-    color: var(--verde-sucesso); /* Resultado em verde */
-    font-size: 1rem;
+
+.c4-calculator-modal {
+    background: var(--c4-bg-secondary);
+    border-radius: var(--c4-radius-2xl);
+    box-shadow: var(--c4-shadow-xl);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.9);
+    transition: transform var(--c4-transition-normal);
 }
-.calculadoras-page #calc-despesas-totais .card-content p {
-    font-size: 0.9rem;
+
+.c4-margin-calculator.show .c4-calculator-modal {
+    transform: scale(1);
 }
+
+.c4-calculator-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--c4-space-6);
+    border-bottom: 1px solid var(--c4-bg-tertiary);
+    background: var(--c4-gradient-primary);
+    color: white;
+    border-radius: var(--c4-radius-2xl) var(--c4-radius-2xl) 0 0;
+}
+
+.c4-calculator-header h3 {
+    margin: 0;
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-xl);
+    font-weight: var(--c4-font-semibold);
+}
+
+.c4-calculator-close {
+    width: var(--c4-touch-min);
+    height: var(--c4-touch-min);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: var(--c4-radius-md);
+    color: white;
+    font-size: var(--c4-text-2xl);
+    cursor: pointer;
+    transition: all var(--c4-transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c4-calculator-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.c4-calculator-body {
+    padding: var(--c4-space-6);
+}
+
+.c4-calculator-footer {
+    display: flex;
+    gap: var(--c4-space-3);
+    justify-content: flex-end;
+    padding: var(--c4-space-6);
+    border-top: 1px solid var(--c4-bg-tertiary);
+    background: var(--c4-bg-tertiary);
+    border-radius: 0 0 var(--c4-radius-2xl) var(--c4-radius-2xl);
+}
+
+/* ========================================
+   RESULTADOS DA CALCULADORA
+======================================== */
+
+.c4-margin-results {
+    margin: var(--c4-space-6) 0;
+}
+
+.c4-margin-results h4 {
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-lg);
+    font-weight: var(--c4-font-semibold);
+    color: var(--c4-text-primary);
+    margin-bottom: var(--c4-space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--c4-space-2);
+}
+
+.c4-margin-results h4::before {
+    content: '💰';
+    font-size: var(--c4-text-xl);
+}
+
+.c4-margin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--c4-space-4);
+}
+
+.c4-margin-card {
+    background: var(--c4-bg-secondary);
+    border: 2px solid var(--c4-bg-tertiary);
+    border-radius: var(--c4-radius-xl);
+    padding: var(--c4-space-4);
+    transition: all var(--c4-transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.c4-margin-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--c4-bg-tertiary);
+    transition: background var(--c4-transition-fast);
+}
+
+.c4-margin-card.warning::before {
+    background: var(--c4-warning);
+}
+
+.c4-margin-card.success::before {
+    background: var(--c4-success);
+}
+
+.c4-margin-card.info::before {
+    background: var(--c4-info);
+}
+
+.c4-margin-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--c4-shadow-lg);
+    border-color: var(--c4-primary);
+}
+
+.c4-margin-card.selected {
+    border-color: var(--c4-primary);
+    background: rgba(236, 72, 153, 0.05);
+    transform: translateY(-2px);
+    box-shadow: var(--c4-shadow-lg);
+}
+
+.c4-margin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--c4-space-3);
+}
+
+.c4-margin-percent {
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-2xl);
+    font-weight: var(--c4-font-bold);
+    color: var(--c4-primary);
+}
+
+.c4-margin-badge {
+    font-size: var(--c4-text-xs);
+    padding: var(--c4-space-1) var(--c4-space-2);
+}
+
+.c4-margin-price {
+    margin-bottom: var(--c4-space-3);
+}
+
+.c4-price-label {
+    display: block;
+    font-size: var(--c4-text-sm);
+    color: var(--c4-text-light);
+    margin-bottom: var(--c4-space-1);
+}
+
+.c4-price-value {
+    display: block;
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-xl);
+    font-weight: var(--c4-font-semibold);
+    color: var(--c4-text-primary);
+}
+
+.c4-margin-profit {
+    margin-bottom: var(--c4-space-4);
+}
+
+.c4-profit-label {
+    display: block;
+    font-size: var(--c4-text-sm);
+    color: var(--c4-text-light);
+    margin-bottom: var(--c4-space-1);
+}
+
+.c4-profit-value {
+    display: block;
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-lg);
+    font-weight: var(--c4-font-medium);
+    color: var(--c4-success);
+}
+
+.c4-select-margin {
+    width: 100%;
+}
+
+/* ========================================
+   GRÁFICO DE MARGENS
+======================================== */
+
+.c4-margin-chart {
+    margin: var(--c4-space-6) 0;
+    background: var(--c4-bg-tertiary);
+    border-radius: var(--c4-radius-xl);
+    padding: var(--c4-space-4);
+}
+
+.c4-margin-chart h4 {
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-lg);
+    font-weight: var(--c4-font-semibold);
+    color: var(--c4-text-primary);
+    margin-bottom: var(--c4-space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--c4-space-2);
+}
+
+.c4-margin-chart h4::before {
+    content: '📊';
+    font-size: var(--c4-text-xl);
+}
+
+.c4-chart-container {
+    background: var(--c4-bg-secondary);
+    border-radius: var(--c4-radius-lg);
+    padding: var(--c4-space-4);
+    display: flex;
+    justify-content: center;
+}
+
+#marginChartCanvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ========================================
+   RECOMENDAÇÃO IA
+======================================== */
+
+.c4-ai-recommendation {
+    display: flex;
+    gap: var(--c4-space-3);
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(250, 204, 21, 0.1));
+    border: 1px solid rgba(236, 72, 153, 0.2);
+    border-radius: var(--c4-radius-xl);
+    padding: var(--c4-space-4);
+    margin: var(--c4-space-6) 0;
+}
+
+.c4-ai-icon {
+    font-size: var(--c4-text-3xl);
+    flex-shrink: 0;
+    animation: c4-pulse 2s infinite;
+}
+
+.c4-ai-content h5 {
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-base);
+    font-weight: var(--c4-font-semibold);
+    color: var(--c4-primary);
+    margin: 0 0 var(--c4-space-2) 0;
+}
+
+.c4-ai-content p {
+    margin: 0;
+    font-size: var(--c4-text-sm);
+    line-height: 1.5;
+    color: var(--c4-text-secondary);
+}
+
+/* ========================================
+   PREVIEW RÁPIDO DE MARGENS
+======================================== */
+
+.c4-margin-preview {
+    margin-top: var(--c4-space-3);
+    padding: var(--c4-space-3);
+    background: var(--c4-bg-tertiary);
+    border-radius: var(--c4-radius-lg);
+    border-left: 4px solid var(--c4-primary);
+    animation: c4-slide-up 0.3s ease-out;
+}
+
+.c4-preview-header {
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-sm);
+    font-weight: var(--c4-font-medium);
+    color: var(--c4-text-primary);
+    margin-bottom: var(--c4-space-2);
+}
+
+.c4-preview-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--c4-space-2);
+}
+
+.c4-margin-item {
+    font-size: var(--c4-text-xs);
+    color: var(--c4-text-secondary);
+    background: var(--c4-bg-secondary);
+    padding: var(--c4-space-1) var(--c4-space-2);
+    border-radius: var(--c4-radius-md);
+}
+
+.c4-margin-item strong {
+    color: var(--c4-primary);
+}
+
+/* ========================================
+   BOTÕES DE CALCULADORA
+======================================== */
+
+.c4-calculator-trigger {
+    margin-top: var(--c4-space-2);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--c4-space-2);
+}
+
+.c4-calculator-trigger::before {
+    content: '🧮';
+    font-size: var(--c4-text-base);
+}
+
+/* ========================================
+   CALCULADORAS ESPECIALIZADAS
+======================================== */
+
+.c4-calculators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--c4-space-6);
+    margin: var(--c4-space-6) 0;
+}
+
+.c4-calculator-card {
+    background: var(--c4-bg-secondary);
+    border-radius: var(--c4-radius-xl);
+    box-shadow: var(--c4-shadow-md);
+    overflow: hidden;
+    transition: all var(--c4-transition-normal);
+    border: 1px solid var(--c4-bg-tertiary);
+}
+
+.c4-calculator-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--c4-shadow-xl);
+    border-color: var(--c4-primary);
+}
+
+.c4-calculator-card-header {
+    background: var(--c4-gradient-primary);
+    color: white;
+    padding: var(--c4-space-4);
+    text-align: center;
+}
+
+.c4-calculator-icon {
+    font-size: var(--c4-text-4xl);
+    margin-bottom: var(--c4-space-2);
+    display: block;
+}
+
+.c4-calculator-title {
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-lg);
+    font-weight: var(--c4-font-semibold);
+    margin: 0 0 var(--c4-space-2) 0;
+}
+
+.c4-calculator-subtitle {
+    font-size: var(--c4-text-sm);
+    opacity: 0.9;
+    margin: 0;
+}
+
+.c4-calculator-card-body {
+    padding: var(--c4-space-4);
+}
+
+.c4-calculator-description {
+    font-size: var(--c4-text-sm);
+    color: var(--c4-text-secondary);
+    line-height: 1.5;
+    margin-bottom: var(--c4-space-4);
+}
+
+.c4-calculator-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--c4-space-4) 0;
+}
+
+.c4-calculator-features li {
+    display: flex;
+    align-items: center;
+    gap: var(--c4-space-2);
+    font-size: var(--c4-text-sm);
+    color: var(--c4-text-secondary);
+    margin-bottom: var(--c4-space-2);
+}
+
+.c4-calculator-features li::before {
+    content: '✓';
+    color: var(--c4-success);
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.c4-calculator-card-footer {
+    padding: var(--c4-space-4);
+    border-top: 1px solid var(--c4-bg-tertiary);
+}
+
+/* ========================================
+   FORMULÁRIO DE CALCULADORA
+======================================== */
+
+.c4-calculator-form {
+    background: var(--c4-bg-tertiary);
+    border-radius: var(--c4-radius-lg);
+    padding: var(--c4-space-4);
+    margin: var(--c4-space-4) 0;
+}
+
+.c4-calculator-inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--c4-space-4);
+    margin-bottom: var(--c4-space-4);
+}
+
+.c4-calculator-result {
+    background: var(--c4-bg-secondary);
+    border: 2px solid var(--c4-success);
+    border-radius: var(--c4-radius-lg);
+    padding: var(--c4-space-4);
+    text-align: center;
+    margin-top: var(--c4-space-4);
+}
+
+.c4-result-label {
+    font-size: var(--c4-text-sm);
+    color: var(--c4-text-light);
+    margin-bottom: var(--c4-space-2);
+}
+
+.c4-result-value {
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-3xl);
+    font-weight: var(--c4-font-bold);
+    color: var(--c4-success);
+    margin: 0;
+}
+
+.c4-result-details {
+    font-size: var(--c4-text-sm);
+    color: var(--c4-text-secondary);
+    margin-top: var(--c4-space-2);
+}
+
+/* ========================================
+   UPLOAD DE IMAGEM MELHORADO
+======================================== */
+
+.c4-image-upload {
+    border: 2px dashed var(--c4-bg-tertiary);
+    border-radius: var(--c4-radius-xl);
+    padding: var(--c4-space-6);
+    text-align: center;
+    transition: all var(--c4-transition-fast);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.c4-image-upload:hover {
+    border-color: var(--c4-primary);
+    background: rgba(236, 72, 153, 0.05);
+}
+
+.c4-image-upload.dragover {
+    border-color: var(--c4-primary);
+    background: rgba(236, 72, 153, 0.1);
+    transform: scale(1.02);
+}
+
+.c4-upload-icon {
+    font-size: var(--c4-text-4xl);
+    color: var(--c4-text-light);
+    margin-bottom: var(--c4-space-3);
+    display: block;
+}
+
+.c4-upload-text {
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-lg);
+    font-weight: var(--c4-font-medium);
+    color: var(--c4-text-primary);
+    margin-bottom: var(--c4-space-2);
+}
+
+.c4-upload-hint {
+    font-size: var(--c4-text-sm);
+    color: var(--c4-text-light);
+    margin: 0;
+}
+
+.c4-image-preview {
+    margin-top: var(--c4-space-4);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: var(--c4-space-3);
+}
+
+.c4-preview-item {
+    position: relative;
+    border-radius: var(--c4-radius-lg);
+    overflow: hidden;
+    background: var(--c4-bg-tertiary);
+    aspect-ratio: 1;
+}
+
+.c4-preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.c4-preview-remove {
+    position: absolute;
+    top: var(--c4-space-2);
+    right: var(--c4-space-2);
+    width: 24px;
+    height: 24px;
+    background: var(--c4-error);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--c4-text-sm);
+    transition: all var(--c4-transition-fast);
+}
+
+.c4-preview-remove:hover {
+    background: #dc2626;
+    transform: scale(1.1);
+}
+
+/* ========================================
+   CARDS DE DUAS COLUNAS OTIMIZADOS
+======================================== */
+
+.c4-two-column-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--c4-space-4);
+    margin: var(--c4-space-4) 0;
+}
+
+.c4-metric-card {
+    background: var(--c4-bg-secondary);
+    border-radius: var(--c4-radius-xl);
+    padding: var(--c4-space-4);
+    box-shadow: var(--c4-shadow-md);
+    transition: all var(--c4-transition-fast);
+    border: 1px solid var(--c4-bg-tertiary);
+    position: relative;
+    overflow: hidden;
+}
+
+.c4-metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--c4-gradient-primary);
+}
+
+.c4-metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--c4-shadow-lg);
+}
+
+.c4-metric-icon {
+    font-size: var(--c4-text-2xl);
+    margin-bottom: var(--c4-space-2);
+    display: block;
+}
+
+.c4-metric-label {
+    font-size: var(--c4-text-sm);
+    color: var(--c4-text-light);
+    margin-bottom: var(--c4-space-1);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.c4-metric-value {
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-2xl);
+    font-weight: var(--c4-font-bold);
+    color: var(--c4-text-primary);
+    margin: 0;
+}
+
+.c4-metric-change {
+    font-size: var(--c4-text-sm);
+    margin-top: var(--c4-space-2);
+    display: flex;
+    align-items: center;
+    gap: var(--c4-space-1);
+}
+
+.c4-metric-change.positive {
+    color: var(--c4-success);
+}
+
+.c4-metric-change.negative {
+    color: var(--c4-error);
+}
+
+.c4-metric-change::before {
+    content: '↗';
+    font-weight: bold;
+}
+
+.c4-metric-change.negative::before {
+    content: '↘';
+}
+
+/* ========================================
+   RESPONSIVIDADE MOBILE
+======================================== */
+
+@media (max-width: 640px) {
+    .c4-calculator-modal {
+        margin: var(--c4-space-2);
+        max-height: calc(100vh - var(--c4-space-4));
+    }
+    
+    .c4-calculator-header,
+    .c4-calculator-body,
+    .c4-calculator-footer {
+        padding: var(--c4-space-4);
+    }
+    
+    .c4-margin-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .c4-calculators-grid {
+        grid-template-columns: 1fr;
+        gap: var(--c4-space-4);
+    }
+    
+    .c4-two-column-grid {
+        grid-template-columns: 1fr;
+        gap: var(--c4-space-3);
+    }
+    
+    .c4-calculator-inputs {
+        grid-template-columns: 1fr;
+        gap: var(--c4-space-3);
+    }
+    
+    .c4-ai-recommendation {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .c4-calculator-footer {
+        flex-direction: column;
+    }
+    
+    .c4-calculator-footer .c4-btn {
+        width: 100%;
+    }
+    
+    #marginChartCanvas {
+        width: 100%;
+        height: 150px;
+    }
+}
+
+/* ========================================
+   ESTADOS DE CARREGAMENTO
+======================================== */
+
+.c4-calculator-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--c4-space-8);
+    color: var(--c4-text-light);
+}
+
+.c4-calculator-loading .c4-spinner {
+    margin-bottom: var(--c4-space-4);
+}
+
+.c4-calculator-error {
+    background: var(--c4-error-light);
+    border: 1px solid var(--c4-error);
+    border-radius: var(--c4-radius-lg);
+    padding: var(--c4-space-4);
+    text-align: center;
+    color: var(--c4-error);
+}
+
+.c4-calculator-success {
+    background: var(--c4-success-light);
+    border: 1px solid var(--c4-success);
+    border-radius: var(--c4-radius-lg);
+    padding: var(--c4-space-4);
+    text-align: center;
+    color: var(--c4-success);
+    animation: c4-bounce-in 0.6s ease-out;
+}
+
+/* ========================================
+   ANIMAÇÕES ESPECÍFICAS
+======================================== */
+
+@keyframes c4-calculator-appear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.c4-margin-card {
+    animation: c4-calculator-appear 0.3s ease-out;
+}
+
+.c4-margin-card:nth-child(1) { animation-delay: 0.1s; }
+.c4-margin-card:nth-child(2) { animation-delay: 0.2s; }
+.c4-margin-card:nth-child(3) { animation-delay: 0.3s; }
+.c4-margin-card:nth-child(4) { animation-delay: 0.4s; }
+.c4-margin-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* ========================================
+   MODO ESCURO
+======================================== */
+
+@media (prefers-color-scheme: dark) {
+    .c4-calculator-modal {
+        background: var(--c4-bg-dark);
+        border: 1px solid #374151;
+    }
+    
+    .c4-margin-card {
+        background: #1f2937;
+        border-color: #374151;
+    }
+    
+    .c4-chart-container {
+        background: #1f2937;
+    }
+    
+    .c4-calculator-form {
+        background: #1f2937;
+    }
+}
+

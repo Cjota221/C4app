@@ -8,6 +8,7 @@
 
 /* 3. Estilos de Layout Base (Estrutura principal do app) */
 @import url('./layout.css');
+@import url('./mobile-layout.css');
 
 /* 4. Componentes Reutilizáveis */
 @import url('./components/animations.css');
@@ -35,10 +36,11 @@
 
 /* Estilos Globais Adicionais (se necessário, após todos os imports) */
 body {
-    font-family: var(--fonte-principal); /* Garante aplicação em todo o corpo */
-    color: var(--preto-texto);
-    background-color: var(--cinza-neutro); /* Fundo geral da viewport */
+    font-family: var(--c4-font-primary); /* Garante aplicação em todo o corpo */
+    color: var(--c4-text-primary);
+    background-color: var(--c4-bg-primary); /* Fundo geral da viewport */
     line-height: 1.6; /* Melhor legibilidade */
 }
 
 /* Ajustes finais ou overrides globais podem vir aqui */
+

@@ -1,81 +1,374 @@
-/* 📁 css/variables.css */
-/* Corrigido: Implementada fonte Poppins para visual moderno e feminino */
+/* C4 App - Sistema de Design Atualizado */
+/* Variáveis, Reset e Componentes Padronizados */
 
-/* Importação da fonte Poppins do Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap');
 
+/* CSS Variables - Sistema de Design C4 */
 :root {
-    /* Cores da Identidade Visual C4 App */
-    --rosa-pink: #E91E63;         /* Cor principal e destaque */
-    --amarelo-ouro: #FFD700;      /* Detalhes, ícones e CTAs */
-    --rosa-clarinho: #FCE4EC;     /* Fundos suaves, elementos secundários */
-    --cinza-neutro: #F5F5F5;      /* Separadores, fundos de cards/seções */
-    --branco: #FFFFFF;            /* Fundo principal da tela, textos sobre fundos escuros */
-    --preto-texto: #212121;       /* Textos de leitura principal */
-    --cinza-texto-secundario: #757575; /* Textos secundários, placeholders */
-    --verde-sucesso: #4CAF50;
-    --vermelho-erro: #F44336;
-    --azul-info: #2196F3;
-
-    /* Corrigido: Tipografia com Poppins como fonte principal */
-    --fonte-principal: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --fonte-destaque: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /* Colors - Chinese Modern Theme */
+    --c4-primary: #ec4899;           /* Rosa pink */
+    --c4-secondary: #facc15;         /* Dourado */
+    --c4-accent: #f97316;            /* Laranja suave */
     
-    /* Pesos de fonte específicos para Poppins */
-    --peso-fonte-light: 300;      /* Para textos delicados */
-    --peso-fonte-normal: 400;     /* Para textos normais */
-    --peso-fonte-medium: 500;     /* Para botões e destaques */
-    --peso-fonte-semibold: 600;   /* Para títulos */
-    --peso-fonte-bold: 700;       /* Para títulos principais */
-
-    /* Espaçamentos (base 8px grid) */
-    --espaco-xxs: 4px;
-    --espaco-xs: 8px;
-    --espaco-s: 12px;
-    --espaco-m: 16px;
-    --espaco-l: 24px;
-    --espaco-xl: 32px;
-    --espaco-xxl: 48px;
-
-    /* Bordas */
-    --borda-raio-s: 4px;
-    --borda-raio-m: 8px;
-    --borda-raio-l: 12px;
-    --borda-raio-xl: 16px;        /* Para elementos mais arredondados */
-    --borda-padrao: 1px solid var(--cinza-neutro);
-
-    /* Corrigido: Sombras mais suaves e modernas */
-    --sombra-suave: 0 2px 8px rgba(233, 30, 99, 0.08);     /* Sombra com tom rosa */
-    --sombra-media: 0 4px 16px rgba(233, 30, 99, 0.12);    /* Sombra média com tom rosa */
-    --sombra-forte: 0 8px 24px rgba(233, 30, 99, 0.16);    /* Sombra forte com tom rosa */
-
-    /* Transições */
-    --transicao-padrao: all 0.2s ease-in-out;
-    --transicao-suave: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    /* Z-Index */
-    --z-index-navbar: 1000;
-    --z-index-modal-backdrop: 1010;
-    --z-index-modal-content: 1020;
-    --z-index-toast: 1030;
-
-    /* Layout Dimensions */
-    --header-height: 55px;
-    --footer-nav-height: 65px;
-    --max-width-mobile: 500px;
-
-    /* Corrigido: Variáveis adicionais para melhor experiência */
-    --border-radius-button: 8px;   /* Bordas arredondadas para botões */
-    --border-radius-card: 12px;    /* Bordas arredondadas para cards */
-    --border-radius-input: 6px;    /* Bordas arredondadas para inputs */
+    /* Background Colors */
+    --c4-bg-primary: #fdf2f8;        /* Rosa claríssimo */
+    --c4-bg-secondary: #ffffff;      /* Branco puro */
+    --c4-bg-tertiary: #f8fafc;       /* Cinza claríssimo */
+    --c4-bg-dark: #1f2937;           /* Cinza escuro */
+    --c4-bg-overlay: rgba(31, 41, 55, 0.8); /* Overlay escuro */
     
-    /* Gradientes modernos */
-    --gradiente-rosa: linear-gradient(135deg, #E91E63 0%, #F06292 100%);
-    --gradiente-dourado: linear-gradient(135deg, #FFD700 0%, #FFC107 100%);
+    /* Text Colors - Contraste 4.5:1 garantido */
+    --c4-text-primary: #1f2937;      /* Cinza muito escuro - AAA */
+    --c4-text-secondary: #4b5563;    /* Cinza médio - AA */
+    --c4-text-light: #6b7280;        /* Cinza claro - AA */
+    --c4-text-white: #ffffff;        /* Branco */
+    --c4-text-muted: #9ca3af;        /* Cinza muito claro */
     
-    /* Opacidades */
-    --opacidade-disabled: 0.6;
-    --opacidade-hover: 0.8;
-    --opacidade-overlay: 0.5;
+    /* Status Colors - Contraste otimizado */
+    --c4-success: #059669;           /* Verde escuro - AA */
+    --c4-warning: #d97706;           /* Amarelo escuro - AA */
+    --c4-error: #dc2626;             /* Vermelho escuro - AA */
+    --c4-info: #2563eb;              /* Azul escuro - AA */
+    
+    /* Status Light Colors */
+    --c4-success-light: #d1fae5;
+    --c4-warning-light: #fef3c7;
+    --c4-error-light: #fee2e2;
+    --c4-info-light: #dbeafe;
+    
+    /* Gradients */
+    --c4-gradient-primary: linear-gradient(135deg, var(--c4-primary), var(--c4-secondary));
+    --c4-gradient-soft: linear-gradient(135deg, var(--c4-bg-primary), var(--c4-bg-secondary));
+    --c4-gradient-dark: linear-gradient(135deg, var(--c4-bg-dark), #374151);
+    
+    /* Typography - Inter para títulos/botões, Nunito para textos */
+    --c4-font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --c4-font-secondary: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* Font Sizes - Escala harmônica */
+    --c4-text-xs: 0.75rem;          /* 12px */
+    --c4-text-sm: 0.875rem;         /* 14px */
+    --c4-text-base: 1rem;           /* 16px */
+    --c4-text-lg: 1.125rem;         /* 18px */
+    --c4-text-xl: 1.25rem;          /* 20px */
+    --c4-text-2xl: 1.5rem;          /* 24px */
+    --c4-text-3xl: 1.875rem;        /* 30px */
+    --c4-text-4xl: 2.25rem;         /* 36px */
+    
+    /* Font Weights */
+    --c4-font-light: 300;
+    --c4-font-normal: 400;
+    --c4-font-medium: 500;
+    --c4-font-semibold: 600;
+    --c4-font-bold: 700;
+    
+    /* Spacing - Sistema 4px base */
+    --c4-space-1: 0.25rem;          /* 4px */
+    --c4-space-2: 0.5rem;           /* 8px */
+    --c4-space-3: 0.75rem;          /* 12px */
+    --c4-space-4: 1rem;             /* 16px */
+    --c4-space-5: 1.25rem;          /* 20px */
+    --c4-space-6: 1.5rem;           /* 24px */
+    --c4-space-8: 2rem;             /* 32px */
+    --c4-space-10: 2.5rem;          /* 40px */
+    --c4-space-12: 3rem;            /* 48px */
+    --c4-space-16: 4rem;            /* 64px */
+    
+    /* Touch-friendly sizes - Mínimo 44px */
+    --c4-touch-min: 2.75rem;        /* 44px - Mínimo para touch */
+    --c4-touch-comfortable: 3rem;    /* 48px - Confortável */
+    --c4-touch-large: 3.5rem;       /* 56px - Grande */
+    
+    /* Border Radius */
+    --c4-radius-sm: 0.375rem;       /* 6px */
+    --c4-radius-md: 0.5rem;         /* 8px */
+    --c4-radius-lg: 0.75rem;        /* 12px */
+    --c4-radius-xl: 1rem;           /* 16px */
+    --c4-radius-2xl: 1.5rem;        /* 24px */
+    --c4-radius-full: 9999px;       /* Circular */
+    
+    /* Shadows - Suaves e elegantes */
+    --c4-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --c4-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --c4-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --c4-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --c4-shadow-pink: 0 4px 14px 0 rgba(236, 72, 153, 0.15);
+    
+    /* Transitions - Suaves e responsivas */
+    --c4-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --c4-transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --c4-transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Z-index - Sistema organizado */
+    --c4-z-dropdown: 1000;
+    --c4-z-sticky: 1020;
+    --c4-z-fixed: 1030;
+    --c4-z-modal: 1040;
+    --c4-z-popover: 1050;
+    --c4-z-tooltip: 1060;
+    
+    /* Breakpoints */
+    --c4-bp-sm: 640px;
+    --c4-bp-md: 768px;
+    --c4-bp-lg: 1024px;
+    --c4-bp-xl: 1280px;
+    --c4-bp-2xl: 1536px;
+}
+
+/* CSS Reset Moderno */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    -moz-tab-size: 4;
+    tab-size: 4;
+    font-family: var(--c4-font-secondary);
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+}
+
+body {
+    margin: 0;
+    line-height: inherit;
+    background-color: var(--c4-bg-primary);
+    color: var(--c4-text-primary);
+    font-family: var(--c4-font-secondary);
+    font-size: var(--c4-text-base);
+    font-weight: var(--c4-font-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Elementos de texto */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--c4-font-primary);
+    font-weight: var(--c4-font-semibold);
+    line-height: 1.2;
+    color: var(--c4-text-primary);
+    margin-bottom: var(--c4-space-4);
+}
+
+h1 { font-size: var(--c4-text-4xl); }
+h2 { font-size: var(--c4-text-3xl); }
+h3 { font-size: var(--c4-text-2xl); }
+h4 { font-size: var(--c4-text-xl); }
+h5 { font-size: var(--c4-text-lg); }
+h6 { font-size: var(--c4-text-base); }
+
+p {
+    margin-bottom: var(--c4-space-4);
+    line-height: 1.6;
+    color: var(--c4-text-secondary);
+}
+
+/* Links */
+a {
+    color: var(--c4-primary);
+    text-decoration: none;
+    transition: color var(--c4-transition-fast);
+}
+
+a:hover {
+    color: var(--c4-secondary);
+    text-decoration: underline;
+}
+
+a:focus {
+    outline: 2px solid var(--c4-primary);
+    outline-offset: 2px;
+    border-radius: var(--c4-radius-sm);
+}
+
+/* Listas */
+ul, ol {
+    margin-bottom: var(--c4-space-4);
+    padding-left: var(--c4-space-6);
+}
+
+li {
+    margin-bottom: var(--c4-space-2);
+    line-height: 1.6;
+}
+
+/* Imagens */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Botões e inputs - Reset */
+button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    margin: 0;
+}
+
+button, select {
+    text-transform: none;
+}
+
+button, [type='button'], [type='reset'], [type='submit'] {
+    -webkit-appearance: button;
+    background-color: transparent;
+    background-image: none;
+}
+
+/* Foco visível para acessibilidade */
+:focus-visible {
+    outline: 2px solid var(--c4-primary);
+    outline-offset: 2px;
+    border-radius: var(--c4-radius-sm);
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--c4-bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--c4-text-light);
+    border-radius: var(--c4-radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--c4-primary);
+}
+
+/* Utilitários de acessibilidade */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Utilitários de layout */
+.c4-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--c4-space-4);
+}
+
+.c4-grid {
+    display: grid;
+    gap: var(--c4-space-4);
+}
+
+.c4-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.c4-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.c4-flex {
+    display: flex;
+}
+
+.c4-flex-col {
+    flex-direction: column;
+}
+
+.c4-items-center {
+    align-items: center;
+}
+
+.c4-justify-center {
+    justify-content: center;
+}
+
+.c4-justify-between {
+    justify-content: space-between;
+}
+
+.c4-gap-2 { gap: var(--c4-space-2); }
+.c4-gap-3 { gap: var(--c4-space-3); }
+.c4-gap-4 { gap: var(--c4-space-4); }
+.c4-gap-6 { gap: var(--c4-space-6); }
+
+/* Utilitários de espaçamento */
+.c4-p-2 { padding: var(--c4-space-2); }
+.c4-p-3 { padding: var(--c4-space-3); }
+.c4-p-4 { padding: var(--c4-space-4); }
+.c4-p-6 { padding: var(--c4-space-6); }
+
+.c4-m-2 { margin: var(--c4-space-2); }
+.c4-m-3 { margin: var(--c4-space-3); }
+.c4-m-4 { margin: var(--c4-space-4); }
+.c4-m-6 { margin: var(--c4-space-6); }
+
+.c4-mb-2 { margin-bottom: var(--c4-space-2); }
+.c4-mb-3 { margin-bottom: var(--c4-space-3); }
+.c4-mb-4 { margin-bottom: var(--c4-space-4); }
+.c4-mb-6 { margin-bottom: var(--c4-space-6); }
+
+/* Utilitários de texto */
+.c4-text-center { text-align: center; }
+.c4-text-left { text-align: left; }
+.c4-text-right { text-align: right; }
+
+.c4-text-primary { color: var(--c4-text-primary); }
+.c4-text-secondary { color: var(--c4-text-secondary); }
+.c4-text-light { color: var(--c4-text-light); }
+.c4-text-white { color: var(--c4-text-white); }
+
+.c4-font-medium { font-weight: var(--c4-font-medium); }
+.c4-font-semibold { font-weight: var(--c4-font-semibold); }
+.c4-font-bold { font-weight: var(--c4-font-bold); }
+
+/* Responsividade mobile-first */
+@media (max-width: 640px) {
+    :root {
+        --c4-space-4: 0.875rem;     /* 14px em mobile */
+        --c4-space-6: 1.25rem;      /* 20px em mobile */
+    }
+    
+    .c4-container {
+        padding: 0 var(--c4-space-3);
+    }
+    
+    .c4-grid-2,
+    .c4-grid-3 {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 { font-size: var(--c4-text-3xl); }
+    h2 { font-size: var(--c4-text-2xl); }
+    h3 { font-size: var(--c4-text-xl); }
+}
+
+/* Modo escuro (preparado para futuro) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --c4-bg-primary: #111827;
+        --c4-bg-secondary: #1f2937;
+        --c4-bg-tertiary: #374151;
+        --c4-text-primary: #f9fafb;
+        --c4-text-secondary: #d1d5db;
+        --c4-text-light: #9ca3af;
+    }
 }
 

@@ -1,41 +1,107 @@
-<div class="dashboard-page animate-fadeIn">
-    <h2 class="page-title">Seu Painel ✨</h2>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C4 App - Gestão de Despesas</title>
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/components/buttons.css">
+    <link rel="stylesheet" href="../assets/css/components/forms.css">
+    <link rel="stylesheet" href="../assets/css/components/cards.css">
+</head>
+<body class="despesas-page">
+    <header class="header-main">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-text">C4</span>
+                    <span class="logo-crown">👑</span>
+                </div>
+                <h1 class="page-title">Gestão de Despesas</h1>
+            </div>
+            <div class="header-right">
+                <button class="btn btn-primary" id="newExpenseBtn">+ Nova Despesa</button>
+            </div>
+        </div>
+    </header>
 
-    <div class="grid-2-cols">
-        <div class="card metric-card">
-            <div class="card-content">
-                <div class="metric-value" id="db-lucro-estimado">R$ 0,00</div>
-                <div class="metric-label">Lucro Estimado (Estoque)</div>
-            </div>
+    <nav class="nav-main">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+                <li><a href="produtos.html" class="nav-link">📦 Produtos</a></li>
+                <li><a href="vendas.html" class="nav-link">💰 Vendas</a></li>
+                <li><a href="clientes.html" class="nav-link">👥 Clientes</a></li>
+                <li><a href="despesas.html" class="nav-link active">💸 Despesas</a></li>
+                <li><a href="metas.html" class="nav-link">🎯 Metas</a></li>
+                <li><a href="relatorios.html" class="nav-link">📈 Relatórios</a></li>
+                <li><a href="calculadoras.html" class="nav-link">🧮 Calculadoras</a></li>
+                <li><a href="c4ai.html" class="nav-link">🤖 C4 AI</a></li>
+                <li><a href="perfil.html" class="nav-link">⚙️ Perfil</a></li>
+            </ul>
         </div>
-        <div class="card metric-card">
-            <div class="card-content">
-                <div class="metric-value" id="db-produtos-ativos">0</div>
-                <div class="metric-label">Produtos Ativos</div>
-            </div>
-        </div>
-         <div class="card metric-card col-span-full"> <div class="card-content">
-                <div class="metric-value" id="db-vendas-mes">R$ 0,00</div>
-                <div class="metric-label">Vendas este Mês</div>
-            </div>
-        </div>
-    </div>
+    </nav>
 
-    <div class="card mt-l">
-        <div class="card-header">
-            <span class="card-title">Lembretes CRM 💖</span>
-        </div>
-        <div class="card-content crm-list" id="db-crm-list">
-            <p class="text-center empty-message p-m">Nenhum lembrete no momento.</p>
-            </div>
-    </div>
+    <main class="main-content">
+        <div class="container">
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">💸</div>
+                        <div class="stat-content">
+                            <h3>Despesas do Mês</h3>
+                            <p class="stat-value" id="monthExpenses">R$ 0,00</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔄</div>
+                        <div class="stat-content">
+                            <h3>Despesas Fixas</h3>
+                            <p class="stat-value" id="fixedExpenses">R$ 0,00</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-content">
+                            <h3>Despesas Variáveis</h3>
+                            <p class="stat-value" id="variableExpenses">R$ 0,00</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚠️</div>
+                        <div class="stat-content">
+                            <h3>Vencendo Hoje</h3>
+                            <p class="stat-value" id="dueTodayExpenses">0</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <div class="card mt-l">
-        <div class="card-header">
-            <span class="card-title">Previsão de Vendas (Exemplo)</span>
+            <section class="expenses-section">
+                <div class="expenses-tabs">
+                    <button class="tab-btn active" data-tab="all">Todas</button>
+                    <button class="tab-btn" data-tab="fixed">Fixas</button>
+                    <button class="tab-btn" data-tab="variable">Variáveis</button>
+                    <button class="tab-btn" data-tab="taxes">Impostos</button>
+                </div>
+                
+                <div class="expenses-list" id="expensesList">
+                    <!-- Dynamic content -->
+                </div>
+            </section>
         </div>
-        <div class="card-content" id="db-previsao-vendas">
-            <p class="text-center p-m" style="color: var(--cinza-texto-secundario);">Recurso de previsão de vendas em desenvolvimento. Aguarde novidades!</p>
-        </div>
-    </div>
-</div>
+    </main>
+
+    <script src="../js/core/supabase-config.js"></script>
+    <script src="../js/core/auth.js"></script>
+    <script src="../js/modules/despesas.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Auth.checkAuth();
+            Despesas.init();
+        });
+    </script>
+</body>
+</html>
+

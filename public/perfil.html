@@ -1,61 +1,145 @@
-<div class="perfil-page animate-fadeIn">
-    <h2 class="page-title">Meu Perfil 🌸</h2>
-
-    <div class="card mb-l" id="perfil-info-display">
-        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-            <span class="card-title" style="font-family:var(--fonte-principal); font-weight:700;">Minhas Informações</span>
-            <button class="btn btn-secondary btn-sm" id="btn-abrir-edicao-perfil" aria-label="Editar Perfil">
-                <span class="icon" aria-hidden="true">✏️</span> Editar
-            </button>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C4 App - Perfil do Usuário</title>
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/components/buttons.css">
+    <link rel="stylesheet" href="../assets/css/components/forms.css">
+    <link rel="stylesheet" href="../assets/css/components/cards.css">
+</head>
+<body class="perfil-page">
+    <header class="header-main">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-text">C4</span>
+                    <span class="logo-crown">👑</span>
+                </div>
+                <h1 class="page-title">Perfil do Usuário</h1>
+            </div>
         </div>
-        <div class="card-content">
-            <div class="info-item"><strong class="info-label">Nome:</strong> <span id="perfil-display-nome">Carregando...</span></div>
-            <div class="info-item"><strong class="info-label">E-mail:</strong> <span id="perfil-display-email">Carregando...</span></div>
-            <div class="info-item"><strong class="info-label">Telefone:</strong> <span id="perfil-display-telefone">Não informado</span></div>
-            <div class="info-item"><strong class="info-label">Plano Ativo:</strong> <span id="perfil-display-plano">Básico</span></div>
+    </header>
+
+    <nav class="nav-main">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+                <li><a href="produtos.html" class="nav-link">📦 Produtos</a></li>
+                <li><a href="vendas.html" class="nav-link">💰 Vendas</a></li>
+                <li><a href="clientes.html" class="nav-link">👥 Clientes</a></li>
+                <li><a href="despesas.html" class="nav-link">💸 Despesas</a></li>
+                <li><a href="metas.html" class="nav-link">🎯 Metas</a></li>
+                <li><a href="relatorios.html" class="nav-link">📈 Relatórios</a></li>
+                <li><a href="calculadoras.html" class="nav-link">🧮 Calculadoras</a></li>
+                <li><a href="c4ai.html" class="nav-link">🤖 C4 AI</a></li>
+                <li><a href="perfil.html" class="nav-link active">⚙️ Perfil</a></li>
+            </ul>
         </div>
-    </div>
+    </nav>
 
-    <div id="form-perfil-edicao-container" class="card mb-l hidden" style="background-color: var(--rosa-clarinho);">
-        <div class="card-header" style="border-bottom: 1px solid var(--rosa-pink);"><span class="card-title" style="font-family: var(--fonte-principal); color: var(--preto-texto); font-weight: 700;">Editar Informações</span></div>
-        <form id="form-perfil-edicao" class="card-content">
-            <div class="form-group">
-                <label for="perfil-edit-nome" class="form-label">Nome Completo:</label>
-                <input type="text" id="perfil-edit-nome" name="nome" class="form-input" placeholder="Seu nome como aparece para clientes">
-                <p class="form-field-message error"></p>
-            </div>
-            <div class="form-group">
-                <label for="perfil-edit-telefone" class="form-label">Telefone (com DDD):</label>
-                <input type="tel" id="perfil-edit-telefone" name="telefone" class="form-input" placeholder="(XX) XXXXX-XXXX">
-                <p class="form-field-message error"></p>
-            </div>
-            
-            <h4 class="form-section-title" style="font-size:1.1rem; color: var(--preto-texto);">Alterar Senha (opcional)</h4>
-            <div class="form-group">
-                <label for="perfil-edit-senha-atual" class="form-label">Senha Atual:</label>
-                <input type="password" id="perfil-edit-senha-atual" name="senha_atual" class="form-input" autocomplete="current-password" placeholder="Senha atual (se for alterar)">
-                <small>Deixe os campos de senha em branco se não quiser alterá-la.</small>
-                <p class="form-field-message error"></p>
-            </div>
-            <div class="form-group">
-                <label for="perfil-edit-nova-senha" class="form-label">Nova Senha (mín. 6 caracteres):</label>
-                <input type="password" id="perfil-edit-nova-senha" name="nova_senha" class="form-input" autocomplete="new-password">
-                <p class="form-field-message error"></p>
-            </div>
-             <div class="form-group">
-                <label for="perfil-edit-confirma-nova-senha" class="form-label">Confirmar Nova Senha:</label>
-                <input type="password" id="perfil-edit-confirma-nova-senha" name="confirma_nova_senha" class="form-input" autocomplete="new-password">
-                <p class="form-field-message error"></p>
-            </div>
+    <main class="main-content">
+        <div class="container">
+            <section class="profile-section">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <img id="userAvatar" src="../assets/img/default-avatar.png" alt="Avatar">
+                            <button class="avatar-edit">📷</button>
+                        </div>
+                        <div class="profile-info">
+                            <h2 id="userName">Nome do Usuário</h2>
+                            <p id="userEmail">email@exemplo.com</p>
+                        </div>
+                    </div>
+                    
+                    <form id="profileForm" class="profile-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="profileName">Nome completo</label>
+                                <input type="text" id="profileName" name="name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profileEmail">E-mail</label>
+                                <input type="email" id="profileEmail" name="email">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profilePhone">Telefone</label>
+                                <input type="tel" id="profilePhone" name="phone">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="businessName">Nome do negócio</label>
+                                <input type="text" id="businessName" name="business">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="businessType">Tipo de empresa</label>
+                                <select id="businessType" name="type">
+                                    <option value="mei">MEI</option>
+                                    <option value="simples">Simples Nacional</option>
+                                    <option value="outros">Outros</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="monthlyGoal">Meta mensal (R$)</label>
+                                <input type="number" id="monthlyGoal" name="goal" step="0.01">
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                            <button type="button" class="btn btn-secondary" id="logoutBtn">Sair da Conta</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
 
-            <div class="form-actions" style="border-top: 1px solid var(--cinza-neutro); padding-top: var(--espaco-m); margin-top:var(--espaco-m)">
-                <button type="button" class="btn btn-outline-primary" id="btn-cancelar-edicao-perfil">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-            </div>
-        </form>
-    </div>
+            <section class="settings-section">
+                <div class="settings-card">
+                    <h3>⚙️ Configurações</h3>
+                    
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <label>
+                                <input type="checkbox" id="darkMode">
+                                <span>Modo escuro</span>
+                            </label>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label>
+                                <input type="checkbox" id="notifications">
+                                <span>Notificações</span>
+                            </label>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label>
+                                <input type="checkbox" id="emailReports">
+                                <span>Relatórios por e-mail</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 
-    <button class="btn btn-primary btn-full-width" id="btn-logout" style="background-color: #757575;">
-        <span class="icon" aria-hidden="true">🚪</span> Encerrar Sessão
-    </button>
-</div>
+    <script src="../js/core/supabase-config.js"></script>
+    <script src="../js/core/auth.js"></script>
+    <script src="../js/modules/perfil.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Auth.checkAuth();
+            Perfil.init();
+        });
+    </script>
+</body>
+</html>
+

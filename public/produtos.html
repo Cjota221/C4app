@@ -1,53 +1,287 @@
-<div class="produtos-page animate-fadeIn">
-    <div class="page-header-flex">
-        <h2 class="page-title">Meus Produtos 🛍️</h2>
-        <button class="btn btn-primary" id="btn-abrir-form-produto">
-            <span class="icon" aria-hidden="true">➕</span> Novo Produto
-        </button>
-    </div>
-
-    <div id="form-produto-container" class="card hidden" style="background-color: var(--rosa-clarinho);">
-        <h3 id="form-produto-title" class="card-header" style="font-family: var(--fonte-principal); font-size: 1.3rem; color: var(--preto-texto); border-bottom: 1px solid var(--rosa-pink);">Cadastrar Novo Produto</h3>
-        <form id="form-produto" class="card-content">
-            <input type="hidden" id="produto-id" name="id">
-            <div class="form-group">
-                <label for="produto-nome" class="form-label">Nome do Produto:</label>
-                <input type="text" id="produto-nome" name="nome" class="form-input" required placeholder="Ex: Batom Vermelho Intenso">
-                <p class="form-field-message error"></p>
-            </div>
-            <div class="form-group">
-                <label for="produto-categoria" class="form-label">Categoria (opcional):</label>
-                <input type="text" id="produto-categoria" name="categoria" class="form-input" placeholder="Ex: Maquiagem, Skincare">
-            </div>
-            <div class="grid-2-cols">
-                <div class="form-group">
-                    <label for="produto-valor-compra" class="form-label">Valor de Compra (R$):</label>
-                    <input type="number" id="produto-valor-compra" name="valor_compra" class="form-input" step="0.01" min="0" required placeholder="0,00">
-                    <p class="form-field-message error"></p>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="C4 App - Gestão de Produtos">
+    <meta name="theme-color" content="#ec4899">
+    <title>C4 App - Produtos</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/components/buttons.css">
+    <link rel="stylesheet" href="../assets/css/components/forms.css">
+    <link rel="stylesheet" href="../assets/css/components/cards.css">
+    <link rel="stylesheet" href="../assets/css/components/tables.css">
+    <link rel="stylesheet" href="../assets/css/pages/produtos.css">
+</head>
+<body class="produtos-page">
+    <!-- Header -->
+    <header class="header-main">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-text">C4</span>
+                    <span class="logo-crown">👑</span>
                 </div>
-                <div class="form-group">
-                    <label for="produto-valor-venda" class="form-label">Valor de Venda (R$):</label>
-                    <input type="number" id="produto-valor-venda" name="valor_venda" class="form-input" step="0.01" min="0" placeholder="0,00 (opcional)">
-                    <p class="form-field-message error"></p>
-                </div>
+                <h1 class="page-title">Gestão de Produtos</h1>
             </div>
-             <div class="form-group">
-                <label for="produto-estoque" class="form-label">Quantidade em Estoque:</label>
-                <input type="number" id="produto-estoque" name="estoque_atual" class="form-input" step="1" min="0" required placeholder="0">
-                <p class="form-field-message error"></p>
+            <div class="header-right">
+                <button class="btn btn-primary" id="newProductBtn">
+                    <span>+</span> Novo Produto
+                </button>
             </div>
-            <div class="form-group">
-                <label for="produto-imagem-url" class="form-label">URL da Imagem (opcional):</label>
-                <input type="url" id="produto-imagem-url" name="imagem_url" class="form-input" placeholder="https://exemplo.com/imagem.jpg">
-            </div>
-            <div class="form-actions" style="display: flex; gap: var(--espaco-s); justify-content: flex-end; border-top: 1px solid var(--cinza-neutro); padding-top: var(--espaco-m); margin-top: var(--espaco-m);">
-                <button type="button" class="btn btn-outline-primary" id="btn-cancelar-form-produto">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Salvar Produto</button>
-            </div>
-        </form>
-    </div>
-
-    <div id="lista-produtos" class="grid-2-cols mt-l">
-        <p class="loading-message col-span-full">Carregando produtos...</p>
         </div>
-</div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-main">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+                <li><a href="produtos.html" class="nav-link active">📦 Produtos</a></li>
+                <li><a href="vendas.html" class="nav-link">💰 Vendas</a></li>
+                <li><a href="clientes.html" class="nav-link">👥 Clientes</a></li>
+                <li><a href="despesas.html" class="nav-link">💸 Despesas</a></li>
+                <li><a href="metas.html" class="nav-link">🎯 Metas</a></li>
+                <li><a href="relatorios.html" class="nav-link">📈 Relatórios</a></li>
+                <li><a href="calculadoras.html" class="nav-link">🧮 Calculadoras</a></li>
+                <li><a href="c4ai.html" class="nav-link">🤖 C4 AI</a></li>
+                <li><a href="perfil.html" class="nav-link">⚙️ Perfil</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Filters and Search -->
+            <section class="filters-section">
+                <div class="filters-grid">
+                    <div class="search-box">
+                        <input type="text" id="searchProducts" placeholder="Buscar produtos...">
+                        <button class="btn btn-icon">🔍</button>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <select id="filterCategory">
+                            <option value="">Todas as categorias</option>
+                            <option value="roupas">Roupas</option>
+                            <option value="acessorios">Acessórios</option>
+                            <option value="calcados">Calçados</option>
+                            <option value="bolsas">Bolsas</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <select id="filterStock">
+                            <option value="">Todos os estoques</option>
+                            <option value="low">Estoque baixo</option>
+                            <option value="out">Sem estoque</option>
+                            <option value="good">Estoque bom</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Cards -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-content">
+                            <h3>Total de Produtos</h3>
+                            <p class="stat-value" id="totalProducts">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">⚠️</div>
+                        <div class="stat-content">
+                            <h3>Estoque Baixo</h3>
+                            <p class="stat-value" id="lowStockProducts">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-content">
+                            <h3>Valor Total</h3>
+                            <p class="stat-value" id="totalValue">R$ 0,00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-content">
+                            <h3>Margem Média</h3>
+                            <p class="stat-value" id="averageMargin">0%</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Grid/Table Toggle -->
+            <section class="view-section">
+                <div class="view-controls">
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid">🔲 Grade</button>
+                        <button class="view-btn" data-view="table">📋 Lista</button>
+                    </div>
+                    
+                    <div class="sort-controls">
+                        <select id="sortProducts">
+                            <option value="name">Nome A-Z</option>
+                            <option value="name-desc">Nome Z-A</option>
+                            <option value="price">Menor preço</option>
+                            <option value="price-desc">Maior preço</option>
+                            <option value="stock">Menor estoque</option>
+                            <option value="margin">Maior margem</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Grid View -->
+            <section class="products-grid-view active" id="gridView">
+                <div class="products-grid" id="productsGrid">
+                    <!-- Dynamic content -->
+                </div>
+            </section>
+
+            <!-- Products Table View -->
+            <section class="products-table-view" id="tableView">
+                <div class="table-card">
+                    <div class="table-container">
+                        <table class="data-table" id="productsTable">
+                            <thead>
+                                <tr>
+                                    <th>Produto</th>
+                                    <th>Categoria</th>
+                                    <th>Custo</th>
+                                    <th>Preço</th>
+                                    <th>Margem</th>
+                                    <th>Estoque</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsTableBody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Novo Produto</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            
+            <form id="productForm" class="modal-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="productName">Nome do produto *</label>
+                        <input type="text" id="productName" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productCategory">Categoria *</label>
+                        <select id="productCategory" name="category" required>
+                            <option value="">Selecione a categoria</option>
+                            <option value="roupas">Roupas</option>
+                            <option value="acessorios">Acessórios</option>
+                            <option value="calcados">Calçados</option>
+                            <option value="bolsas">Bolsas</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productCost">Custo (R$) *</label>
+                        <input type="number" id="productCost" name="cost" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productPrice">Preço de venda (R$) *</label>
+                        <input type="number" id="productPrice" name="price" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productStock">Estoque atual</label>
+                        <input type="number" id="productStock" name="stock" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productMinStock">Estoque mínimo</label>
+                        <input type="number" id="productMinStock" name="minStock" min="0">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="productDescription">Descrição</label>
+                        <textarea id="productDescription" name="description" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productSize">Tamanho/Variação</label>
+                        <input type="text" id="productSize" name="size" placeholder="P, M, G ou 36, 38, 40">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productColor">Cor</label>
+                        <input type="text" id="productColor" name="color">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>
+                            <input type="checkbox" id="productActive" name="active" checked>
+                            Produto ativo
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="margin-info">
+                    <h4>💰 Informações de Margem</h4>
+                    <div class="margin-grid">
+                        <div class="margin-item">
+                            <span>Margem de lucro:</span>
+                            <span id="marginPercent">0%</span>
+                        </div>
+                        <div class="margin-item">
+                            <span>Lucro por unidade:</span>
+                            <span id="profitAmount">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="duplicateProduct">Duplicar</button>
+                <button type="button" class="btn btn-secondary" id="cancelProduct">Cancelar</button>
+                <button type="submit" form="productForm" class="btn btn-primary" id="saveProduct">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../js/core/supabase-config.js"></script>
+    <script src="../js/core/auth.js"></script>
+    <script src="../js/components/toast.js"></script>
+    <script src="../js/components/modal.js"></script>
+    <script src="../js/modules/produtos.js"></script>
+    <script>
+        // Initialize products page
+        document.addEventListener('DOMContentLoaded', function() {
+            Auth.checkAuth();
+            Produtos.init();
+        });
+    </script>
+</body>
+</html>
+

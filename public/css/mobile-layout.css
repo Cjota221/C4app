@@ -260,7 +260,7 @@
 
 /* Footer do sidebar */
 .c4-sidebar-footer {
-    position: absolute;
+    position: sticky;
     bottom: 0;
     left: 0;
     right: 0;
@@ -470,6 +470,7 @@
     border-radius: var(--c4-radius-xl);
     box-shadow: var(--c4-shadow-lg);
     margin-top: var(--c4-space-6);
+    z-index: var(--c4-z-sticky);
 }
 
 /* ========================================
@@ -560,12 +561,13 @@
     }
     
     .c4-sidebar {
-        position: relative;
         transform: translateX(0);
         width: 260px;
         height: calc(100vh - 64px);
         box-shadow: none;
         border-right: 1px solid var(--c4-bg-tertiary);
+        position: fixed;
+        top: 64px;
     }
     
     .c4-sidebar-overlay {
@@ -607,6 +609,11 @@
     border-radius: 50%;
     animation: c4-spin 1s linear infinite;
     margin-bottom: var(--c4-space-4);
+}
+
+@keyframes c4-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .c4-mobile-loading-text {

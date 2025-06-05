@@ -1,36 +1,89 @@
-<div class="c4-ai-page animate-fadeIn">
-    <h2 class="page-title">💬 Assistente C4 IA</h2>
-    <p class="text-center mb-m" style="color: var(--cinza-texto-secundario);">Sua parceira para ideias e estratégias de vendas!</p>
-
-    <div class="card">
-        <div class="card-content">
-            <p id="c4-ai-greeting" style="font-size: 1.1rem; margin-bottom: var(--espaco-l); text-align: center;"><strong>Olá!</strong> 👋 Como posso te inspirar hoje?</p>
-            
-            <div class="quick-actions mb-l">
-                <button class="btn btn-outline-primary btn-sm" data-sugestao="ideia-conteudo" aria-label="Pedir ideia de conteúdo">💡 Ideia de Conteúdo</button>
-                <button class="btn btn-outline-primary btn-sm" data-sugestao="vender-mais" aria-label="Pedir dicas para vender mais">🚀 Como Vender Mais?</button>
-                <button class="btn btn-outline-primary btn-sm" data-sugestao="post-produto" aria-label="Pedir texto para post de produto">✍️ Texto para Post</button>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C4 App - Assistente IA</title>
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/components/buttons.css">
+    <link rel="stylesheet" href="../assets/css/components/cards.css">
+</head>
+<body class="c4ai-page">
+    <header class="header-main">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-text">C4</span>
+                    <span class="logo-crown">👑</span>
+                </div>
+                <h1 class="page-title">C4 AI - Assistente Inteligente</h1>
             </div>
-            
-            <div class="form-group">
-                <label for="c4-ai-nicho" class="form-label">Para qual nicho/produto você gostaria de uma sugestão mais específica?</label>
-                <input type="text" id="c4-ai-nicho" class="form-input" placeholder="Ex: Batons Matte, Roupas Fitness, Velas Aromáticas">
-            </div>
-            <div class="form-group">
-                <label for="c4-ai-pergunta" class="form-label">Ou faça uma pergunta direta:</label>
-                <textarea id="c4-ai-pergunta" class="form-textarea" rows="3" placeholder="Ex: Me dê 3 dicas para divulgar meus bolos caseiros no Instagram."></textarea>
-            </div>
-            <button class="btn btn-primary btn-full-width mt-s" id="btn-c4-ai-pedir-sugestao">
-                <span class="icon" aria-hidden="true">🤖</span> Obter Sugestão da IA
-            </button>
         </div>
-    </div>
+    </header>
 
-    <div id="c4-ai-resposta-container" class="card mt-l hidden" style="background-color: var(--rosa-clarinho);">
-        <div class="card-header" style="border-bottom: 1px solid var(--rosa-pink);">
-            <span class="card-title" style="font-family: var(--fonte-principal); color: var(--preto-texto); font-weight: 700;">✨ Sugestão da C4 IA:</span>
+    <nav class="nav-main">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+                <li><a href="produtos.html" class="nav-link">📦 Produtos</a></li>
+                <li><a href="vendas.html" class="nav-link">💰 Vendas</a></li>
+                <li><a href="clientes.html" class="nav-link">👥 Clientes</a></li>
+                <li><a href="despesas.html" class="nav-link">💸 Despesas</a></li>
+                <li><a href="metas.html" class="nav-link">🎯 Metas</a></li>
+                <li><a href="relatorios.html" class="nav-link">📈 Relatórios</a></li>
+                <li><a href="calculadoras.html" class="nav-link">🧮 Calculadoras</a></li>
+                <li><a href="c4ai.html" class="nav-link active">🤖 C4 AI</a></li>
+                <li><a href="perfil.html" class="nav-link">⚙️ Perfil</a></li>
+            </ul>
         </div>
-        <div class="card-content" id="c4-ai-resposta-texto" style="white-space: pre-wrap; line-height: 1.7;">
-            </div>
-    </div>
-</div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="ai-suggestions">
+                <h2>💡 Sugestões Inteligentes</h2>
+                <div class="suggestions-grid" id="aiSuggestions">
+                    <!-- Dynamic content -->
+                </div>
+            </section>
+
+            <section class="ai-chat">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message ai-message">
+                            <div class="message-avatar">🤖</div>
+                            <div class="message-content">
+                                <p>Olá! Sou a C4 AI, sua assistente inteligente. Como posso ajudar você hoje?</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Digite sua pergunta...">
+                        <button class="btn btn-primary" id="sendMessage">Enviar</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="ai-insights">
+                <h2>📊 Insights do Negócio</h2>
+                <div class="insights-grid" id="businessInsights">
+                    <!-- Dynamic content -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../js/core/supabase-config.js"></script>
+    <script src="../js/core/auth.js"></script>
+    <script src="../js/modules/c4ai.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Auth.checkAuth();
+            C4AI.init();
+        });
+    </script>
+</body>
+</html>
+

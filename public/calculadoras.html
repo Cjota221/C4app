@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="C4 App - Calculadoras Especializadas">
+    <meta name="theme-color" content="#ec4899">
+    <title>C4 App - Calculadoras</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/components/buttons.css">
+    <link rel="stylesheet" href="../assets/css/components/forms.css">
+    <link rel="stylesheet" href="../assets/css/components/cards.css">
+    <link rel="stylesheet" href="../assets/css/pages/calculadoras.css">
+</head>
+<body class="calculadoras-page">
+    <!-- Header -->
+    <header class="header-main">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-text">C4</span>
+                    <span class="logo-crown">👑</span>
+                </div>
+                <h1 class="page-title">Calculadoras Especializadas</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-main">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+                <li><a href="produtos.html" class="nav-link">📦 Produtos</a></li>
+                <li><a href="vendas.html" class="nav-link">💰 Vendas</a></li>
+                <li><a href="clientes.html" class="nav-link">👥 Clientes</a></li>
+                <li><a href="despesas.html" class="nav-link">💸 Despesas</a></li>
+                <li><a href="metas.html" class="nav-link">🎯 Metas</a></li>
+                <li><a href="relatorios.html" class="nav-link">📈 Relatórios</a></li>
+                <li><a href="calculadoras.html" class="nav-link active">🧮 Calculadoras</a></li>
+                <li><a href="c4ai.html" class="nav-link">🤖 C4 AI</a></li>
+                <li><a href="perfil.html" class="nav-link">⚙️ Perfil</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Calculator Tabs -->
+            <section class="tabs-section">
+                <div class="tabs-container">
+                    <button class="tab-btn active" data-tab="margem">📊 Margem de Lucro</button>
+                    <button class="tab-btn" data-tab="frete">🚚 Frete</button>
+                    <button class="tab-btn" data-tab="impostos">💰 Impostos</button>
+                    <button class="tab-btn" data-tab="comissoes">🤝 Comissões</button>
+                    <button class="tab-btn" data-tab="equilibrio">⚖️ Ponto de Equilíbrio</button>
+                </div>
+            </section>
+
+            <!-- Margem de Lucro Calculator -->
+            <section class="calculator-section active" id="margem">
+                <div class="calculator-card">
+                    <div class="calculator-header">
+                        <h3>📊 Calculadora de Margem de Lucro</h3>
+                        <p>Calcule a margem ideal para seus produtos</p>
+                    </div>
+                    
+                    <div class="calculator-body">
+                        <div class="calc-grid">
+                            <div class="calc-inputs">
+                                <div class="form-group">
+                                    <label for="custoProduto">Custo do produto (R$)</label>
+                                    <input type="number" id="custoProduto" step="0.01" placeholder="0,00">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="margemDesejada">Margem desejada (%)</label>
+                                    <input type="number" id="margemDesejada" step="0.1" placeholder="0">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="custosAdicionais">Custos adicionais (R$)</label>
+                                    <input type="number" id="custosAdicionais" step="0.01" placeholder="0,00">
+                                </div>
+                                
+                                <button class="btn btn-primary" id="calcMargem">Calcular</button>
+                            </div>
+                            
+                            <div class="calc-results">
+                                <div class="result-card">
+                                    <h4>Preço de Venda Sugerido</h4>
+                                    <p class="result-value" id="precoVenda">R$ 0,00</p>
+                                </div>
+                                
+                                <div class="result-card">
+                                    <h4>Lucro por Unidade</h4>
+                                    <p class="result-value" id="lucroUnidade">R$ 0,00</p>
+                                </div>
+                                
+                                <div class="result-card">
+                                    <h4>Margem Real</h4>
+                                    <p class="result-value" id="margemReal">0%</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="calc-suggestions">
+                            <h4>💡 Sugestões de Preços</h4>
+                            <div class="suggestions-grid" id="sugestoesMargem">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Frete Calculator -->
+            <section class="calculator-section" id="frete">
+                <div class="calculator-card">
+                    <div class="calculator-header">
+                        <h3>🚚 Calculadora de Frete</h3>
+                        <p>Calcule o frete por região e peso</p>
+                    </div>
+                    
+                    <div class="calculator-body">
+                        <div class="calc-grid">
+                            <div class="calc-inputs">
+                                <div class="form-group">
+                                    <label for="cepDestino">CEP de destino</label>
+                                    <input type="text" id="cepDestino" placeholder="00000-000">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="pesoProduto">Peso (kg)</label>
+                                    <input type="number" id="pesoProduto" step="0.1" placeholder="0,0">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="valorPedido">Valor do pedido (R$)</label>
+                                    <input type="number" id="valorPedido" step="0.01" placeholder="0,00">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="tipoEntrega">Tipo de entrega</label>
+                                    <select id="tipoEntrega">
+                                        <option value="normal">Normal (até 7 dias)</option>
+                                        <option value="expressa">Expressa (até 3 dias)</option>
+                                        <option value="sedex">SEDEX (até 1 dia)</option>
+                                    </select>
+                                </div>
+                                
+                                <button class="btn btn-primary" id="calcFrete">Calcular Frete</button>
+                            </div>
+                            
+                            <div class="calc-results">
+                                <div class="result-card">
+                                    <h4>Valor do Frete</h4>
+                                    <p class="result-value" id="valorFrete">R$ 0,00</p>
+                                </div>
+                                
+                                <div class="result-card">
+                                    <h4>Região</h4>
+                                    <p class="result-value" id="regiaoEntrega">-</p>
+                                </div>
+                                
+                                <div class="result-card">
+                                    <h4>Prazo de Entrega</h4>
+                                    <p class="result-value" id="prazoEntrega">- dias</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Impostos Calculator -->
+            <section class="calculator-section" id="impostos">
+                <div class="calculator-card">
+                    <div class="calculator-header">
+                        <h3>💰 Calculadora de Impostos</h3>
+                        <p>Calcule impostos MEI e Simples Nacional</p>
+                    </div>
+                    
+                    <div class="calculator-body">
+                        <div class="calc-grid">
+                            <div class="calc-inputs">
+                                <div class="form-group">
+                                    <label for="faturamentoMensal">Faturamento mensal (R$)</label>
+                                    <input type="number" id="faturamentoMensal" step="0.01" placeholder="0,00">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="tipoEmpresa">Tipo de empresa</label>
+                                    <select id="tipoEmpresa">
+                                        <option value="mei">MEI</option>
+                                        <option value="simples">Simples Nacional</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="atividadeEmpresa">Atividade principal</label>
+                                    <select id="atividadeEmpresa">
+                                        <option value="comercio">Comércio</option>
+                                        <option value="servicos">Serviços</option>
+                                        <option value="industria">Indústria</option>
+                                    </select>
+                                </div>
+                                
+                                <button class="btn btn-primary" id="calcImpostos">Calcular Impostos</button>
+                            </div>
+                            
+                            <div class="calc-results">
+                                <div class="result-card">
+                                    <h4>Impostos Mensais</h4>
+                                    <p class="result-value" id="impostosMensais">R$ 0,00</p>
+                                </div>
+                                
+                                <div class="result-card">
+                                    <h4>Alíquota</h4>
+                                    <p class="result-value" id="aliquotaImpostos">0%</p>
+                                </div>
+                                
+                                <div class="result-card">
+                                    <h4>Impostos Anuais</h4>
+                                    <p class="result-value" id="impostosAnuais">R$ 0,00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Comissões Calculator -->
+            <section class="calculator-section" id="comissoes">
+                <div class="calculator-card">
+                    <div class="calculator-header">
+                        <h3>🤝 Calculadora de Comissões</h3>
+                        <p>Calcule comissões para revendedoras</p>
+                    </div>
+                    
+                    <div class="calculator-body">
+                        <div class="calc-grid">
+                            <div class="calc-inputs">
+                                <div class="form-group">
+                                    <label for="valorVendas">Valor total de vendas (R$)</label>
+                                    <input type="number" id="valorVendas" step="0.01" placeholder="0,00">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="percentualComissao">Percentual de comissão (%)</label>
+                                    <input type="number" id="percentualComissao" step="0.1" placeholder="0">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="bonusVendas">Bônus por meta (R$)</label>
+                                    <input type="number" id="bonusVendas" step="0.01" placeholder="0,00">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="descontosComissao">Descontos (R$)</label>
+                                    <input type="number" id="descontosComissao" step="0.01" placeholder="0,00">
+                                </div>
+                                
+                                <button class="btn btn-primary" id="calcComissoes">Calcular Comissão</button>
+                            </div>
+                            
+                            <div class="calc-results">
+                                <div class="result-card">
+                                    <h4>Comissão Total</h4>
+                                    <p class="result-value" id="comissaoTotal">R$ 0,00</p>
+                                </div>
+                                
+                                <div class="result-card">
+                                    <h4>Comissão Base</h4>
+                                    <p class="result-value" id="comissaoBase">R$ 0,00</p>
+                                </div>
+                                
+                                <div class="result-card">
+                                    <h4>Valor Líquido</h4>
+                                    <p class="result-value" id="valorLiquido">R$ 0,00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ponto de Equilíbrio Calculator -->
+            <section class="calculator-section" id="equilibrio">
+                <div class="calculator-card">
+                    <div class="calculator-header">
+                        <h3>⚖️ Calculadora de Ponto de Equilíbrio</h3>
+                        <p>Descubra quantas vendas precisa para não ter prejuízo</p>
+                    </div>
+                    
+                    <div class="calculator-body">
+                        <div class="calc-grid">
+                            <div class="calc-inputs">
+                                <div class="form-group">
+                                    <label for="custosFixos">Custos fixos mensais (R$)</label>
+                                    <input type="number" id="custosFixos" step="0.01" placeholder="0,00">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="precoVendaUnit">Preço de venda unitário (R$)</label>
+                                    <input type="number" id="precoVendaUnit" step="0.01" placeholder="0,00">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="custoVariavelUnit">Custo variável unitário (R$)</label>
+                                    <input type="number" id="custoVariavelUnit" step="0.01" placeholder="0,00">
+                                </div>
+                                
+                                <button class="btn btn-primary" id="calcEquilibrio">Calcular Ponto de Equilíbrio</button>
+                            </div>
+                            
+                            <div class="calc-results">
+                                <div class="result-card">
+                                    <h4>Unidades para Equilibrar</h4>
+                                    <p class="result-value" id="unidadesEquilibrio">0</p>
+                                </div>
+                                
+                                <div class="result-card">
+                                    <h4>Faturamento de Equilíbrio</h4>
+                                    <p class="result-value" id="faturamentoEquilibrio">R$ 0,00</p>
+                                </div>
+                                
+                                <div class="result-card">
+                                    <h4>Margem de Contribuição</h4>
+                                    <p class="result-value" id="margemContribuicao">R$ 0,00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="../js/core/supabase-config.js"></script>
+    <script src="../js/core/auth.js"></script>
+    <script src="../js/components/toast.js"></script>
+    <script src="../js/modules/calculadoras.js"></script>
+    <script>
+        // Initialize calculators page
+        document.addEventListener('DOMContentLoaded', function() {
+            Auth.checkAuth();
+            Calculadoras.init();
+        });
+    </script>
+</body>
+</html>
+

@@ -1,4 +1,9 @@
 /* 📁 css/variables.css */
+/* Corrigido: Implementada fonte Poppins para visual moderno e feminino */
+
+/* Importação da fonte Poppins do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 :root {
     /* Cores da Identidade Visual C4 App */
     --rosa-pink: #E91E63;         /* Cor principal e destaque */
@@ -12,20 +17,16 @@
     --vermelho-erro: #F44336;
     --azul-info: #2196F3;
 
-    /* Tipografia */
-    --fonte-principal: 'Montserrat', sans-serif;
-    /* ATENÇÃO: A fonte 'Bright Regular' deve ser importada via @font-face em reset.css ou layout.css */
-    /* Exemplo:
-       @font-face {
-           font-family: 'Bright';
-           src: url('../assets/fonts/Bright-Regular.woff2') format('woff2'),
-                url('../assets/fonts/Bright-Regular.woff') format('woff');
-           font-weight: normal; // ou o peso específico da fonte, ex: 400
-           font-style: normal;
-           font-display: swap;
-       }
-    */
-    --fonte-destaque: 'Bright', serif; /* Usar 'Bright Regular' ou o nome definido no @font-face */
+    /* Corrigido: Tipografia com Poppins como fonte principal */
+    --fonte-principal: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --fonte-destaque: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* Pesos de fonte específicos para Poppins */
+    --peso-fonte-light: 300;      /* Para textos delicados */
+    --peso-fonte-normal: 400;     /* Para textos normais */
+    --peso-fonte-medium: 500;     /* Para botões e destaques */
+    --peso-fonte-semibold: 600;   /* Para títulos */
+    --peso-fonte-bold: 700;       /* Para títulos principais */
 
     /* Espaçamentos (base 8px grid) */
     --espaco-xxs: 4px;
@@ -39,24 +40,42 @@
     /* Bordas */
     --borda-raio-s: 4px;
     --borda-raio-m: 8px;
-    --borda-raio-l: 12px; /* Para cards mais arredondados */
-    --borda-padrao: 1px solid var(--cinza-neutro); /* Alterado para cinza-neutro, pode ser #E0E0E0 se precisar de mais contraste */
+    --borda-raio-l: 12px;
+    --borda-raio-xl: 16px;        /* Para elementos mais arredondados */
+    --borda-padrao: 1px solid var(--cinza-neutro);
 
-    /* Sombras */
-    --sombra-suave: 0 2px 8px rgba(0, 0, 0, 0.07);
-    --sombra-media: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Corrigido: Sombras mais suaves e modernas */
+    --sombra-suave: 0 2px 8px rgba(233, 30, 99, 0.08);     /* Sombra com tom rosa */
+    --sombra-media: 0 4px 16px rgba(233, 30, 99, 0.12);    /* Sombra média com tom rosa */
+    --sombra-forte: 0 8px 24px rgba(233, 30, 99, 0.16);    /* Sombra forte com tom rosa */
 
     /* Transições */
     --transicao-padrao: all 0.2s ease-in-out;
+    --transicao-suave: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Z-Index */
     --z-index-navbar: 1000;
     --z-index-modal-backdrop: 1010;
     --z-index-modal-content: 1020;
-    --z-index-toast: 1030; /* Para notificações flutuantes */
+    --z-index-toast: 1030;
 
     /* Layout Dimensions */
     --header-height: 55px;
     --footer-nav-height: 65px;
-    --max-width-mobile: 500px; /* Largura máxima do container do app em telas maiores */
+    --max-width-mobile: 500px;
+
+    /* Corrigido: Variáveis adicionais para melhor experiência */
+    --border-radius-button: 8px;   /* Bordas arredondadas para botões */
+    --border-radius-card: 12px;    /* Bordas arredondadas para cards */
+    --border-radius-input: 6px;    /* Bordas arredondadas para inputs */
+    
+    /* Gradientes modernos */
+    --gradiente-rosa: linear-gradient(135deg, #E91E63 0%, #F06292 100%);
+    --gradiente-dourado: linear-gradient(135deg, #FFD700 0%, #FFC107 100%);
+    
+    /* Opacidades */
+    --opacidade-disabled: 0.6;
+    --opacidade-hover: 0.8;
+    --opacidade-overlay: 0.5;
 }
+

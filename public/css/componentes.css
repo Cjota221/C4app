@@ -1,0 +1,570 @@
+/* C4 App - Sistema de Componentes Padronizado */
+/* Componentes reutilizáveis com prefixo .c4- */
+
+/* ========================================
+   SISTEMA DE BOTÕES - TOUCH FRIENDLY
+======================================== */
+
+.c4-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--c4-space-2);
+    min-height: var(--c4-touch-min); /* 44px mínimo */
+    padding: var(--c4-space-3) var(--c4-space-6);
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-base);
+    font-weight: var(--c4-font-medium);
+    line-height: 1;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--c4-radius-lg);
+    cursor: pointer;
+    transition: all var(--c4-transition-fast);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.c4-btn:focus {
+    outline: 2px solid var(--c4-primary);
+    outline-offset: 2px;
+}
+
+.c4-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Botão Primário */
+.c4-btn-primary {
+    background: var(--c4-gradient-primary);
+    color: var(--c4-text-white);
+    box-shadow: var(--c4-shadow-pink);
+}
+
+.c4-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--c4-shadow-lg), var(--c4-shadow-pink);
+}
+
+.c4-btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Botão Secundário */
+.c4-btn-secondary {
+    background: var(--c4-bg-secondary);
+    color: var(--c4-primary);
+    border: 2px solid var(--c4-primary);
+}
+
+.c4-btn-secondary:hover {
+    background: var(--c4-primary);
+    color: var(--c4-text-white);
+    transform: translateY(-1px);
+    box-shadow: var(--c4-shadow-md);
+}
+
+/* Botão Outline */
+.c4-btn-outline {
+    background: transparent;
+    color: var(--c4-text-primary);
+    border: 2px solid var(--c4-text-light);
+}
+
+.c4-btn-outline:hover {
+    border-color: var(--c4-primary);
+    color: var(--c4-primary);
+    background: var(--c4-bg-tertiary);
+}
+
+/* Botão Ghost */
+.c4-btn-ghost {
+    background: transparent;
+    color: var(--c4-text-secondary);
+    border: none;
+}
+
+.c4-btn-ghost:hover {
+    background: var(--c4-bg-tertiary);
+    color: var(--c4-text-primary);
+}
+
+/* Botões de Status */
+.c4-btn-success {
+    background: var(--c4-success);
+    color: var(--c4-text-white);
+}
+
+.c4-btn-success:hover {
+    background: #047857;
+    transform: translateY(-1px);
+}
+
+.c4-btn-warning {
+    background: var(--c4-warning);
+    color: var(--c4-text-white);
+}
+
+.c4-btn-warning:hover {
+    background: #b45309;
+    transform: translateY(-1px);
+}
+
+.c4-btn-error {
+    background: var(--c4-error);
+    color: var(--c4-text-white);
+}
+
+.c4-btn-error:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
+}
+
+/* Tamanhos de Botão */
+.c4-btn-sm {
+    min-height: var(--c4-touch-min);
+    padding: var(--c4-space-2) var(--c4-space-4);
+    font-size: var(--c4-text-sm);
+}
+
+.c4-btn-lg {
+    min-height: var(--c4-touch-large); /* 56px */
+    padding: var(--c4-space-4) var(--c4-space-8);
+    font-size: var(--c4-text-lg);
+}
+
+.c4-btn-full {
+    width: 100%;
+}
+
+/* Botão com ícone */
+.c4-btn-icon {
+    min-width: var(--c4-touch-min);
+    padding: var(--c4-space-3);
+}
+
+/* Efeito de loading */
+.c4-btn-loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.c4-btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: c4-spin 1s linear infinite;
+}
+
+@keyframes c4-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ========================================
+   SISTEMA DE CARDS
+======================================== */
+
+.c4-card {
+    background: var(--c4-bg-secondary);
+    border-radius: var(--c4-radius-xl);
+    box-shadow: var(--c4-shadow-md);
+    padding: var(--c4-space-6);
+    transition: all var(--c4-transition-normal);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.c4-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--c4-shadow-lg);
+}
+
+.c4-card-header {
+    margin-bottom: var(--c4-space-4);
+    padding-bottom: var(--c4-space-4);
+    border-bottom: 1px solid var(--c4-bg-tertiary);
+}
+
+.c4-card-title {
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-xl);
+    font-weight: var(--c4-font-semibold);
+    color: var(--c4-text-primary);
+    margin-bottom: var(--c4-space-2);
+}
+
+.c4-card-subtitle {
+    font-size: var(--c4-text-sm);
+    color: var(--c4-text-light);
+    margin-bottom: 0;
+}
+
+.c4-card-body {
+    margin-bottom: var(--c4-space-4);
+}
+
+.c4-card-footer {
+    margin-top: var(--c4-space-4);
+    padding-top: var(--c4-space-4);
+    border-top: 1px solid var(--c4-bg-tertiary);
+}
+
+/* Card com gradiente */
+.c4-card-gradient {
+    background: var(--c4-gradient-primary);
+    color: var(--c4-text-white);
+}
+
+.c4-card-gradient .c4-card-title {
+    color: var(--c4-text-white);
+}
+
+.c4-card-gradient .c4-card-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Card compacto */
+.c4-card-compact {
+    padding: var(--c4-space-4);
+}
+
+/* Card clicável */
+.c4-card-clickable {
+    cursor: pointer;
+    transition: all var(--c4-transition-fast);
+}
+
+.c4-card-clickable:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--c4-shadow-xl);
+}
+
+.c4-card-clickable:active {
+    transform: translateY(-1px);
+}
+
+/* ========================================
+   SISTEMA DE FORMULÁRIOS
+======================================== */
+
+.c4-form {
+    width: 100%;
+}
+
+.c4-form-group {
+    margin-bottom: var(--c4-space-6);
+}
+
+.c4-label {
+    display: block;
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-sm);
+    font-weight: var(--c4-font-medium);
+    color: var(--c4-text-primary);
+    margin-bottom: var(--c4-space-2);
+}
+
+.c4-label-required::after {
+    content: ' *';
+    color: var(--c4-error);
+}
+
+.c4-input {
+    width: 100%;
+    min-height: var(--c4-touch-min); /* 44px mínimo */
+    padding: var(--c4-space-3) var(--c4-space-4);
+    font-family: var(--c4-font-secondary);
+    font-size: var(--c4-text-base);
+    color: var(--c4-text-primary);
+    background: var(--c4-bg-secondary);
+    border: 2px solid var(--c4-bg-tertiary);
+    border-radius: var(--c4-radius-lg);
+    transition: all var(--c4-transition-fast);
+}
+
+.c4-input:focus {
+    outline: none;
+    border-color: var(--c4-primary);
+    box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+}
+
+.c4-input:invalid {
+    border-color: var(--c4-error);
+}
+
+.c4-input::placeholder {
+    color: var(--c4-text-light);
+}
+
+/* Input com ícone */
+.c4-input-group {
+    position: relative;
+}
+
+.c4-input-icon {
+    position: absolute;
+    left: var(--c4-space-3);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--c4-text-light);
+    pointer-events: none;
+}
+
+.c4-input-group .c4-input {
+    padding-left: var(--c4-space-10);
+}
+
+/* Textarea */
+.c4-textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-family: var(--c4-font-secondary);
+}
+
+/* Select */
+.c4-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right var(--c4-space-3) center;
+    background-repeat: no-repeat;
+    background-size: 16px 12px;
+    padding-right: var(--c4-space-10);
+    appearance: none;
+}
+
+/* Mensagens de erro */
+.c4-error-message {
+    display: block;
+    font-size: var(--c4-text-sm);
+    color: var(--c4-error);
+    margin-top: var(--c4-space-2);
+}
+
+.c4-input.error {
+    border-color: var(--c4-error);
+    background-color: var(--c4-error-light);
+}
+
+/* ========================================
+   SISTEMA DE NAVEGAÇÃO
+======================================== */
+
+.c4-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--c4-space-2);
+}
+
+.c4-nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--c4-space-2);
+    min-height: var(--c4-touch-min);
+    padding: var(--c4-space-3) var(--c4-space-4);
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-sm);
+    font-weight: var(--c4-font-medium);
+    color: var(--c4-text-secondary);
+    text-decoration: none;
+    border-radius: var(--c4-radius-lg);
+    transition: all var(--c4-transition-fast);
+}
+
+.c4-nav-item:hover {
+    color: var(--c4-primary);
+    background: var(--c4-bg-tertiary);
+}
+
+.c4-nav-item.active {
+    color: var(--c4-primary);
+    background: rgba(236, 72, 153, 0.1);
+}
+
+/* ========================================
+   SISTEMA DE BADGES E TAGS
+======================================== */
+
+.c4-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--c4-space-1);
+    padding: var(--c4-space-1) var(--c4-space-3);
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-xs);
+    font-weight: var(--c4-font-medium);
+    border-radius: var(--c4-radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.c4-badge-primary {
+    background: rgba(236, 72, 153, 0.1);
+    color: var(--c4-primary);
+}
+
+.c4-badge-success {
+    background: var(--c4-success-light);
+    color: var(--c4-success);
+}
+
+.c4-badge-warning {
+    background: var(--c4-warning-light);
+    color: var(--c4-warning);
+}
+
+.c4-badge-error {
+    background: var(--c4-error-light);
+    color: var(--c4-error);
+}
+
+.c4-badge-info {
+    background: var(--c4-info-light);
+    color: var(--c4-info);
+}
+
+/* ========================================
+   SISTEMA DE ALERTAS E NOTIFICAÇÕES
+======================================== */
+
+.c4-alert {
+    padding: var(--c4-space-4);
+    border-radius: var(--c4-radius-lg);
+    border-left: 4px solid;
+    margin-bottom: var(--c4-space-4);
+}
+
+.c4-alert-success {
+    background: var(--c4-success-light);
+    border-color: var(--c4-success);
+    color: var(--c4-success);
+}
+
+.c4-alert-warning {
+    background: var(--c4-warning-light);
+    border-color: var(--c4-warning);
+    color: var(--c4-warning);
+}
+
+.c4-alert-error {
+    background: var(--c4-error-light);
+    border-color: var(--c4-error);
+    color: var(--c4-error);
+}
+
+.c4-alert-info {
+    background: var(--c4-info-light);
+    border-color: var(--c4-info);
+    color: var(--c4-info);
+}
+
+/* ========================================
+   SISTEMA DE LOADING E SKELETON
+======================================== */
+
+.c4-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--c4-bg-tertiary);
+    border-top: 2px solid var(--c4-primary);
+    border-radius: 50%;
+    animation: c4-spin 1s linear infinite;
+}
+
+.c4-skeleton {
+    background: linear-gradient(90deg, var(--c4-bg-tertiary) 25%, var(--c4-bg-secondary) 50%, var(--c4-bg-tertiary) 75%);
+    background-size: 200% 100%;
+    animation: c4-skeleton 1.5s infinite;
+    border-radius: var(--c4-radius-md);
+}
+
+@keyframes c4-skeleton {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ========================================
+   RESPONSIVIDADE MOBILE
+======================================== */
+
+@media (max-width: 640px) {
+    .c4-btn {
+        min-height: var(--c4-touch-comfortable); /* 48px em mobile */
+        padding: var(--c4-space-4) var(--c4-space-6);
+    }
+    
+    .c4-btn-lg {
+        min-height: 56px;
+        padding: var(--c4-space-5) var(--c4-space-8);
+    }
+    
+    .c4-card {
+        padding: var(--c4-space-4);
+        border-radius: var(--c4-radius-lg);
+    }
+    
+    .c4-input {
+        min-height: var(--c4-touch-comfortable);
+        padding: var(--c4-space-4);
+        font-size: 16px; /* Evita zoom no iOS */
+    }
+    
+    .c4-nav-item {
+        min-height: var(--c4-touch-comfortable);
+        padding: var(--c4-space-4);
+    }
+}
+
+/* ========================================
+   UTILITÁRIOS DE ANIMAÇÃO
+======================================== */
+
+.c4-fade-in {
+    animation: c4-fadeIn 0.3s ease-in-out;
+}
+
+.c4-slide-up {
+    animation: c4-slideUp 0.3s ease-out;
+}
+
+.c4-bounce {
+    animation: c4-bounce 0.6s ease-in-out;
+}
+
+@keyframes c4-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes c4-slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes c4-bounce {
+    0%, 20%, 53%, 80%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    40%, 43% {
+        transform: translate3d(0, -8px, 0);
+    }
+    70% {
+        transform: translate3d(0, -4px, 0);
+    }
+    90% {
+        transform: translate3d(0, -2px, 0);
+    }
+}
+

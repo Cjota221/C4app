@@ -1,62 +1,248 @@
-<div class="metas-page animate-fadeIn">
-    <div class="page-header-flex">
-        <h2 class="page-title">Minhas Metas 🏆</h2>
-        <button class="btn btn-primary" id="btn-abrir-form-meta" aria-label="Definir Nova Meta">
-            <span class="icon" aria-hidden="true">🎯</span> Nova Meta
-        </button>
-    </div>
-
-    <div id="form-meta-container" class="card hidden" style="background-color: var(--rosa-clarinho);">
-         <h3 id="form-meta-title" class="card-header" style="font-family: var(--fonte-principal); font-size: 1.3rem; color: var(--preto-texto); border-bottom: 1px solid var(--rosa-pink);">Definir Nova Meta</h3>
-        <form id="form-meta" class="card-content">
-            <input type="hidden" id="meta-id" name="id">
-            <div class="form-group">
-                <label for="meta-descricao" class="form-label">Descrição da Meta:</label>
-                <input type="text" id="meta-descricao" name="descricao" class="form-input" placeholder="Ex: Vender 50 batons em Julho" required>
-                <p class="form-field-message error"></p>
-            </div>
-            <div class="grid-2-cols">
-                <div class="form-group">
-                    <label for="meta-tipo" class="form-label">Tipo de Meta:</label>
-                    <select id="meta-tipo" name="tipo" class="form-select" required>
-                        <option value="faturamento">Faturamento (R$)</option>
-                        <option value="lucro">Lucro (R$)</option>
-                        <option value="unidades_vendidas">Unidades Vendidas</option>
-                    </select>
-                    <p class="form-field-message error"></p>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="C4 App - Sistema de Metas">
+    <meta name="theme-color" content="#ec4899">
+    <title>C4 App - Metas</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/components/buttons.css">
+    <link rel="stylesheet" href="../assets/css/components/forms.css">
+    <link rel="stylesheet" href="../assets/css/components/cards.css">
+    <link rel="stylesheet" href="../assets/css/components/progress.css">
+    <link rel="stylesheet" href="../assets/css/pages/metas.css">
+</head>
+<body class="metas-page">
+    <!-- Header -->
+    <header class="header-main">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-text">C4</span>
+                    <span class="logo-crown">👑</span>
                 </div>
-                <div class="form-group">
-                    <label for="meta-valor-objetivo" class="form-label">Valor Objetivo:</label>
-                    <input type="number" id="meta-valor-objetivo" name="valor_objetivo" class="form-input" step="0.01" min="1" required placeholder="Ex: 1000 ou 50">
-                    <p class="form-field-message error"></p>
-                </div>
+                <h1 class="page-title">Sistema de Metas</h1>
             </div>
-            <div class="grid-2-cols">
-                <div class="form-group">
-                    <label for="meta-data-inicio" class="form-label">Data de Início:</label>
-                    <input type="date" id="meta-data-inicio" name="data_inicio" class="form-input" required>
-                    <p class="form-field-message error"></p>
-                </div>
-                <div class="form-group">
-                    <label for="meta-data-fim" class="form-label">Prazo Final:</label>
-                    <input type="date" id="meta-data-fim" name="data_fim" class="form-input" required>
-                    <p class="form-field-message error"></p>
-                </div>
+            <div class="header-right">
+                <button class="btn btn-primary" id="newGoalBtn">
+                    <span>+</span> Nova Meta
+                </button>
             </div>
-             <div class="form-group">
-                <label for="meta-valor-atual" class="form-label">Valor Atual Atingido (opcional):</label>
-                <input type="number" id="meta-valor-atual" name="valor_atual" class="form-input" step="0.01" value="0" placeholder="0">
-                 <small>Informe quanto já foi atingido para esta meta.</small>
-            </div>
-
-            <div class="form-actions">
-                <button type="button" class="btn btn-outline-primary" id="btn-cancelar-form-meta">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Salvar Meta</button>
-            </div>
-        </form>
-    </div>
-
-    <div id="lista-metas" class="grid-2-cols mt-l">
-        <p class="loading-message col-span-full">Carregando metas...</p>
         </div>
-</div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-main">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+                <li><a href="produtos.html" class="nav-link">📦 Produtos</a></li>
+                <li><a href="vendas.html" class="nav-link">💰 Vendas</a></li>
+                <li><a href="clientes.html" class="nav-link">👥 Clientes</a></li>
+                <li><a href="despesas.html" class="nav-link">💸 Despesas</a></li>
+                <li><a href="metas.html" class="nav-link active">🎯 Metas</a></li>
+                <li><a href="relatorios.html" class="nav-link">📈 Relatórios</a></li>
+                <li><a href="calculadoras.html" class="nav-link">🧮 Calculadoras</a></li>
+                <li><a href="c4ai.html" class="nav-link">🤖 C4 AI</a></li>
+                <li><a href="perfil.html" class="nav-link">⚙️ Perfil</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Current Goals Overview -->
+            <section class="overview-section">
+                <div class="overview-grid">
+                    <div class="overview-card main-goal">
+                        <div class="goal-header">
+                            <h3>Meta Principal do Mês</h3>
+                            <span class="goal-period" id="currentPeriod">Dezembro 2024</span>
+                        </div>
+                        
+                        <div class="goal-content">
+                            <div class="goal-value">
+                                <span class="current-value" id="currentValue">R$ 0,00</span>
+                                <span class="target-value">de <span id="targetValue">R$ 5.000,00</span></span>
+                            </div>
+                            
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                                </div>
+                                <span class="progress-text" id="progressText">0%</span>
+                            </div>
+                            
+                            <div class="goal-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Dias restantes</span>
+                                    <span class="stat-value" id="daysLeft">0</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Média diária necessária</span>
+                                    <span class="stat-value" id="dailyAverage">R$ 0,00</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Projeção</span>
+                                    <span class="stat-value" id="projection">R$ 0,00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card achievements">
+                        <h3>🏆 Conquistas</h3>
+                        <div class="achievements-list" id="achievementsList">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Goals List -->
+            <section class="goals-section">
+                <div class="section-header">
+                    <h3>Todas as Metas</h3>
+                    <div class="filter-tabs">
+                        <button class="tab-btn active" data-filter="all">Todas</button>
+                        <button class="tab-btn" data-filter="active">Ativas</button>
+                        <button class="tab-btn" data-filter="completed">Concluídas</button>
+                        <button class="tab-btn" data-filter="expired">Expiradas</button>
+                    </div>
+                </div>
+                
+                <div class="goals-grid" id="goalsGrid">
+                    <!-- Dynamic content -->
+                </div>
+            </section>
+
+            <!-- Performance Analysis -->
+            <section class="analysis-section">
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h3>📈 Histórico de Performance</h3>
+                        <canvas id="performanceChart" width="400" height="200"></canvas>
+                    </div>
+                    
+                    <div class="analysis-card">
+                        <h3>📊 Metas por Categoria</h3>
+                        <div class="category-stats" id="categoryStats">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Motivational Section -->
+            <section class="motivation-section">
+                <div class="motivation-card">
+                    <h3>💪 Dica Motivacional</h3>
+                    <p class="motivation-text" id="motivationText">
+                        Você está no caminho certo! Continue focada em suas metas.
+                    </p>
+                    <div class="motivation-actions">
+                        <button class="btn btn-secondary btn-small" id="newMotivation">Nova dica</button>
+                        <button class="btn btn-primary btn-small" id="shareProgress">Compartilhar progresso</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Goal Modal -->
+    <div class="modal" id="goalModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Nova Meta</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            
+            <form id="goalForm" class="modal-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="goalTitle">Título da meta *</label>
+                        <input type="text" id="goalTitle" name="title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goalType">Tipo de meta *</label>
+                        <select id="goalType" name="type" required>
+                            <option value="">Selecione o tipo</option>
+                            <option value="vendas">Vendas (R$)</option>
+                            <option value="produtos">Produtos vendidos</option>
+                            <option value="clientes">Novos clientes</option>
+                            <option value="lucro">Margem de lucro (%)</option>
+                            <option value="custom">Personalizada</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goalTarget">Valor da meta *</label>
+                        <input type="number" id="goalTarget" name="target" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goalPeriod">Período *</label>
+                        <select id="goalPeriod" name="period" required>
+                            <option value="">Selecione o período</option>
+                            <option value="daily">Diária</option>
+                            <option value="weekly">Semanal</option>
+                            <option value="monthly">Mensal</option>
+                            <option value="quarterly">Trimestral</option>
+                            <option value="yearly">Anual</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goalStartDate">Data de início *</label>
+                        <input type="date" id="goalStartDate" name="startDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goalEndDate">Data de término *</label>
+                        <input type="date" id="goalEndDate" name="endDate" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="goalDescription">Descrição</label>
+                        <textarea id="goalDescription" name="description" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>
+                            <input type="checkbox" id="goalNotifications" name="notifications">
+                            Receber notificações de progresso
+                        </label>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancelGoal">Cancelar</button>
+                <button type="submit" form="goalForm" class="btn btn-primary" id="saveGoal">Salvar Meta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../js/core/supabase-config.js"></script>
+    <script src="../js/core/auth.js"></script>
+    <script src="../js/components/toast.js"></script>
+    <script src="../js/components/modal.js"></script>
+    <script src="../js/components/charts.js"></script>
+    <script src="../js/modules/metas.js"></script>
+    <script>
+        // Initialize goals page
+        document.addEventListener('DOMContentLoaded', function() {
+            Auth.checkAuth();
+            Metas.init();
+        });
+    </script>
+</body>
+</html>
+

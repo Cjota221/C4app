@@ -1,0 +1,594 @@
+/* C4 App - Acessibilidade (A11y) */
+/* Melhorias de acessibilidade, contraste e navegação por teclado */
+
+/* ========================================
+   CONTRASTE E CORES ACESSÍVEIS
+======================================== */
+
+/* Garantir contraste mínimo 4.5:1 em todos os elementos */
+:root {
+    /* Cores com contraste AAA (7:1) */
+    --c4-text-high-contrast: #000000;
+    --c4-bg-high-contrast: #ffffff;
+    
+    /* Cores com contraste AA (4.5:1) */
+    --c4-primary-accessible: #c2185b;    /* Rosa mais escuro */
+    --c4-secondary-accessible: #e65100;  /* Laranja mais escuro */
+    --c4-success-accessible: #2e7d32;    /* Verde mais escuro */
+    --c4-warning-accessible: #ef6c00;    /* Amarelo mais escuro */
+    --c4-error-accessible: #c62828;      /* Vermelho mais escuro */
+    --c4-info-accessible: #1565c0;       /* Azul mais escuro */
+}
+
+/* Modo de alto contraste */
+@media (prefers-contrast: high) {
+    :root {
+        --c4-primary: var(--c4-primary-accessible);
+        --c4-secondary: var(--c4-secondary-accessible);
+        --c4-success: var(--c4-success-accessible);
+        --c4-warning: var(--c4-warning-accessible);
+        --c4-error: var(--c4-error-accessible);
+        --c4-info: var(--c4-info-accessible);
+        --c4-text-primary: var(--c4-text-high-contrast);
+        --c4-bg-secondary: var(--c4-bg-high-contrast);
+    }
+    
+    .c4-btn {
+        border: 2px solid currentColor;
+    }
+    
+    .c4-card {
+        border: 2px solid var(--c4-text-light);
+    }
+}
+
+/* ========================================
+   FOCO VISÍVEL E NAVEGAÇÃO POR TECLADO
+======================================== */
+
+/* Foco visível melhorado */
+*:focus {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 3px solid var(--c4-primary);
+    outline-offset: 2px;
+    border-radius: var(--c4-radius-sm);
+    box-shadow: 0 0 0 1px var(--c4-bg-secondary);
+}
+
+/* Foco específico para botões */
+.c4-btn:focus-visible {
+    outline: 3px solid var(--c4-secondary);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 1px var(--c4-bg-secondary), 
+                0 0 0 5px rgba(236, 72, 153, 0.2);
+}
+
+/* Foco para inputs */
+.c4-input:focus-visible,
+.c4-textarea:focus-visible,
+.c4-select:focus-visible {
+    outline: 3px solid var(--c4-primary);
+    outline-offset: 2px;
+    border-color: var(--c4-primary);
+    box-shadow: 0 0 0 1px var(--c4-bg-secondary),
+                0 0 0 4px rgba(236, 72, 153, 0.15);
+}
+
+/* Foco para links */
+a:focus-visible {
+    outline: 3px solid var(--c4-primary);
+    outline-offset: 2px;
+    border-radius: var(--c4-radius-sm);
+    background: rgba(236, 72, 153, 0.1);
+}
+
+/* Foco para cards clicáveis */
+.c4-card-clickable:focus-visible {
+    outline: 3px solid var(--c4-primary);
+    outline-offset: 3px;
+    transform: translateY(-2px);
+}
+
+/* Skip links para navegação por teclado */
+.c4-skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--c4-primary);
+    color: white;
+    padding: var(--c4-space-2) var(--c4-space-4);
+    text-decoration: none;
+    border-radius: var(--c4-radius-md);
+    font-weight: var(--c4-font-semibold);
+    z-index: var(--c4-z-tooltip);
+    transition: top var(--c4-transition-fast);
+}
+
+.c4-skip-link:focus {
+    top: 6px;
+}
+
+/* ========================================
+   LEITORES DE TELA
+======================================== */
+
+/* Texto apenas para leitores de tela */
+.c4-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Mostrar texto em foco para leitores de tela */
+.c4-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: var(--c4-space-2) var(--c4-space-4);
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    background: var(--c4-primary);
+    color: white;
+    border-radius: var(--c4-radius-md);
+}
+
+/* Descrições para leitores de tela */
+.c4-sr-description {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* ========================================
+   ESTADOS DE ELEMENTOS INTERATIVOS
+======================================== */
+
+/* Estados ARIA */
+[aria-expanded="true"] .c4-chevron {
+    transform: rotate(180deg);
+}
+
+[aria-selected="true"] {
+    background: rgba(236, 72, 153, 0.1);
+    border-left: 3px solid var(--c4-primary);
+}
+
+[aria-current="page"] {
+    background: rgba(236, 72, 153, 0.15);
+    color: var(--c4-primary);
+    font-weight: var(--c4-font-semibold);
+}
+
+[aria-disabled="true"],
+[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Estados de loading com ARIA */
+[aria-busy="true"] {
+    position: relative;
+    pointer-events: none;
+}
+
+[aria-busy="true"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--c4-bg-tertiary);
+    border-top: 2px solid var(--c4-primary);
+    border-radius: 50%;
+    animation: c4-spin 1s linear infinite;
+    z-index: 1;
+}
+
+/* ========================================
+   NAVEGAÇÃO POR TECLADO
+======================================== */
+
+/* Indicadores de navegação por teclado */
+.c4-keyboard-navigation .c4-nav-item:focus,
+.c4-keyboard-navigation .c4-sidebar-item:focus {
+    background: rgba(236, 72, 153, 0.1);
+    outline: 2px solid var(--c4-primary);
+    outline-offset: -2px;
+}
+
+/* Melhorar navegação em listas */
+.c4-list-navigation {
+    list-style: none;
+    padding: 0;
+}
+
+.c4-list-navigation li {
+    margin: 0;
+}
+
+.c4-list-navigation a,
+.c4-list-navigation button {
+    display: block;
+    width: 100%;
+    padding: var(--c4-space-3) var(--c4-space-4);
+    text-align: left;
+    border: none;
+    background: none;
+    color: inherit;
+    text-decoration: none;
+    transition: all var(--c4-transition-fast);
+}
+
+.c4-list-navigation a:hover,
+.c4-list-navigation button:hover,
+.c4-list-navigation a:focus,
+.c4-list-navigation button:focus {
+    background: var(--c4-bg-tertiary);
+    color: var(--c4-primary);
+}
+
+/* ========================================
+   FORMULÁRIOS ACESSÍVEIS
+======================================== */
+
+/* Labels obrigatórios */
+.c4-label[aria-required="true"]::after,
+.c4-label.required::after {
+    content: ' *';
+    color: var(--c4-error);
+    font-weight: var(--c4-font-bold);
+    margin-left: var(--c4-space-1);
+}
+
+/* Mensagens de erro acessíveis */
+.c4-error-message {
+    color: var(--c4-error);
+    font-size: var(--c4-text-sm);
+    margin-top: var(--c4-space-2);
+    display: flex;
+    align-items: center;
+    gap: var(--c4-space-2);
+}
+
+.c4-error-message::before {
+    content: '⚠️';
+    flex-shrink: 0;
+}
+
+/* Mensagens de sucesso */
+.c4-success-message {
+    color: var(--c4-success);
+    font-size: var(--c4-text-sm);
+    margin-top: var(--c4-space-2);
+    display: flex;
+    align-items: center;
+    gap: var(--c4-space-2);
+}
+
+.c4-success-message::before {
+    content: '✅';
+    flex-shrink: 0;
+}
+
+/* Dicas de ajuda */
+.c4-help-text {
+    color: var(--c4-text-light);
+    font-size: var(--c4-text-sm);
+    margin-top: var(--c4-space-2);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--c4-space-2);
+}
+
+.c4-help-text::before {
+    content: 'ℹ️';
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Grupos de campos relacionados */
+.c4-fieldset {
+    border: 2px solid var(--c4-bg-tertiary);
+    border-radius: var(--c4-radius-lg);
+    padding: var(--c4-space-4);
+    margin-bottom: var(--c4-space-6);
+}
+
+.c4-legend {
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-lg);
+    font-weight: var(--c4-font-semibold);
+    color: var(--c4-text-primary);
+    padding: 0 var(--c4-space-2);
+    background: var(--c4-bg-primary);
+}
+
+/* ========================================
+   MODAIS E OVERLAYS ACESSÍVEIS
+======================================== */
+
+/* Modal com foco trap */
+.c4-modal[aria-modal="true"] {
+    position: relative;
+}
+
+.c4-modal-overlay[aria-hidden="true"] {
+    display: none;
+}
+
+/* Botão de fechar modal */
+.c4-modal-close {
+    position: absolute;
+    top: var(--c4-space-4);
+    right: var(--c4-space-4);
+    width: var(--c4-touch-min);
+    height: var(--c4-touch-min);
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--c4-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--c4-text-light);
+    transition: all var(--c4-transition-fast);
+}
+
+.c4-modal-close:hover,
+.c4-modal-close:focus {
+    background: var(--c4-bg-tertiary);
+    color: var(--c4-text-primary);
+}
+
+.c4-modal-close::before {
+    content: '✕';
+    font-size: var(--c4-text-lg);
+}
+
+/* ========================================
+   TABELAS ACESSÍVEIS
+======================================== */
+
+.c4-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--c4-space-6);
+}
+
+.c4-table caption {
+    font-family: var(--c4-font-primary);
+    font-size: var(--c4-text-lg);
+    font-weight: var(--c4-font-semibold);
+    text-align: left;
+    margin-bottom: var(--c4-space-4);
+    color: var(--c4-text-primary);
+}
+
+.c4-table th,
+.c4-table td {
+    padding: var(--c4-space-3) var(--c4-space-4);
+    text-align: left;
+    border-bottom: 1px solid var(--c4-bg-tertiary);
+}
+
+.c4-table th {
+    font-family: var(--c4-font-primary);
+    font-weight: var(--c4-font-semibold);
+    background: var(--c4-bg-tertiary);
+    color: var(--c4-text-primary);
+}
+
+.c4-table tbody tr:hover {
+    background: rgba(236, 72, 153, 0.05);
+}
+
+.c4-table tbody tr:focus-within {
+    background: rgba(236, 72, 153, 0.1);
+    outline: 2px solid var(--c4-primary);
+    outline-offset: -2px;
+}
+
+/* ========================================
+   PREFERÊNCIAS DO USUÁRIO
+======================================== */
+
+/* Redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .c4-loading,
+    .c4-spinner {
+        animation: none;
+    }
+    
+    .c4-loading::after,
+    .c4-spinner::after {
+        display: none;
+    }
+}
+
+/* Modo escuro preferido */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --c4-bg-primary: #0f172a;
+        --c4-bg-secondary: #1e293b;
+        --c4-bg-tertiary: #334155;
+        --c4-text-primary: #f1f5f9;
+        --c4-text-secondary: #cbd5e1;
+        --c4-text-light: #94a3b8;
+    }
+    
+    .c4-skip-link {
+        background: var(--c4-primary);
+        color: var(--c4-text-primary);
+    }
+}
+
+/* ========================================
+   UTILITÁRIOS DE ACESSIBILIDADE
+======================================== */
+
+/* Esconder elementos visualmente mas manter para leitores de tela */
+.c4-visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Mostrar apenas para leitores de tela */
+.c4-screen-reader-only {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Indicador de região principal */
+.c4-main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--c4-primary);
+    opacity: 0;
+    transition: opacity var(--c4-transition-fast);
+}
+
+.c4-main-content:focus-within::before {
+    opacity: 1;
+}
+
+/* Melhorar contraste em elementos interativos */
+.c4-high-contrast {
+    filter: contrast(1.2);
+}
+
+/* Indicador de elemento ativo */
+.c4-active-element {
+    position: relative;
+}
+
+.c4-active-element::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid var(--c4-primary);
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--c4-transition-fast);
+}
+
+.c4-active-element.active::after {
+    opacity: 1;
+}
+
+/* ========================================
+   RESPONSIVIDADE PARA ACESSIBILIDADE
+======================================== */
+
+@media (max-width: 640px) {
+    /* Aumentar área de toque em mobile */
+    .c4-btn,
+    .c4-input,
+    .c4-nav-item,
+    .c4-sidebar-item {
+        min-height: var(--c4-touch-comfortable); /* 48px */
+    }
+    
+    /* Melhorar contraste em telas pequenas */
+    .c4-text-light {
+        color: var(--c4-text-secondary);
+    }
+    
+    /* Foco mais visível em mobile */
+    *:focus-visible {
+        outline-width: 4px;
+        outline-offset: 3px;
+    }
+}
+
+/* ========================================
+   INDICADORES DE STATUS
+======================================== */
+
+/* Indicador de carregamento acessível */
+.c4-loading-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--c4-space-2);
+    color: var(--c4-text-secondary);
+    font-size: var(--c4-text-sm);
+}
+
+.c4-loading-indicator::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--c4-bg-tertiary);
+    border-top: 2px solid var(--c4-primary);
+    border-radius: 50%;
+    animation: c4-spin 1s linear infinite;
+}
+
+/* Indicador de sucesso */
+.c4-success-indicator {
+    color: var(--c4-success);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--c4-space-2);
+}
+
+.c4-success-indicator::before {
+    content: '✓';
+    font-weight: bold;
+}
+
+/* Indicador de erro */
+.c4-error-indicator {
+    color: var(--c4-error);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--c4-space-2);
+}
+
+.c4-error-indicator::before {
+    content: '✗';
+    font-weight: bold;
+}
+

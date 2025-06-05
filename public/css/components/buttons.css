@@ -1,130 +1,251 @@
 /* 📁 css/components/buttons.css */
+/* Corrigido: Botões com melhor interatividade e visual moderno */
+
 .btn {
-    display: inline-flex; /* Para alinhar ícones e texto corretamente */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: var(--espaco-s) var(--espaco-l);
     font-family: var(--fonte-principal);
-    font-size: 1rem; /* 16px */
-    font-weight: 500; /* Montserrat Medium */
-    border-radius: var(--borda-raio-m);
+    font-size: 1rem;
+    font-weight: var(--peso-fonte-medium); /* Corrigido: Usando peso específico */
+    border-radius: var(--border-radius-button); /* Corrigido: Usando variável específica */
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    border: 1px solid transparent; /* Base para botões outline */
-    transition: var(--transicao-padrao);
-    line-height: 1.2; /* Para evitar que o texto "pule" com ícones */
-    white-space: nowrap; /* Evita quebra de linha em botões com muito texto */
+    border: 1px solid transparent;
+    transition: var(--transicao-suave); /* Corrigido: Transição mais suave */
+    line-height: 1.2;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    
+    /* Corrigido: Melhor acessibilidade */
+    min-height: 44px; /* Tamanho mínimo para touch */
+    min-width: 44px;
 }
 
+/* Corrigido: Estados disabled melhorados */
 .btn:disabled,
 .btn.disabled {
-    opacity: 0.6;
+    opacity: var(--opacidade-disabled);
     cursor: not-allowed;
-    pointer-events: none; /* Evita eventos de clique */
+    pointer-events: none;
+    transform: none !important;
 }
 
-/* Botão Primário (Rosa Pink) */
+/* Corrigido: Efeito de foco para acessibilidade */
+.btn:focus-visible {
+    outline: 2px solid var(--rosa-pink);
+    outline-offset: 2px;
+}
+
+/* Botão Primário com gradiente moderno */
 .btn-primary {
-    background-color: var(--rosa-pink);
+    background: var(--gradiente-rosa); /* Corrigido: Usando gradiente */
     color: var(--branco);
     border-color: var(--rosa-pink);
-}
-.btn-primary:hover:not(:disabled) {
-    background-color: #d81b60; /* Tom mais escuro de rosa-pink */
-    border-color: #d81b60;
-    transform: translateY(-1px);
     box-shadow: var(--sombra-suave);
 }
-.btn-primary:active:not(:disabled) {
-    background-color: #c2185b; /* Tom ainda mais escuro */
-    transform: translateY(0px);
-    box-shadow: none;
+
+.btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #d81b60 0%, #e91e63 100%);
+    transform: translateY(-2px); /* Corrigido: Efeito mais sutil */
+    box-shadow: var(--sombra-media);
 }
 
-/* Botão Secundário (Amarelo Ouro) */
+.btn-primary:active:not(:disabled) {
+    background: linear-gradient(135deg, #c2185b 0%, #d81b60 100%);
+    transform: translateY(0px);
+    box-shadow: var(--sombra-suave);
+}
+
+/* Botão Secundário com gradiente dourado */
 .btn-secondary {
-    background-color: var(--amarelo-ouro);
+    background: var(--gradiente-dourado); /* Corrigido: Usando gradiente */
     color: var(--preto-texto);
     border-color: var(--amarelo-ouro);
-}
-.btn-secondary:hover:not(:disabled) {
-    background-color: #fbc02d; /* Tom mais escuro de amarelo-ouro */
-    border-color: #fbc02d;
-    transform: translateY(-1px);
     box-shadow: var(--sombra-suave);
 }
-.btn-secondary:active:not(:disabled) {
-    background-color: #f9a825; /* Tom ainda mais escuro */
-    transform: translateY(0px);
-    box-shadow: none;
+
+.btn-secondary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #fbc02d 0%, #ffd700 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-media);
 }
 
-/* Botão Outline (Rosa Pink) */
+.btn-secondary:active:not(:disabled) {
+    background: linear-gradient(135deg, #f9a825 0%, #fbc02d 100%);
+    transform: translateY(0px);
+    box-shadow: var(--sombra-suave);
+}
+
+/* Corrigido: Botão Outline melhorado */
 .btn-outline-primary {
     background-color: transparent;
     color: var(--rosa-pink);
-    border: 1.5px solid var(--rosa-pink);
+    border: 2px solid var(--rosa-pink); /* Corrigido: Borda mais visível */
+    font-weight: var(--peso-fonte-medium);
 }
+
 .btn-outline-primary:hover:not(:disabled) {
     background-color: var(--rosa-clarinho);
     color: var(--rosa-pink);
-}
-.btn-outline-primary:active:not(:disabled) {
-    background-color: #f8bbd0; /* Rosa clarinho um pouco mais escuro */
+    border-color: var(--rosa-pink);
+    transform: translateY(-1px);
 }
 
-/* Botão de Texto (sem borda ou fundo, para ações discretas) */
+.btn-outline-primary:active:not(:disabled) {
+    background-color: #f8bbd0;
+    transform: translateY(0px);
+}
+
+/* Corrigido: Botão de texto melhorado */
 .btn-text {
     background-color: transparent;
     color: var(--rosa-pink);
     border: none;
-    padding: var(--espaco-xs) var(--espaco-s); /* Menor padding */
+    padding: var(--espaco-xs) var(--espaco-s);
+    font-weight: var(--peso-fonte-medium);
+    min-height: auto; /* Permitir altura menor para botões de texto */
 }
+
 .btn-text:hover:not(:disabled) {
     background-color: var(--rosa-clarinho);
     text-decoration: underline;
+    border-radius: var(--borda-raio-s);
 }
 
-/* Botão com Ícone */
+/* Corrigido: Botão de perigo melhorado */
+.btn-danger {
+    background-color: var(--vermelho-erro);
+    color: var(--branco);
+    border-color: var(--vermelho-erro);
+    box-shadow: var(--sombra-suave);
+}
+
+.btn-danger:hover:not(:disabled) {
+    background-color: #d32f2f;
+    border-color: #d32f2f;
+    transform: translateY(-1px);
+    box-shadow: var(--sombra-media);
+}
+
+/* Corrigido: Ícones em botões melhorados */
 .btn .icon {
-    margin-right: var(--espaco-xs); /* Espaço entre ícone e texto */
-    font-size: 1.2em; /* Ícone um pouco maior que o texto */
-    line-height: 1; /* Para centralizar melhor o ícone */
+    margin-right: var(--espaco-xs);
+    font-size: 1.1em; /* Corrigido: Tamanho mais proporcional */
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
 }
-.btn .icon-only { /* Para botões que só têm ícone */
+
+.btn .icon-only {
     margin-right: 0;
-    padding: var(--espaco-s); /* Padding igual em todos os lados */
+    padding: var(--espaco-s);
 }
+
 .btn .icon-only .icon {
     margin-right: 0;
 }
 
+/* Corrigido: Tamanhos de botão */
+.btn-sm {
+    padding: var(--espaco-xs) var(--espaco-m);
+    font-size: 0.875rem;
+    min-height: 36px;
+}
+
+.btn-lg {
+    padding: var(--espaco-m) var(--espaco-xl);
+    font-size: 1.125rem;
+    min-height: 52px;
+    font-weight: var(--peso-fonte-semibold);
+}
+
 /* Botão Full Width */
 .btn-full-width {
-    display: block; /* Para ocupar a largura total */
+    display: flex;
     width: 100%;
 }
 
-/* Botão de Ação Flutuante (FAB - Exemplo) */
+/* Corrigido: Botão FAB melhorado */
 .btn-fab {
     position: fixed;
-    bottom: calc(var(--footer-nav-height) + var(--espaco-l)); /* Acima da navbar */
+    bottom: calc(var(--footer-nav-height) + var(--espaco-l));
     right: var(--espaco-l);
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background-color: var(--rosa-pink);
+    background: var(--gradiente-rosa); /* Corrigido: Usando gradiente */
     color: var(--branco);
-    font-size: 1.8rem; /* Para o ícone '+' por exemplo */
-    box-shadow: var(--sombra-media);
-    z-index: calc(var(--z-index-navbar) - 5); /* Acima do conteúdo, abaixo de modais */
-    padding: 0; /* Resetar padding para centralizar ícone */
+    font-size: 1.5rem;
+    box-shadow: var(--sombra-forte); /* Corrigido: Sombra mais forte para FAB */
+    z-index: calc(var(--z-index-navbar) - 5);
+    padding: 0;
+    border: none;
 }
+
 .btn-fab:hover:not(:disabled) {
-    background-color: #d81b60;
-    transform: scale(1.05);
+    background: linear-gradient(135deg, #d81b60 0%, #e91e63 100%);
+    transform: scale(1.1); /* Corrigido: Efeito de escala */
+    box-shadow: var(--sombra-forte);
 }
+
 .btn-fab .icon {
-    margin: 0; /* Ícone centralizado */
+    margin: 0;
 }
+
+/* Corrigido: Grupo de botões */
+.btn-group {
+    display: flex;
+    gap: var(--espaco-xs);
+}
+
+.btn-group .btn {
+    flex: 1;
+}
+
+/* Corrigido: Estados de loading */
+.btn.loading {
+    pointer-events: none;
+    opacity: var(--opacidade-disabled);
+}
+
+.btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: btn-spin 1s linear infinite;
+}
+
+@keyframes btn-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Corrigido: Melhor responsividade para mobile */
+@media (max-width: 480px) {
+    .btn {
+        padding: var(--espaco-s) var(--espaco-m);
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: var(--espaco-m) var(--espaco-l);
+        font-size: 1rem;
+    }
+    
+    .btn-fab {
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
+        bottom: calc(var(--footer-nav-height) + var(--espaco-m));
+        right: var(--espaco-m);
+    }
+}
+

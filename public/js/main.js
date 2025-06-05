@@ -1,4 +1,5 @@
-// 📁 public/js/main.js (Corrigido)
+// 📁 public/js/main.js
+// Corrigido: Caminho de carregamento de páginas e eventos de botões
 document.addEventListener('DOMContentLoaded', () => {
     const mainContent = document.getElementById('main-content');
     const navItems = document.querySelectorAll('.nav-item');
@@ -21,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         appContainer.dataset.currentPage = pageName;
 
         try {
-            // Caminho corrigido para buscar HTML da raiz de 'public/'
-            const response = await fetch(`${pageName}.html`); // Ex: dashboard.html
+            // Corrigido: Caminho para buscar HTML da raiz de 'public/' (removido ../)
+            const response = await fetch(`${pageName}.html`);
             if (!response.ok) throw new Error(`Página ${pageName}.html não encontrada (status ${response.status})`);
             
             mainContent.innerHTML = await response.text();
@@ -32,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
             headerTitleEl.textContent = titleText;
             document.title = `${titleText} - C4 App`;
 
-            // Caminho corrigido para buscar JS da pasta 'js/' (relativo a 'js/main.js')
-            const scriptPath = `./${pageName}.js`; // Ex: ./dashboard.js
+            // Carregamento de script da página
+            const scriptPath = `js/${pageName}.js`;
             const initFunctionName = `init${pageName.charAt(0).toUpperCase() + pageName.slice(1).replace(/-/g, '')}`;
 
             if (loadedPageScripts[pageName] && typeof loadedPageScripts[pageName] === 'function') {
@@ -45,15 +46,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         const scriptText = await scriptResponse.text();
                         const tempScript = document.createElement('script');
                         tempScript.textContent = scriptText;
-                        document.body.appendChild(tempScript).remove();
+                        document.body.appendChild(tempScript);
                         
-                        if (typeof window[initFunctionName] === 'function') {
-                            window[initFunctionName]();
-                            loadedPageScripts[pageName] = window[initFunctionName];
-                        } else {
-                            loadedPageScripts[pageName] = true; 
-                        }
+                        // Corrigido: Aguardar um tick para garantir que a função foi definida
+                        setTimeout(() => {
+                            if (typeof window[initFunctionName] === 'function') {
+                                window[initFunctionName]();
+                                loadedPageScripts[pageName] = window[initFunctionName];
+                            } else {
+                                console.warn(`Função ${initFunctionName} não encontrada em ${scriptPath}`);
+                                loadedPageScripts[pageName] = true; 
+                            }
+                        }, 10);
                     } else {
+                        console.warn(`Script ${scriptPath} não encontrado`);
                         loadedPageScripts[pageName] = null;
                     }
                 } catch (scriptError) {
@@ -77,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Corrigido: Eventos de navegação com melhor tratamento de erros
     navItems.forEach(item => {
         item.addEventListener('click', (event) => {
             event.preventDefault();
@@ -85,7 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentActive && currentActive.dataset.page === page) {
                 return;
             }
-            if (page) loadPage(page);
+            if (page) {
+                console.log(`Navegando para: ${page}`);
+                loadPage(page);
+            }
         });
     });
 
@@ -94,22 +104,35 @@ document.addEventListener('DOMContentLoaded', () => {
         loadPage(pageToLoad, false);
     });
     
-    if (!getCurrentUser() && (new URLSearchParams(window.location.search).get('page')) !== 'perfil') {
-        // Lógica de autenticação inicial
-    }
+    // Corrigido: Verificação de usuário com fallback
+    const checkUser = () => {
+        try {
+            return getCurrentUser && getCurrentUser();
+        } catch (error) {
+            console.warn('getCurrentUser não disponível ainda:', error);
+            return null;
+        }
+    };
 
     const initialPage = new URLSearchParams(window.location.search).get('page') || 'dashboard';
     loadPage(initialPage, !new URLSearchParams(window.location.search).has('page'));
 
+    // Corrigido: Modal global com melhor tratamento de eventos
     window.showAppModal = (title, bodyHtml, footerHtml = '', modalId = 'appDefaultModal') => {
         const modalPlaceholder = document.getElementById('modal-placeholder');
-        if (!modalPlaceholder) return;
+        if (!modalPlaceholder) {
+            console.error('modal-placeholder não encontrado');
+            return;
+        }
+        
         const existingModal = document.getElementById(modalId);
         if (existingModal) existingModal.remove();
+        
         const modalBackdrop = document.createElement('div');
         modalBackdrop.className = 'modal-backdrop';
         modalBackdrop.id = modalId;
         let footerContent = footerHtml ? `<div class="modal-footer">${footerHtml}</div>` : '';
+        
         modalBackdrop.innerHTML = `
             <div class="modal-content">
                 <div class="modal-header">
@@ -120,9 +143,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${footerContent}
             </div>
         `;
+        
         modalPlaceholder.appendChild(modalBackdrop);
-        modalBackdrop.querySelector('.modal-close-btn').addEventListener('click', () => closeAppModal(modalId));
-        modalBackdrop.addEventListener('click', (e) => { if (e.target === modalBackdrop) closeAppModal(modalId); });
+        
+        // Corrigido: Event listeners com verificação de existência
+        const closeBtn = modalBackdrop.querySelector('.modal-close-btn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => closeAppModal(modalId));
+        }
+        
+        modalBackdrop.addEventListener('click', (e) => { 
+            if (e.target === modalBackdrop) closeAppModal(modalId); 
+        });
+        
+        // Trigger reflow e adicionar classe ativa
         void modalBackdrop.offsetWidth;
         modalBackdrop.classList.add('active');
     };
@@ -139,19 +173,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Corrigido: Toast com melhor tratamento de container
     window.showToast = (message, type = 'info', duration = 3500) => {
         const toastContainer = document.getElementById('toast-placeholder-container');
-        if (!toastContainer) return;
+        if (!toastContainer) {
+            console.warn('toast-placeholder-container não encontrado');
+            return;
+        }
+        
         const toast = document.createElement('div');
         toast.className = `toast-notification ${type}`;
         toast.textContent = message;
         toastContainer.appendChild(toast);
+        
+        // Trigger reflow e mostrar toast
         void toast.offsetWidth;
         toast.classList.add('show');
+        
         setTimeout(() => {
             toast.classList.remove('show');
             toast.classList.add('hide');
-            toast.addEventListener('animationend', () => toast.remove(), { once: true });
+            toast.addEventListener('animationend', () => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, { once: true });
         }, duration);
     };
+
+    console.log('main.js carregado e corrigido');
 });
+

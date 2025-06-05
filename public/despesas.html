@@ -1,58 +1,107 @@
-<div class="despesas-page animate-fadeIn">
-    <div class="page-header-flex">
-        <h2 class="page-title">Minhas Despesas 🧾</h2>
-    </div>
-
-    <div id="form-despesa-container" class="card mb-l hidden" style="background-color: var(--rosa-clarinho);">
-        <h3 id="form-despesa-title" class="card-header" style="font-family: var(--fonte-principal); font-size: 1.3rem; color: var(--preto-texto); border-bottom: 1px solid var(--rosa-pink);">Adicionar Nova Despesa</h3>
-        <form id="form-despesa" class="card-content">
-            <input type="hidden" id="despesa-id" name="id">
-            <input type="hidden" id="despesa-tipo" name="tipo_despesa">
-
-            <div class="form-group">
-                <label for="despesa-descricao" class="form-label">Descrição:</label>
-                <input type="text" id="despesa-descricao" name="descricao" class="form-input" required placeholder="Ex: Aluguel da Loja, Compra de Sacolas">
-                <p class="form-field-message error"></p>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C4 App - Gestão de Despesas</title>
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/components/buttons.css">
+    <link rel="stylesheet" href="../assets/css/components/forms.css">
+    <link rel="stylesheet" href="../assets/css/components/cards.css">
+</head>
+<body class="despesas-page">
+    <header class="header-main">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-text">C4</span>
+                    <span class="logo-crown">👑</span>
+                </div>
+                <h1 class="page-title">Gestão de Despesas</h1>
             </div>
-            <div class="form-group">
-                <label for="despesa-valor" class="form-label">Valor (R$):</label>
-                <input type="number" id="despesa-valor" name="valor" class="form-input" step="0.01" min="0" required placeholder="0,00">
-                 <p class="form-field-message error"></p>
+            <div class="header-right">
+                <button class="btn btn-primary" id="newExpenseBtn">+ Nova Despesa</button>
             </div>
-            <div class="form-group hidden" id="despesa-vencimento-group">
-                <label for="despesa-data-vencimento" class="form-label">Data de Vencimento (para custos fixos):</label>
-                <input type="date" id="despesa-data-vencimento" name="data_vencimento" class="form-input">
-                 <p class="form-field-message error"></p>
-            </div>
+        </div>
+    </header>
 
-            <div class="form-actions">
-                <button type="button" class="btn btn-outline-primary" id="btn-cancelar-form-despesa">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Salvar Despesa</button>
-            </div>
-        </form>
-    </div>
+    <nav class="nav-main">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+                <li><a href="produtos.html" class="nav-link">📦 Produtos</a></li>
+                <li><a href="vendas.html" class="nav-link">💰 Vendas</a></li>
+                <li><a href="clientes.html" class="nav-link">👥 Clientes</a></li>
+                <li><a href="despesas.html" class="nav-link active">💸 Despesas</a></li>
+                <li><a href="metas.html" class="nav-link">🎯 Metas</a></li>
+                <li><a href="relatorios.html" class="nav-link">📈 Relatórios</a></li>
+                <li><a href="calculadoras.html" class="nav-link">🧮 Calculadoras</a></li>
+                <li><a href="c4ai.html" class="nav-link">🤖 C4 AI</a></li>
+                <li><a href="perfil.html" class="nav-link">⚙️ Perfil</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <div class="card mb-l">
-        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-            <span class="card-title">Custos Fixos</span>
-            <button class="btn btn-secondary btn-sm" id="btn-add-despesa-fixa" data-tipo="fixa" aria-label="Adicionar Custo Fixo">
-                <span class="icon" aria-hidden="true">➕</span> Fixo
-            </button>
-        </div>
-        <div id="lista-despesas-fixas" class="card-list">
-            <p class="text-center empty-message p-m">Nenhum custo fixo cadastrado.</p>
-        </div>
-    </div>
+    <main class="main-content">
+        <div class="container">
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">💸</div>
+                        <div class="stat-content">
+                            <h3>Despesas do Mês</h3>
+                            <p class="stat-value" id="monthExpenses">R$ 0,00</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔄</div>
+                        <div class="stat-content">
+                            <h3>Despesas Fixas</h3>
+                            <p class="stat-value" id="fixedExpenses">R$ 0,00</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-content">
+                            <h3>Despesas Variáveis</h3>
+                            <p class="stat-value" id="variableExpenses">R$ 0,00</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚠️</div>
+                        <div class="stat-content">
+                            <h3>Vencendo Hoje</h3>
+                            <p class="stat-value" id="dueTodayExpenses">0</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <div class="card">
-        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-            <span class="card-title">Custos Variáveis</span>
-            <button class="btn btn-secondary btn-sm" id="btn-add-despesa-variavel" data-tipo="variavel" aria-label="Adicionar Custo Variável">
-                <span class="icon" aria-hidden="true">➕</span> Variável
-            </button>
+            <section class="expenses-section">
+                <div class="expenses-tabs">
+                    <button class="tab-btn active" data-tab="all">Todas</button>
+                    <button class="tab-btn" data-tab="fixed">Fixas</button>
+                    <button class="tab-btn" data-tab="variable">Variáveis</button>
+                    <button class="tab-btn" data-tab="taxes">Impostos</button>
+                </div>
+                
+                <div class="expenses-list" id="expensesList">
+                    <!-- Dynamic content -->
+                </div>
+            </section>
         </div>
-        <div id="lista-despesas-variaveis" class="card-list">
-            <p class="text-center empty-message p-m">Nenhum custo variável cadastrado.</p>
-        </div>
-    </div>
-</div>
+    </main>
+
+    <script src="../js/core/supabase-config.js"></script>
+    <script src="../js/core/auth.js"></script>
+    <script src="../js/modules/despesas.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Auth.checkAuth();
+            Despesas.init();
+        });
+    </script>
+</body>
+</html>
+
